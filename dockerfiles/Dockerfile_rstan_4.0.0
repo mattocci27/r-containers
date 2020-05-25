@@ -1,0 +1,21 @@
+#
+# NOTE: THIS DOCKERFILE IS GENERATED VIA 'make-dockerfiles.R'
+#
+# PLEASE DO NOT EDIT IT DIRECTLY.
+#
+
+FROM rocker/verse:4.0.0
+
+
+
+COPY scripts /scripts
+
+RUN bash /scripts/usrconf.sh
+RUN bash /scripts/linux_mirror.sh
+RUN su -c 'sh /scripts/cn_mirror.sh' rstudio
+RUN bash /scripts/install_stan.sh
+
+
+
+
+

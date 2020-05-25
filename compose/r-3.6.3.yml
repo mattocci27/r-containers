@@ -1,0 +1,14 @@
+version: '3'
+services:
+  rstan-3.6.3:
+    image: rocker/rstan:3.6.3
+    build:
+      context: ..
+      dockerfile: dockerfiles/Dockerfile_rstan_3.6.3
+  myenv-3.6.3:
+    image: rocker/myenv:3.6.3
+    depends_on:
+    - rstan-3.6.3
+    build:
+      context: ..
+      dockerfile: dockerfiles/Dockerfile_myenv_3.6.3

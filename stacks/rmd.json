@@ -1,0 +1,31 @@
+{
+	"ordered": false,
+	"stack": [
+		{
+			"TAG": "3.6.3",
+			"IMAGE": "rmd",
+			"FROM": "rocker/verse:3.6.3",
+			"COPY": "scripts /scripts",
+			"RUN": [
+				"bash /scripts/usrconf.sh",
+				"bash /scripts/linux_mirror.sh",
+				"bash /scripts/install_python.sh",
+				"su -c 'sh /scripts/cn_mirror.sh' rstudio",
+				"/scripts/install_rmd.sh"
+			]
+		},
+		{
+			"TAG": "4.0.0",
+			"IMAGE": "rmd",
+			"FROM": "rocker/verse:4.0.0",
+			"COPY": "scripts /scripts",
+			"RUN": [
+				"bash /scripts/usrconf.sh",
+				"bash /scripts/linux_mirror.sh",
+				"bash /scripts/install_python.sh",
+				"su -c 'sh /scripts/cn_mirror.sh' rstudio",
+				"/scripts/install_rmd.sh"
+			]
+		}
+	]
+}

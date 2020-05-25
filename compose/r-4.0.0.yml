@@ -1,0 +1,14 @@
+version: '3'
+services:
+  rstan-4.0.0:
+    image: rocker/rstan:4.0.0
+    build:
+      context: ..
+      dockerfile: dockerfiles/Dockerfile_rstan_4.0.0
+  myenv-4.0.0:
+    image: rocker/myenv:4.0.0
+    depends_on:
+    - rstan-4.0.0
+    build:
+      context: ..
+      dockerfile: dockerfiles/Dockerfile_myenv_4.0.0

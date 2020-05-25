@@ -1,0 +1,24 @@
+{
+	"ordered": true,
+	"TAG": "3.6.3",
+	"stack": [
+		{
+			"IMAGE": "rstan",
+			"FROM": "rocker/verse:3.6.3",
+			"COPY": "scripts /scripts",
+			"RUN": [
+				"bash /scripts/usrconf.sh",
+				"bash /scripts/linux_mirror.sh",
+				"su -c 'sh /scripts/cn_mirror.sh' rstudio",
+				"/scripts/install_stan.sh"
+			]
+		},
+		{
+			"IMAGE": "myenv",
+			"FROM": "mattocci/rstan:3.6.3",
+			"RUN": [
+				"/scripts/install_myenv.sh"
+			]
+		}
+	]
+}

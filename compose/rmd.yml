@@ -1,0 +1,12 @@
+version: '3'
+services:
+  rmd-3.6.3:
+    image: rocker/rmd:3.6.3
+    build:
+      context: ..
+      dockerfile: dockerfiles/Dockerfile_rmd_3.6.3
+  rmd-4.0.0:
+    image: rocker/rmd:4.0.0
+    build:
+      context: ..
+      dockerfile: dockerfiles/Dockerfile_rmd_4.0.0
