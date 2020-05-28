@@ -27,11 +27,11 @@ mkdir -p /home/rstudio/.R/
 echo 'options(repos = c(CRAN = "http://mirror.lzu.edu.cn/CRAN/"), download.file.method = "libcurl")' >> /home/rstudio/.Rprofile
 
 # cargo - rust
-sudo mkdir -p /root/.cargo/ 
-sudo bash -c 'cat << "EOF" > /root/.cargo/config
-[source.crates-io]
-  registry = "https://github.com/rust-lang/crates.io-index"
-  replace-with = 'ustc'
-[source.ustc]
-  registry = "git://mirrors.ustc.edu.cn/crates.io-index"
-EOF'
+#sudo mkdir -p /root/.cargo/ 
+#sudo bash -c 'cat << "EOF" > /root/.cargo/config
+#[source.crates-io]
+#  registry = "https://github.com/rust-lang/crates.io-index"
+#  replace-with = 'ustc'
+#[source.ustc]
+#  registry = "git://mirrors.ustc.edu.cn/crates.io-index"
+#EOF'

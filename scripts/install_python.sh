@@ -18,7 +18,7 @@ pip3 install --no-cache-dir --upgrade pip
 pip3 install --no-cache-dir virtualenv
 
 
-install2.r --skipinstalled --error reticulate 
+#install2.r --skipinstalled --error reticulate 
 
 ## Ensure RStudio inherits this env var
 echo "" >> ${R_HOME}/etc/Renviron

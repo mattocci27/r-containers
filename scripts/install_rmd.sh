@@ -1,9 +1,7 @@
 #!/bin/bash
 set -e
 
-apt update && apt install -y --fix-missing python3-pip \
-  fd-find \
-  exa \
+apt update && apt install -y python3-pip \
   curl \
   lib32stdc++6 \
   ghostscript \
@@ -13,7 +11,7 @@ apt update && apt install -y --fix-missing python3-pip \
   cargo \
   libwebp-dev \
   tesseract-ocr-eng \
-  gdal-bin \ 
+  gdal-bin \
   proj-bin \
   libgdal-dev \
   libproj-dev \
