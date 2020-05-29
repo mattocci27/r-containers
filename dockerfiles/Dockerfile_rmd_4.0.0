@@ -12,7 +12,6 @@ COPY scripts /scripts
 
 RUN bash /scripts/usrconf.sh
 RUN bash /scripts/linux_mirror.sh
-RUN bash /scripts/install_python.sh
 RUN su -c 'sh /scripts/cn_mirror.sh' rstudio
 RUN /scripts/install_rmd.sh
 

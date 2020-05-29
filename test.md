@@ -49,3 +49,14 @@ ERROR: compilation failed for package ‘gifski’
 ```
 
 curl https://freegeoip.app/xml/ | grep CountryCode
+
+
+docker run -d -p 5000:5000 -v /var/opt:/var/lib/registry registry:2.3.0
+
+docker run -d -p 5000:5000 --restart=always \
+  -v /var/opt:/var/lib/registry \
+  --name registry \
+  -v /certs:/certs \
+  -e REGISTRY_HTTP_TLS_CERTIFICATE=/certs/domain.crt \
+  -e REGISTRY_HTTP_TLS_KEY=/certs/domain.key \
+  registry

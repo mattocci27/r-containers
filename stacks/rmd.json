@@ -9,7 +9,6 @@
 			"RUN": [
 				"bash /scripts/usrconf.sh",
 				"bash /scripts/linux_mirror.sh",
-				"bash /scripts/install_python.sh",
 				"su -c 'sh /scripts/cn_mirror.sh' rstudio",
 				"/scripts/install_rmd.sh"
 			]
@@ -22,7 +21,6 @@
 			"RUN": [
 				"bash /scripts/usrconf.sh",
 				"bash /scripts/linux_mirror.sh",
-				"bash /scripts/install_python.sh",
 				"su -c 'sh /scripts/cn_mirror.sh' rstudio",
 				"/scripts/install_rmd.sh"
 			]
