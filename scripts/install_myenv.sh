@@ -36,4 +36,5 @@ install2.r -n 4 --error \
     memisc \
     mvtnorm \
     adespatial \
+    GGally \
     && rm -rf /tmp/downloaded_packages/ /tmp/*.rds
