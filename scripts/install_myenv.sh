@@ -3,8 +3,6 @@ set -e
 
 apt update && apt install -y --fix-missing python3-pip \
   curl \
-  fd-find \
-  exa \
   libudunits2-dev \
   libgl1-mesa-dev \
   libglu1-mesa-dev \
@@ -14,7 +12,7 @@ apt update && apt install -y --fix-missing python3-pip \
 
 pip3 install --default-timeout=100 -U radian
 
-curl https://gist.githubusercontent.com/mattocci27/e2d2d23dfcfd4b5dad1fbcb7ab60756c/raw/41f2e02c96e6a9c5bbad538abc4f94e474d54ea6/.radian_profile -o /home/rstudio/.radian_profile 
+cp /script/.radian_profile /home/rstudio/.radian_profile
 
 install2.r -n 4 --error \
     --deps TRUE \
@@ -37,4 +35,5 @@ install2.r -n 4 --error \
     mvtnorm \
     adespatial \
     GGally \
+    hexbin \
     && rm -rf /tmp/downloaded_packages/ /tmp/*.rds
