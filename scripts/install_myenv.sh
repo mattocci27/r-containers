@@ -12,7 +12,7 @@ apt update && apt install -y --fix-missing python3-pip \
 
 pip3 install --default-timeout=100 -U radian
 
-cp /script/.radian_profile /home/rstudio/.radian_profile
+cp /scripts/.radian_profile /home/rstudio/.radian_profile
 
 install2.r -n 4 --error \
     --deps TRUE \
