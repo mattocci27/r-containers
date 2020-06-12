@@ -21,12 +21,12 @@ apt update && apt install -y python3-pip \
 
 pip3 install --default-timeout=100 -U radian
 
-curl https://gist.githubusercontent.com/mattocci27/e2d2d23dfcfd4b5dad1fbcb7ab60756c/raw/41f2e02c96e6a9c5bbad538abc4f94e474d54ea6/.radian_profile -o /home/rstudio/.radian_profile 
+cp /scripts/.radian_profile /home/rstudio/.radian_profile
 
-install2.r -n 4 --error \
+install2.r -n -1 --skipinstalled --error \
   --deps TRUE \
     kableExtra \
-    magick \ 
+    magick \
     webshot
 
 Rscript -e "webshot::install_phantomjs()"

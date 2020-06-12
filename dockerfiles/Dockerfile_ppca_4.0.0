@@ -4,13 +4,13 @@
 # PLEASE DO NOT EDIT IT DIRECTLY.
 #
 
-FROM mattocci/rstan:4.0.0
+FROM mattocci/myenv:4.0.0
 
 
 
 COPY scripts /scripts
 
-RUN /scripts/install_myenv.sh
+RUN /scripts/install_ppca.sh
 
 
 

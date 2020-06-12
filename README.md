@@ -28,9 +28,11 @@ docker push localhost:5000/mattocci/rstan:4.0.0
 docker tag mattocci/rstan:4.0.0 192.168.1.123:5000/mattocci/rstan:4.0.0
 docker push 192.168.1.123:5000/mattocci/rstan:4.0.0
 
+docker push 192.168.1.123:5000/devlopr-jekyll_jekyllbuild
+
 docker pull mattocci/rstan:4.0.0
 
-docker login -u mattocci 192.168.1.123:5000 
+docker login -u mattocci 192.168.1.123:5000
 
 docker run -d \
   --restart=always \
@@ -45,6 +47,9 @@ docker run -d \
 docker tag ztpln 192.168.1.123:5000/ztpln
 docker push 192.168.1.123:5000/ztpln
 
+docker push mattocci/myenv:4.0.0
+docker push mattocci/myenv:3.6.3
+
 docker pull 192.168.1.123:5000/ztpln
 
 sudo mkdir -p /etc/docker/certs.d/192.168.1.123:443
@@ -54,5 +59,31 @@ sudo cp certs/domain.crt /etc/docker/certs.d/192.168.1.123:443/ca.crt
 sudo cp certs/domain.crt /etc/docker/certs.d/192.168.1.123:5000/
 cd /etc/docker/certs.d/192.168.1.123:5000/
 mv domains.crt ca.crt
+
+
+$(PUSHES): %.push: %
+	docker-compose -f compose/$<.yml push; \
+	for img in $(docker-compose -f compose/$<.yml config | grep -oP -e "(?<=\\s)[^\\s]+:$(LATEST_TAG)"); do \
+		docker tag $img ${img/$(LATEST_TAG)/latest} ; \
+		docker push ${img/$(LATEST_TAG)/latest}; \
+		docker push 210.72.93.156:5000/${img/$(LATEST_TAG)/latest}; \
+	done
+
+
+docker tag mattocci/myenv:3.6.3 192.168.1.123:5000/mattocci/myenv:3.6.3
+docker push 192.168.1.123:5000/mattocci/myenv:3.6.3
+
+docker tag mattocci/myenv:3.6.3 210.72.93.156:5000/mattocci/myenv:3.6.3
+docker push 210.72.93.156:5000/mattocci/myenv:3.6.3
+
+docker tag mattocci/myenv:4.0.0 210.72.93.156:5000/mattocci/myenv:4.0.0
+docker push 210.72.93.156:5000/mattocci/myenv:4.0.0
+
+docker tag mattocci/rstan:3.6.3 192.168.1.123:5000/mattocci/rstan:3.6.3
+docker push 192.168.1.123:5000/mattocci/rstan:3.6.3
+
+docker tag mattocci/rstan:4.0.0 192.168.1.123:5000/mattocci/rstan:4.0.0
+docker push 192.168.1.123:5000/mattocci/rstan:4.0.0
+
 
 ```

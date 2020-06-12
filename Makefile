@@ -3,6 +3,8 @@ STACKS=$(notdir $(basename $(STACKFILES)))
 COMPOSEFILES=$(addprefix compose/,$(addsuffix .yml,$(STACKS)))
 PUSHES=$(addsuffix .push,$(STACKS))
 LATEST_TAG=4.0.0
+#LATEST_TAG=3.6.3
+MY_IP=210.72.93.156
 
 .PHONY: clean build setup push latest
 .PHONY: $(STACKS) $(PUSHES)
@@ -22,19 +24,14 @@ build: $(STACKS)
 $(STACKS): %: compose/%.yml
 	docker-compose -f compose/$@.yml build
 
-#r-3.6.3: r-3.6.3
-
-#r-4.0.0: r-4.0.0
-
-#rmd: rmd
-
 push: $(PUSHES)
 
 $(PUSHES): %.push: %
 	docker-compose -f compose/$<.yml push; \
 	for img in $(docker-compose -f compose/$<.yml config | grep -oP -e "(?<=\\s)[^\\s]+:$(LATEST_TAG)"); do \
 		docker tag $img ${img/$(LATEST_TAG)/latest} ; \
-		docker push ${img/$(LATEST_TAG)/latest}; \
+		docker tag $img ${$(MY_IP)/img/$(LATEST_TAG)/latest} ; \
+  	docker push ${$(MY_IP)/img/$(LATEST_TAG)/latest}; \
 	done
 
 clean:

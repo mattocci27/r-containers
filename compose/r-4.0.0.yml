@@ -12,3 +12,10 @@ services:
     build:
       context: ..
       dockerfile: dockerfiles/Dockerfile_myenv_4.0.0
+  ppca-4.0.0:
+    image: mattocci/ppca:4.0.0
+    depends_on:
+    - myenv-4.0.0
+    build:
+      context: ..
+      dockerfile: dockerfiles/Dockerfile_ppca_4.0.0

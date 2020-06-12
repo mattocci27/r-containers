@@ -1,7 +1,7 @@
 #!/bin/bash
 set -e
 
-install2.r -n 4 --error \
+install2.r -n -1 --error \
   --deps TRUE \
   RcppParallel \
   rstanarm 

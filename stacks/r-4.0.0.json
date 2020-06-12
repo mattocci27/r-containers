@@ -10,14 +10,23 @@
 				"bash /scripts/usrconf.sh",
 				"bash /scripts/linux_mirror.sh",
 				"su -c 'sh /scripts/cn_mirror.sh' rstudio",
-				"bash /scripts/install_stan.sh"
+				"/scripts/install_stan.sh"
 			]
 		},
 		{
 			"IMAGE": "myenv",
 			"FROM": "mattocci/rstan:4.0.0",
+			"COPY": "scripts /scripts",
 			"RUN": [
-				"bash /scripts/install_myenv.sh"
+				"/scripts/install_myenv.sh"
+			]
+		},
+		{
+			"IMAGE": "ppca",
+			"FROM": "mattocci/myenv:4.0.0",
+			"COPY": "scripts /scripts",
+			"RUN": [
+				"/scripts/install_ppca.sh"
 			]
 		}
 	]
