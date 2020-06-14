@@ -1,10 +1,8 @@
 #!/bin/bash
 set -e
 
-
-installGithub.r helixcn/plantlist
+install2.r --error Rcpp
 installGithub.r husson/FactoMineR
-installGithub.r jinyizju/V.PhyloMaker
 
 install2.r -n -1 --skipinstalled --error \
   --deps TRUE \
@@ -14,5 +12,6 @@ install2.r -n -1 --skipinstalled --error \
   phytools \
   picante \
   rgl \
-  smatr \
-  && rm -rf /tmp/downloaded_packages/ /tmp/*.rds
+  smatr
+
+rm -rf /tmp/downloaded_packages/ /tmp/*.rds

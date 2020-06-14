@@ -1,11 +1,12 @@
 
 ```
-
 docker run -d -p 5000:5000 --name registry \
   --hostname registry --restart on-failure:10 \
   -v /var/local/volume:/var/lib/registry \
   registry:2
+```
 
+```
 docker run \
   -d \
   --name registry-frontend \

@@ -1,0 +1,12 @@
+version: '3'
+services:
+  ppca-3.6.3:
+    image: mattocci/ppca:3.6.3
+    build:
+      context: ..
+      dockerfile: dockerfiles/Dockerfile_ppca_3.6.3
+  ppca-4.0.0:
+    image: mattocci/ppca:4.0.0
+    build:
+      context: ..
+      dockerfile: dockerfiles/Dockerfile_ppca_4.0.0

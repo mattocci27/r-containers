@@ -16,8 +16,12 @@ pip3 install --default-timeout=100 -U radian
 
 cp /scripts/.radian_profile /home/rstudio/.radian_profile
 
+Rscript -e "install.packages('BiocManager')"
+Rscript -e "BiocManager::install(c('marray', 'affy', 'Biobase'))"
+
 install2.r -n -1 --skipinstalled --error \
   --deps TRUE \
+  adespatial \
   vegan \
   MuMIn \
   furrr \
@@ -35,8 +39,11 @@ install2.r -n -1 --skipinstalled --error \
   pander \
   memisc \
   mvtnorm \
-  adespatial \
   GGally \
   hexbin \
-  corrplot \
-  && rm -rf /tmp/downloaded_packages/ /tmp/*.rds
+  corrplot
+
+ rm -rf /tmp/downloaded_packages/ /tmp/*.rds
+
+  #freetypeharfbuzz \
+  #vdiffr \

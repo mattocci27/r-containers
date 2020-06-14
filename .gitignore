@@ -11,6 +11,7 @@ log/*.log
 .DS_store
 deb/
 *.tar
+.vscode/
 
 # History files
 .Rhistory

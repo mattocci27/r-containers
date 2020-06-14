@@ -1,0 +1,22 @@
+{
+	"stack": [
+		{
+			"IMAGE": "ppca",
+            "TAG": "3.6.3",
+			"FROM": "mattocci/myenv:3.6.3",
+			"COPY": "scripts /scripts",
+			"RUN": [
+				"/scripts/install_ppca.sh"
+			]
+		},
+		{
+            "IMAGE": "ppca",
+            "TAG": "4.0.0",
+			"FROM": "mattocci/myenv:4.0.0",
+			"COPY": "scripts /scripts",
+			"RUN": [
+				"/scripts/install_ppca.sh"
+			]
+		}
+	]
+}

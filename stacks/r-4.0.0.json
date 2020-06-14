@@ -20,14 +20,6 @@
 			"RUN": [
 				"/scripts/install_myenv.sh"
 			]
-		},
-		{
-			"IMAGE": "ppca",
-			"FROM": "mattocci/myenv:4.0.0",
-			"COPY": "scripts /scripts",
-			"RUN": [
-				"/scripts/install_ppca.sh"
-			]
 		}
 	]
 }

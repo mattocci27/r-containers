@@ -12,10 +12,3 @@ services:
     build:
       context: ..
       dockerfile: dockerfiles/Dockerfile_myenv_3.6.3
-  ppca-3.6.3:
-    image: mattocci/ppca:3.6.3
-    depends_on:
-    - myenv-3.6.3
-    build:
-      context: ..
-      dockerfile: dockerfiles/Dockerfile_ppca_3.6.3
