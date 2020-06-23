@@ -1,5 +1,7 @@
 #!/bin/bash
 
-./push.sh
+make
 
-./rocker.sh
+bash ./push.sh
+
+bash ./convert_singularity.sh

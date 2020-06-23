@@ -12,6 +12,7 @@ log/*.log
 deb/
 *.tar
 .vscode/
+*.sif
 
 # History files
 .Rhistory

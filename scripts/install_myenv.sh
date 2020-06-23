@@ -41,7 +41,9 @@ install2.r -n -1 --skipinstalled --error \
   mvtnorm \
   GGally \
   hexbin \
-  corrplot
+  corrplot \
+  FactoMineR \
+  factoextra
 
  rm -rf /tmp/downloaded_packages/ /tmp/*.rds
 
