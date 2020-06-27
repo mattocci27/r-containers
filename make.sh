@@ -4,4 +4,5 @@ make
 
 bash ./push.sh
 
-bash ./convert_singularity.sh
+rm singulairtyfiles/*
+python3 get_imgs.py

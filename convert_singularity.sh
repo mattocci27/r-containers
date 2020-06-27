@@ -7,6 +7,7 @@ for i in $COMPOSEFILES
 do
   for IMG in $(docker-compose -f compose/$i config | grep -oP -e "(?<=\s)[^\s]+-[0-9]\.[0-9]\.[0-9]")
   do
-    sudo singularity build singularityfiles/$IMG.sif docker-daemon://$MY_IP/mattocci/${IMG/-/:}
+    echo $IMG
+    #echo singularity build singularityfiles/$IMG.sif docker-daemon://$MY_IP/mattocci/${IMG/-/:}
   done
 done
