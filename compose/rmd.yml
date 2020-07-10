@@ -5,8 +5,8 @@ services:
     build:
       context: ..
       dockerfile: dockerfiles/Dockerfile_rmd_3.6.3
-  rmd-4.0.0:
-    image: mattocci/rmd:4.0.0
+  rmd-4.0.2:
+    image: mattocci/rmd:4.0.2
     build:
       context: ..
-      dockerfile: dockerfiles/Dockerfile_rmd_4.0.0
+      dockerfile: dockerfiles/Dockerfile_rmd_4.0.2

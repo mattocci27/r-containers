@@ -1,6 +1,6 @@
 #!/bin/bash
 
-LATEST_TAG="4.0.0"
+LATEST_TAG="4.0.2"
 MY_IP="192.168.1.123:5000"
 COMPOSEFILES=`ls compose`
 

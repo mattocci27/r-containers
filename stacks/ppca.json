@@ -11,8 +11,8 @@
 		},
 		{
             "IMAGE": "ppca",
-            "TAG": "4.0.0",
-			"FROM": "mattocci/myenv:4.0.0",
+            "TAG": "4.0.2",
+			"FROM": "mattocci/myenv:4.0.2",
 			"COPY": "scripts /scripts",
 			"RUN": [
 				"/scripts/install_ppca.sh"

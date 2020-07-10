@@ -5,8 +5,8 @@ services:
     build:
       context: ..
       dockerfile: dockerfiles/Dockerfile_ppca_3.6.3
-  ppca-4.0.0:
-    image: mattocci/ppca:4.0.0
+  ppca-4.0.2:
+    image: mattocci/ppca:4.0.2
     build:
       context: ..
-      dockerfile: dockerfiles/Dockerfile_ppca_4.0.0
+      dockerfile: dockerfiles/Dockerfile_ppca_4.0.2
