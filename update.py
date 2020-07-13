@@ -10,7 +10,9 @@ yaml = ruamel.yaml.YAML()
 with open('images.json') as f:
   config_data = json.load(f)
 
-now_utc = datetime.utcnow().isoformat()
+#now_utc = datetime.utcnow().isoformat()
+
+note = 'NOTE: THIS DOCKERFILE IS GENERATED VIA "update.py"'
 
 env = Environment(
   loader=FileSystemLoader('./templates'),
@@ -32,7 +34,7 @@ for d in config_data.get('configs', []):
         makedirs(dockerfile_dir)
 
   template.stream({
-    'now': now_utc,
+    'note': note,
     **d
   }).dump('{}/Dockerfile'.format(dockerfile_dir))
 
@@ -44,8 +46,7 @@ for d in config_data.get('configs', []):
   }).dump('{}/Makefile'.format(dockerfile_dir))
 
   # docker-compose
-  a = d['imageName'] + "-" + d['imageVer']
-  d2 =  {a : {
+  d2 =  {d['imageTag'] : {
     'image': d['owner'] + "/" + d['imageName'] + ':' + d['imageVer'],
     'extra_hosts': 'api.github.com:140.82.112.5',
     'build': {

@@ -1,4 +1,4 @@
-# 2020-07-13T02:44:16.105328
+# NOTE: THIS DOCKERFILE IS GENERATED VIA "update.py"
 FROM mattocci/rstan:3.6.3
 
 

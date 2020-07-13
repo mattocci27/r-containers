@@ -1,16 +1,11 @@
-dockerfiles
+# Docker and sigularity images for R
 
-docker-compose -f compose/r-3.6.3.yml build
+[![GitHub License](https://img.shields.io/badge/license-MIT-green.svg)](https://opensource.org/licenses/MIT)
 
-docker build --no-cache -t test .
 
-docker run -it --rm -v $(pwd):/home/rstudio/test -u rstudio rocker/rstudio /bin/bash
+| image | description                                                                          | r-ver        |   |   |
+|-------|--------------------------------------------------------------------------------------|--------------|---|---|
+| rstan | adds rstan on [geospatial](https://hub.docker.com/r/rocker/geospatial)               | 3.6.3, 4.0.2 |   |   |
+| ppca  | adds phylogenetic tools on  [geospatial](https://hub.docker.com/r/rocker/geospatial) | 3.6.3, 4.0.2 |   |   |
+| myenv | adds a bunch of packages on 'rstan'                                                  | 3.6.3, 4.0.2 |   |   |
 
-```/etc/systemd/resolved.conf
-[Resolve]
-DNS=8.8.8.8 8.8.4.4
-```
-
-```
-systemctl restart systemd-resolved
-```
