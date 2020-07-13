@@ -1,0 +1,41 @@
+# {{ now }}
+FROM {{ baseImage }}
+
+{% if label %}
+LABEL {{ label | join('\ ') }}
+{% endif %}
+
+{% if systemPackages %}
+RUN apt-get update -q -y \
+  && apt-get install --no-install-recommends --fix-missing -y \
+    {% for package in systemPackages %}
+    {{ package }} \
+    {% endfor %}
+  && apt-get autoremove -y \
+  && apt-get clean all
+{% endif %}
+
+{% if radian %}
+RUN pip3 config set global.index-url https://pypi.tuna.tsinghua.edu.cn/simple \
+  && pip3 install --upgrade setuptools \
+  && pip3 install --default-timeout=100 -U radian
+{% endif %}
+
+{% if bio %}
+RUN Rscript -e "install.packages('BiocManager')" \
+  && Rscript -e "BiocManager::install(c('marray', 'affy', 'Biobase'))"
+{% endif %}
+
+{% if installGithub %}
+RUN installGithub.r \
+  {{ installGithub | join('\ ') }}
+{% endif %}
+
+{% if installCRAN %}
+RUN install2.r -n -1 --skipinstalled --error \
+  --deps TRUE \
+    {% for cran in installCRAN %}
+    {{ cran }} \
+    {% endfor %}
+  && rm -rf /tmp/downloaded_packages
+{% endif %}
