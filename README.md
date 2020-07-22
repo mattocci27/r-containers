@@ -5,11 +5,11 @@
 
 ## Docker images
 
-| image                                                            | description                                                                          | r-ver        |   |   |
-|------------------------------------------------------------------|--------------------------------------------------------------------------------------|--------------|---|---|
-| [rstan](https://hub.docker.com/repository/docker/mattocci/rstan) | adds rstan on [geospatial](https://hub.docker.com/r/rocker/geospatial)               | 3.6.3, 4.0.2 |   |   |
-| [ppca](https://hub.docker.com/repository/docker/mattocci/ppca)   | adds phylogenetic tools on  [geospatial](https://hub.docker.com/r/rocker/geospatial) | 3.6.3, 4.0.2 |   |   |
-| [myenv](https://hub.docker.com/repository/docker/mattocci/myenv)   | adds a bunch of packages on 'rstan'                                                  | 3.6.3, 4.0.2 |   |   |
+| image                                                            | description                                                                          | r-ver        |
+|------------------------------------------------------------------|--------------------------------------------------------------------------------------|--------------|
+| [rstan](https://hub.docker.com/repository/docker/mattocci/rstan) | adds rstan on [geospatial](https://hub.docker.com/r/rocker/geospatial)               | 3.6.3, 4.0.2 |
+| [ppca](https://hub.docker.com/repository/docker/mattocci/ppca)   | adds phylogenetic tools on  [geospatial](https://hub.docker.com/r/rocker/geospatial) | 3.6.3, 4.0.2 |
+| [myenv](https://hub.docker.com/repository/docker/mattocci/myenv) | adds a bunch of packages on 'rstan'                                                  | 3.6.3, 4.0.2 |
 
 ## Singularity images
 
