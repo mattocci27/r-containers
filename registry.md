@@ -7,6 +7,7 @@ docker run -d -p 5000:5000 --name registry \
 ```
 
 ```
+
 docker run \
   -d \
   --name registry-frontend \

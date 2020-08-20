@@ -2,37 +2,43 @@ version: '3'
 services:
   rstan-3.6.3:
     image: mattocci/rstan:3.6.3
-    extra_hosts: api.github.com:140.82.112.5
+    extra_hosts:
+    - api.github.com:140.82.112.5
     build:
       context: .
       dockerfile: images/rstan-3.6.3/Dockerfile
   myenv-3.6.3:
     image: mattocci/myenv:3.6.3
-    extra_hosts: api.github.com:140.82.112.5
+    extra_hosts:
+    - api.github.com:140.82.112.5
     build:
       context: .
       dockerfile: images/myenv-3.6.3/Dockerfile
   ppca-3.6.3:
     image: mattocci/ppca:3.6.3
-    extra_hosts: api.github.com:140.82.112.5
+    extra_hosts:
+    - api.github.com:140.82.112.5
     build:
       context: .
       dockerfile: images/ppca-3.6.3/Dockerfile
   rstan-4.0.2:
     image: mattocci/rstan:4.0.2
-    extra_hosts: api.github.com:140.82.112.5
+    extra_hosts:
+    - api.github.com:140.82.112.5
     build:
       context: .
       dockerfile: images/rstan-4.0.2/Dockerfile
   myenv-4.0.2:
     image: mattocci/myenv:4.0.2
-    extra_hosts: api.github.com:140.82.112.5
+    extra_hosts:
+    - api.github.com:140.82.112.5
     build:
       context: .
       dockerfile: images/myenv-4.0.2/Dockerfile
   ppca-4.0.2:
     image: mattocci/ppca:4.0.2
-    extra_hosts: api.github.com:140.82.112.5
+    extra_hosts:
+    - api.github.com:140.82.112.5
     build:
       context: .
       dockerfile: images/ppca-4.0.2/Dockerfile
