@@ -5,6 +5,8 @@ FROM {{ baseImage }}
 LABEL {{ label | join('\ ') }}
 {% endif %}
 
+ENV DEBIAN_FRONTEND noninteractive
+
 {% if systemPackages %}
 RUN apt-get update -q -y \
   && apt-get install --no-install-recommends --fix-missing -y \
@@ -16,11 +18,11 @@ RUN apt-get update -q -y \
 {% endif %}
 
 {% if crossref %}
-RUN curl -sSL https://get.haskellstack.org/ | sh
-RUN git clone https://github.com/lierdakil/pandoc-crossref.git /usr/local/bin/pandoc-crossref
-WORKDIR /usr/local/bin/pandoc-crossref
-RUN stack install
-WORKDIR /
+RUN PANDOC_DL_URL=$(wget -qO- https://api.github.com/repos/lierdakil/pandoc-crossref/releases/latest | grep -oP "(?<=\"browser_download_url\":\s\")https.*tar\.xz" | grep Linux) \
+  && wget -O - ${PANDOC_DL_URL} | \
+  tar Jxf - \
+  && mv pandoc-crossref /usr/local/bin \
+  && rm -rf pandoc-crossref.1
 {% endif %}
 
 {% if radian %}

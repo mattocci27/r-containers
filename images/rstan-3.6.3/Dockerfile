@@ -2,6 +2,8 @@
 FROM rocker/geospatial:3.6.3
 
 
+ENV DEBIAN_FRONTEND noninteractive
+
 
 
 

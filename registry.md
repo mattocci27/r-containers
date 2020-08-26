@@ -18,4 +18,3 @@ docker run \
   -p 8080:80 konradkleine/docker-registry-frontend:v2
 
 ```
-

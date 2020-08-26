@@ -147,8 +147,8 @@
         },
         {
             "baseImage": "rocker/verse:4.0.2",
-            "imageTag": "rmd-4.0.2",
-            "imageName": "rmd",
+            "imageTag": "rmd-crossref-4.0.2",
+            "imageName": "rmd-crossref",
             "crossref": "install",
             "imageVer": "4.0.2",
             "radian": "install",
