@@ -49,7 +49,8 @@
                "picante",
                "smatr",
                "nlme",
-               "caper"
+               "caper",
+               "kfigr"
             ]
         },
         {
@@ -120,7 +121,8 @@
                "picante",
                "smatr",
                "nlme",
-               "caper"
+               "caper",
+               "kfigr"
             ]
         },
         {
@@ -142,6 +144,24 @@
                 "caper"
             ],
             "installGithub": ["jinyizju/V.PhyloMaker"]
+        },
+        {
+            "baseImage": "rocker/verse:4.0.2",
+            "imageTag": "rmd-4.0.2",
+            "imageName": "rmd",
+            "crossref": "install",
+            "imageVer": "4.0.2",
+            "radian": "install",
+            "systemPackages": ["libpython3-dev", "python3-dev", "python3-pip"],
+            "installCRAN": [
+                "methods",
+                "knitr",
+                "kableExtra",
+                "png",
+                "grid",
+                "pander",
+                "kfigr"
+            ]
         }
     ]
 }

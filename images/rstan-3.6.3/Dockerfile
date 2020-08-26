@@ -6,6 +6,7 @@ FROM rocker/geospatial:3.6.3
 
 
 
+
 RUN install2.r -n -1 --skipinstalled --error \
   --deps TRUE \
     RcppParallel \

@@ -7,4 +7,4 @@ docker-compose build
 bash push.sh
 
 rm -f singularity/*
-python3 docker_to_sing.py 192.168.1.123:5000   
+python3 docker_to_sing.py 210.72.93.96:5000

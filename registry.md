@@ -13,7 +13,7 @@ docker run \
   --name registry-frontend \
   --hostname registry-frontend \
   --restart on-failure:10 \
-  -e ENV_DOCKER_REGISTRY_HOST=192.168.1.123 \
+  -e ENV_DOCKER_REGISTRY_HOST=210.72.93.96 \
   -e ENV_DOCKER_REGISTRY_PORT=5000 \
   -p 8080:80 konradkleine/docker-registry-frontend:v2
 

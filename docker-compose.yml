@@ -42,3 +42,10 @@ services:
     build:
       context: .
       dockerfile: images/ppca-4.0.2/Dockerfile
+  rmd-4.0.2:
+    image: mattocci/rmd:4.0.2
+    extra_hosts:
+    - api.github.com:140.82.112.5
+    build:
+      context: .
+      dockerfile: images/rmd-4.0.2/Dockerfile
