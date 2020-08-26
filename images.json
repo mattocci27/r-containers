@@ -3,7 +3,7 @@
     "configs": [
         {
             "baseImage": "rocker/geospatial:3.6.3",
-            "imageTag": "rstan-3.6.3",
+            "imageTag": "rstan_3.6.3",
             "imageName": "rstan",
             "imageVer": "3.6.3",
             "installCRAN": [
@@ -13,7 +13,7 @@
         },
         {
             "baseImage": "mattocci/rstan:3.6.3",
-            "imageTag": "myenv-3.6.3",
+            "imageTag": "myenv_3.6.3",
             "imageName": "myenv",
             "imageVer": "3.6.3",
             "radian": "install",
@@ -55,7 +55,7 @@
         },
         {
             "baseImage": "rocker/geospatial:3.6.3",
-            "imageTag": "ppca-3.6.3",
+            "imageTag": "ppca_3.6.3",
             "imageName": "ppca",
             "imageVer": "3.6.3",
             "radian": "install",
@@ -75,7 +75,7 @@
         },
         {
             "baseImage": "rocker/geospatial:4.0.2",
-            "imageTag": "rstan-4.0.2",
+            "imageTag": "rstan_4.0.2",
             "imageName": "rstan",
             "imageVer": "4.0.2",
             "installCRAN": [
@@ -85,7 +85,7 @@
         },
         {
             "baseImage": "mattocci/rstan:4.0.2",
-            "imageTag": "myenv-4.0.2",
+            "imageTag": "myenv_4.0.2",
             "imageName": "myenv",
             "imageVer": "4.0.2",
             "radian": "install",
@@ -127,7 +127,7 @@
         },
         {
             "baseImage": "rocker/geospatial:4.0.2",
-            "imageTag": "ppca-4.0.2",
+            "imageTag": "ppca_4.0.2",
             "imageName": "ppca",
             "imageVer": "4.0.2",
             "radian": "install",
@@ -147,7 +147,7 @@
         },
         {
             "baseImage": "rocker/verse:4.0.2",
-            "imageTag": "rmd-crossref-4.0.2",
+            "imageTag": "rmd-crossref_4.0.2",
             "imageName": "rmd-crossref",
             "crossref": "install",
             "imageVer": "4.0.2",

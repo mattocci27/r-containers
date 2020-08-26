@@ -1,51 +1,51 @@
 version: '3'
 services:
-  rstan-3.6.3:
+  rstan_3.6.3:
     image: mattocci/rstan:3.6.3
     extra_hosts:
     - api.github.com:140.82.112.5
     build:
       context: .
-      dockerfile: images/rstan-3.6.3/Dockerfile
-  myenv-3.6.3:
+      dockerfile: images/rstan_3.6.3/Dockerfile
+  myenv_3.6.3:
     image: mattocci/myenv:3.6.3
     extra_hosts:
     - api.github.com:140.82.112.5
     build:
       context: .
-      dockerfile: images/myenv-3.6.3/Dockerfile
-  ppca-3.6.3:
+      dockerfile: images/myenv_3.6.3/Dockerfile
+  ppca_3.6.3:
     image: mattocci/ppca:3.6.3
     extra_hosts:
     - api.github.com:140.82.112.5
     build:
       context: .
-      dockerfile: images/ppca-3.6.3/Dockerfile
-  rstan-4.0.2:
+      dockerfile: images/ppca_3.6.3/Dockerfile
+  rstan_4.0.2:
     image: mattocci/rstan:4.0.2
     extra_hosts:
     - api.github.com:140.82.112.5
     build:
       context: .
-      dockerfile: images/rstan-4.0.2/Dockerfile
-  myenv-4.0.2:
+      dockerfile: images/rstan_4.0.2/Dockerfile
+  myenv_4.0.2:
     image: mattocci/myenv:4.0.2
     extra_hosts:
     - api.github.com:140.82.112.5
     build:
       context: .
-      dockerfile: images/myenv-4.0.2/Dockerfile
-  ppca-4.0.2:
+      dockerfile: images/myenv_4.0.2/Dockerfile
+  ppca_4.0.2:
     image: mattocci/ppca:4.0.2
     extra_hosts:
     - api.github.com:140.82.112.5
     build:
       context: .
-      dockerfile: images/ppca-4.0.2/Dockerfile
-  rmd-crossref-4.0.2:
+      dockerfile: images/ppca_4.0.2/Dockerfile
+  rmd-crossref_4.0.2:
     image: mattocci/rmd-crossref:4.0.2
     extra_hosts:
     - api.github.com:140.82.112.5
     build:
       context: .
-      dockerfile: images/rmd-crossref-4.0.2/Dockerfile
+      dockerfile: images/rmd-crossref_4.0.2/Dockerfile
