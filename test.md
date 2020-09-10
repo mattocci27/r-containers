@@ -10,3 +10,12 @@ docker rmi -f $(docker images --filter "dangling=true" -q --no-trunc)
 docker image rm $(docker image ls  | grep mattocci | grep 3.6.3 | awk '{print $3}')
 
 docker container stop $(sudo docker container ls -a | awk '{print $1}' | head -3)
+
+singularity sign singularity/rstan_3.6.3.sif
+
+singularity push -U singularity/rstan_3.6.3.sif library://mattocci27/default/rstan:3.6.3
+
+singularity push -U hoge.sif library://mattocci27/default/rstan:3.6.3
+
+sudo time singularity build hoge.sif images/rmd-crossref_4.0.2/Singularity.def
+singularity push -U alpine_3.sif library://mattocci27/default/rstan:3.6.3

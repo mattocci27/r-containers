@@ -12,7 +12,6 @@ with open('images.json') as f:
 
 #now_utc = datetime.utcnow().isoformat()
 
-note = 'NOTE: THIS DOCKERFILE IS GENERATED VIA "update.py"'
 
 env = Environment(
   loader=FileSystemLoader('./templates'),
@@ -33,6 +32,7 @@ for d in config_data.get('configs', []):
   if not path.isdir(dockerfile_dir):
         makedirs(dockerfile_dir)
 
+  note = 'NOTE: THIS DOCKERFILE IS GENERATED VIA "update.py"'
   template.stream({
     'note': note,
     **d
@@ -55,6 +55,14 @@ for d in config_data.get('configs', []):
     }
   }}
   imgs.update(d2)
+
+  # singularity
+  note = 'NOTE: THIS SINGULARITY DEFINITION FILE IS GENERATED VIA "update.py"'
+  template_sg = env.get_template('singularity.jinja')
+  template_sg.stream({
+    'note': note,
+    **d
+  }).dump('{}/Singularity.def'.format(dockerfile_dir))
 
 # docker-compose
 d3 =  {'version': '3', 'services':imgs}
