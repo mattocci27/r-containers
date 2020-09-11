@@ -15,7 +15,12 @@ singularity sign singularity/rstan_3.6.3.sif
 
 singularity push -U singularity/rstan_3.6.3.sif library://mattocci27/default/rstan:3.6.3
 
-singularity push -U hoge.sif library://mattocci27/default/rstan:3.6.3
+time singularity push -U hoge.sif library://mattocci27/default/rstan:3.6.3
 
 sudo time singularity build hoge.sif images/rmd-crossref_4.0.2/Singularity.def
+sudo time singularity build hoge.sif images/rmd-crossref_4.0.2/Singularity.def
+sudo time singularity build hoge.sif images/rmd-crossref_4.0.2/Singularity.def
+sudo time singularity build hoge.sif images/rmd-crossref_4.0.2/Singularity.def
+
+
 singularity push -U alpine_3.sif library://mattocci27/default/rstan:3.6.3
