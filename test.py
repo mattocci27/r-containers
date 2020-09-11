@@ -13,5 +13,5 @@ for k in d2['services'].keys():
     if 'ppca' not in k:
         subprocess.call([ 'echo', 'singularity', 'build', '' + k + '.sif', 'images/' + k + '/Singularity.def'])
         subprocess.call([ 'sudo', 'singularity', 'build', '' + k + '.sif', 'images/' + k + '/Singularity.def'])
-        subprocess.call([ 'echo', 'singularity', 'push', '-U', '' + k + '.sif', 'ilibrary://mattocci27/default/' + k.replace('_', ':') ])
-        subprocess.call([ 'singularity', 'push', '-U', '' + k + '.sif', 'ilibrary://mattocci27/default/' + k.replace('_', ':') ])
+        subprocess.call([ 'echo', 'singularity', 'push', '-U', '' + k + '.sif', 'library://mattocci27/default/' + k.replace('_', ':') ])
+        subprocess.call([ 'singularity', 'push', '-U', '' + k + '.sif', 'library://mattocci27/default/' + k.replace('_', ':') ])
