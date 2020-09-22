@@ -43,6 +43,9 @@ RUN CROSSREF_DL_URL=$(wget -qO- https://api.github.com/repos/lierdakil/pandoc-cr
   tar Jxf - \
   && mv pandoc-crossref /usr/local/bin \
   && rm -rf pandoc-crossref.1
+
+RUN tlmgr update --self \
+  && tlmgr install amsmath
 {% endif %}
 
 {% if radian %}

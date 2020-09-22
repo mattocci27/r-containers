@@ -55,6 +55,9 @@ From: {{ baseImage }}
     tar Jxf - \
     && mv pandoc-crossref /usr/local/bin \
     && rm -rf pandoc-crossref.1
+
+    tlmgr update --self \
+      && tlmgr install amsmath
 {% endif %}
 
 {% if radian %}
