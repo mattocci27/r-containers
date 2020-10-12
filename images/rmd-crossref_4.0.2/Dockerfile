@@ -38,6 +38,9 @@ RUN CROSSREF_DL_URL=$(wget -qO- https://api.github.com/repos/lierdakil/pandoc-cr
   && mv pandoc-crossref /usr/local/bin \
   && rm -rf pandoc-crossref.1
 
+RUN tlmgr update --self \
+  && tlmgr install amsmath
+
 RUN pip3 config set global.index-url https://pypi.tuna.tsinghua.edu.cn/simple \
   && pip3 install --upgrade setuptools \
   && pip3 install --default-timeout=100 -U radian

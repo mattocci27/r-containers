@@ -50,6 +50,9 @@ From: rocker/verse:4.0.2
     && mv pandoc-crossref /usr/local/bin \
     && rm -rf pandoc-crossref.1
 
+    tlmgr update --self \
+      && tlmgr install amsmath
+
     pip3 config set global.index-url https://pypi.tuna.tsinghua.edu.cn/simple \
     && pip3 install --upgrade setuptools \
     && pip3 install --default-timeout=100 -U radian

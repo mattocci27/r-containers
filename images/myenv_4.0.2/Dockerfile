@@ -54,4 +54,5 @@ RUN install2.r -n -1 --skipinstalled --error \
     nlme \
     caper \
     kfigr \
+    multcompView \
   && rm -rf /tmp/downloaded_packages

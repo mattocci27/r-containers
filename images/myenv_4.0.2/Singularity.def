@@ -66,4 +66,5 @@ From: mattocci/rstan:4.0.2
         nlme \
         caper \
         kfigr \
+        multcompView \
     && rm -rf /tmp/downloaded_packages

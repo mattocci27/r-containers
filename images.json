@@ -50,7 +50,8 @@
                "smatr",
                "nlme",
                "caper",
-               "kfigr"
+               "kfigr",
+               "multcompView"
             ]
         },
         {
@@ -122,7 +123,8 @@
                "smatr",
                "nlme",
                "caper",
-               "kfigr"
+               "kfigr",
+               "multcompView"
             ]
         },
         {
