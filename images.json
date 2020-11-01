@@ -124,7 +124,12 @@
                "nlme",
                "caper",
                "kfigr",
-               "multcompView"
+               "multcompView",
+               "entropart"
+            ],
+            "installGithub": [
+                "rstudio/fontawesome",
+                "hadley/emo"
             ]
         },
         {
