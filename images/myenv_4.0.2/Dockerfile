@@ -20,6 +20,8 @@ RUN pip3 config set global.index-url https://pypi.tuna.tsinghua.edu.cn/simple \
 RUN Rscript -e "install.packages('BiocManager')" \
   && Rscript -e "BiocManager::install(c('marray', 'affy', 'Biobase'))"
 
+RUN installGithub.r \
+  rstudio/fontawesome\ hadley/emo
 
 RUN install2.r -n -1 --skipinstalled --error \
   --deps TRUE \
@@ -55,4 +57,6 @@ RUN install2.r -n -1 --skipinstalled --error \
     caper \
     kfigr \
     multcompView \
+    entropart \
+    FD \
   && rm -rf /tmp/downloaded_packages
