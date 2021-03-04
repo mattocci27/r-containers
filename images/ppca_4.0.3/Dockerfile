@@ -1,5 +1,5 @@
 # NOTE: THIS DOCKERFILE IS GENERATED VIA "update.py"
-FROM mattocci/rstan:4.0.2
+FROM rocker/geospatial:4.0.3
 
 
 ENV DEBIAN_FRONTEND noninteractive
@@ -17,49 +17,19 @@ RUN pip3 config set global.index-url https://pypi.tuna.tsinghua.edu.cn/simple \
   && pip3 install --upgrade setuptools \
   && pip3 install --default-timeout=100 -U radian
 
-RUN Rscript -e "install.packages('BiocManager')" \
-  && Rscript -e "BiocManager::install(c('marray', 'affy', 'Biobase'))"
 
 RUN installGithub.r \
-  rstudio/fontawesome\ hadley/emo
+  jinyizju/V.PhyloMaker
 
 RUN install2.r -n -1 --skipinstalled --error \
   --deps TRUE \
-    adespatial \
-    vegan \
-    MuMIn \
-    furrr \
-    tictoc \
-    snowfall \
-    sads \
-    ggthemes \
-    blogdown \
-    kableExtra \
-    picante \
-    provenance \
-    ggrepel \
-    languageserver \
-    mnormt \
-    png \
-    pander \
-    memisc \
-    mvtnorm \
-    GGally \
-    hexbin \
-    corrplot \
-    FactoMineR \
-    factoextra \
     adephylo \
     phytools \
+    factoextra \
     picante \
+    phylolm \
     smatr \
+    lme4 \
     nlme \
     caper \
-    kfigr \
-    multcompView \
-    entropart \
-    FD \
-    minerva \
-    ecoCopula \
-    smatr \
   && rm -rf /tmp/downloaded_packages

@@ -71,4 +71,7 @@ From: mattocci/rstan:4.0.2
         multcompView \
         entropart \
         FD \
+        minerva \
+        ecoCopula \
+        smatr \
     && rm -rf /tmp/downloaded_packages

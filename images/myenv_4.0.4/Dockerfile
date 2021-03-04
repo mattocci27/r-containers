@@ -1,5 +1,5 @@
 # NOTE: THIS DOCKERFILE IS GENERATED VIA "update.py"
-FROM mattocci/rstan:4.0.2
+FROM mattocci/rstan:4.0.4
 
 
 ENV DEBIAN_FRONTEND noninteractive

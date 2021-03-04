@@ -53,3 +53,5 @@ vignettes/*.pdf
 
 # R Environment Variables
 .Renviron
+test.md
+

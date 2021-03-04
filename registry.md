@@ -18,3 +18,14 @@ docker run \
   -p 8080:80 konradkleine/docker-registry-frontend:v2
 
 ```
+
+```
+docker run -d --name sql_server_demo -e 'ACCEPT_EULA=Y' -e 'SA_PASSWORD=really
+
+05da2b6d44f4
+
+docker container rm $(docker container ls -aq | rg -v 05da2b6d44f4)
+
+
+
+```

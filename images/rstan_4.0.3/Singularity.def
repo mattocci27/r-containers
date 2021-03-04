@@ -1,0 +1,28 @@
+# NOTE: THIS SINGULARITY DEFINITION FILE IS GENERATED VIA "update.py"
+BootStrap: docker
+From: rocker/geospatial:4.0.3
+
+
+
+%apprun R
+  exec R "${@}"
+
+%apprun Rscript
+  exec Rscript "${@}"
+
+%runscript
+  exec R "${@}"
+
+%post
+    DEBIAN_FRONTEND=noninteractive
+
+
+
+
+
+
+    install2.r -n -1 --skipinstalled --error \
+    --deps TRUE \
+        RcppParallel \
+        rstan \
+    && rm -rf /tmp/downloaded_packages

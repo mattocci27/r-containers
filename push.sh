@@ -1,5 +1,5 @@
 #!/bin/bash
-LATEST_TAG="4.0.2"
+LATEST_TAG="4.0.3"
 MY_IP="210.72.93.96:5000"
 
 # push to dockerhub without latest tag

@@ -55,4 +55,6 @@ RUN install2.r -n -1 --skipinstalled --error \
     caper \
     kfigr \
     multcompView \
+    minerva \
+    ecoCopula \
   && rm -rf /tmp/downloaded_packages

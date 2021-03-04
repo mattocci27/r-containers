@@ -1,6 +1,6 @@
 # NOTE: THIS SINGULARITY DEFINITION FILE IS GENERATED VIA "update.py"
 BootStrap: docker
-From: mattocci/rstan:3.6.3
+From: mattocci/rstan:4.0.4
 
 
 
@@ -32,6 +32,8 @@ From: mattocci/rstan:3.6.3
     Rscript -e "install.packages('BiocManager')" \
     && Rscript -e "BiocManager::install(c('marray', 'affy', 'Biobase'))"
 
+    installGithub.r \
+    rstudio/fontawesome\ hadley/emo
 
     install2.r -n -1 --skipinstalled --error \
     --deps TRUE \
@@ -49,10 +51,10 @@ From: mattocci/rstan:3.6.3
         provenance \
         ggrepel \
         languageserver \
+        mnormt \
         png \
         pander \
         memisc \
-        mnormt \
         mvtnorm \
         GGally \
         hexbin \
@@ -67,6 +69,9 @@ From: mattocci/rstan:3.6.3
         caper \
         kfigr \
         multcompView \
+        entropart \
+        FD \
         minerva \
         ecoCopula \
+        smatr \
     && rm -rf /tmp/downloaded_packages

@@ -24,3 +24,19 @@ sudo time singularity build hoge.sif images/rmd-crossref_4.0.2/Singularity.def
 
 
 singularity push -U alpine_3.sif library://mattocci27/default/rstan:3.6.3
+
+docker run -d  \
+  --name r-filebrowser \
+  -v $(pwd):/home/rstudio/mattocci \
+  -p 8787:8787 \
+  -e PASSWORD=F85hPRItkcsaQ7lR6AHK \
+  rocker/rstudio:4.0.3
+
+docker run \
+  -d \
+  --name registry-frontend \
+  --hostname registry-frontend \
+  --restart on-failure:10 \
+  -e ENV_DOCKER_REGISTRY_HOST=210.72.93.96 \
+  -e ENV_DOCKER_REGISTRY_PORT=5000 \
+  -p 8080:80 konradkleine/docker-registry-frontend:v2
