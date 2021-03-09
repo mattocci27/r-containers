@@ -21,11 +21,12 @@ RUN Rscript -e "install.packages('BiocManager')" \
   && Rscript -e "BiocManager::install(c('marray', 'affy', 'Biobase'))"
 
 RUN installGithub.r \
-  rstudio/fontawesome\ hadley/emo
+  rstudio/fontawesome\ hadley/emo\ gordy2x/ecoCopula
 
 RUN install2.r -n -1 --skipinstalled --error \
   --deps TRUE \
     adespatial \
+    carData \
     vegan \
     MuMIn \
     furrr \
@@ -60,6 +61,5 @@ RUN install2.r -n -1 --skipinstalled --error \
     entropart \
     FD \
     minerva \
-    ecoCopula \
     smatr \
   && rm -rf /tmp/downloaded_packages
