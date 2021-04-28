@@ -25,6 +25,7 @@ From: mattocci/rstan:4.0.5
     && apt-get clean all
 
 
+
     pip3 config set global.index-url https://pypi.tuna.tsinghua.edu.cn/simple \
     && pip3 install --upgrade setuptools \
     && pip3 install --default-timeout=100 -U radian
@@ -35,7 +36,7 @@ From: mattocci/rstan:4.0.5
     installGithub.r \
     rstudio/fontawesome\ hadley/emo\ gordy2x/ecoCopula
 
-    install2.r -n -1 --skipinstalled --error \
+    install2.r -n -2 --skipinstalled --error \
     --deps TRUE \
         adespatial \
         carData \
@@ -76,3 +77,4 @@ From: mattocci/rstan:4.0.5
         minerva \
         smatr \
     && rm -rf /tmp/downloaded_packages
+

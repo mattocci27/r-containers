@@ -1,6 +1,6 @@
 # NOTE: THIS SINGULARITY DEFINITION FILE IS GENERATED VIA "update.py"
 BootStrap: docker
-From: rocker/verse:4.0.5
+From: rocker/tidyverse:4.0.5
 
 
 
@@ -23,6 +23,7 @@ From: rocker/verse:4.0.5
         python3-pip \
     && apt-get autoremove -y \
     && apt-get clean all
+
 
     rm -rf /usr/lib/rstudio-server/bin/pandoc/pandoc \
     usr/local/bin/pandoc \
@@ -51,7 +52,8 @@ From: rocker/verse:4.0.5
     && rm -rf pandoc-crossref.1
 
     tlmgr update --self \
-      && tlmgr install amsmath
+      && tlmgr install amsmath \
+          scrartcl
 
     pip3 config set global.index-url https://pypi.tuna.tsinghua.edu.cn/simple \
     && pip3 install --upgrade setuptools \
@@ -59,9 +61,10 @@ From: rocker/verse:4.0.5
 
 
 
-    install2.r -n -1 --skipinstalled --error \
+    install2.r -n -2 --skipinstalled --error \
     --deps TRUE \
         methods \
+        bookdown \
         knitr \
         kableExtra \
         png \
@@ -69,3 +72,44 @@ From: rocker/verse:4.0.5
         pander \
         kfigr \
     && rm -rf /tmp/downloaded_packages
+
+    apt-get update -qq \
+      && apt-get install -y --no-install-recommends \
+        cmake \
+        curl \
+        default-jdk \
+        fonts-roboto \
+        ghostscript \
+        hugo \
+        less \
+        libbz2-dev \
+        libglpk-dev \
+        libgmp3-dev \
+        libfribidi-dev \
+        libharfbuzz-dev \
+        libhunspell-dev \
+        libicu-dev \
+        liblzma-dev \
+        libmagick++-dev \
+        libopenmpi-dev \
+        libpcre2-dev \
+        libssl-dev \
+        libv8-dev \
+        libxml2-dev\
+        libxslt1-dev \
+        libzmq3-dev \
+        lsb-release \
+        qpdf \
+        texinfo \
+        software-properties-common \
+        vim \
+        wget
+
+        install2.r -n -1 --skipinstalled --error \
+        --deps TRUE \
+        tinytex
+
+        Rscript -e "tinytex::install_tinytex()"
+#Rscript -e "tinytex:::install_yihui_pkgs()"
+        Rscript -e "tinytex::tlmgr_install('pdfcrop')"
+

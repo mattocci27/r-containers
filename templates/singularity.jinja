@@ -29,6 +29,50 @@ From: {{ baseImage }}
     && apt-get clean all
 {% endif %}
 
+{% if texlive %}
+    apt-get update -qq \
+      && apt-get install -y --no-install-recommends \
+        cmake \
+        curl \
+        default-jdk \
+        fonts-roboto \
+        ghostscript \
+        hugo \
+        less \
+        libbz2-dev \
+        libglpk-dev \
+        libgmp3-dev \
+        libfribidi-dev \
+        libharfbuzz-dev \
+        libhunspell-dev \
+        libicu-dev \
+        liblzma-dev \
+        libmagick++-dev \
+        libopenmpi-dev \
+        libpcre2-dev \
+        libssl-dev \
+        libv8-dev \
+        libxml2-dev\
+        libxslt1-dev \
+        libzmq3-dev \
+        lsb-release \
+        qpdf \
+        texinfo \
+        software-properties-common \
+        vim \
+        wget
+
+        install2.r -n -1 --skipinstalled --error \
+        --deps TRUE \
+        tinytex
+
+        Rscript -e "tinytex::install_tinytex()"
+#Rscript -e "tinytex:::install_yihui_pkgs()"
+        Rscript -e "tinytex::tlmgr_install('pdfcrop')"
+
+{% endif %}
+
+
 {% if crossref %}
     rm -rf /usr/lib/rstudio-server/bin/pandoc/pandoc \
     usr/local/bin/pandoc \
@@ -56,8 +100,6 @@ From: {{ baseImage }}
     && mv pandoc-crossref /usr/local/bin \
     && rm -rf pandoc-crossref.1
 
-    tlmgr update --self \
-      && tlmgr install amsmath
 {% endif %}
 
 {% if radian %}
@@ -77,10 +119,11 @@ From: {{ baseImage }}
 {% endif %}
 
 {% if installCRAN %}
-    install2.r -n -1 --skipinstalled --error \
+    install2.r -n -2 --skipinstalled --error \
     --deps TRUE \
         {% for cran in installCRAN %}
         {{ cran }} \
         {% endfor %}
     && rm -rf /tmp/downloaded_packages
 {% endif %}
+

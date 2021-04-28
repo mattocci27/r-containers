@@ -21,8 +21,10 @@ From: rocker/geospatial:4.0.5
 
 
 
-    install2.r -n -1 --skipinstalled --error \
+
+    install2.r -n -2 --skipinstalled --error \
     --deps TRUE \
         RcppParallel \
         rstan \
     && rm -rf /tmp/downloaded_packages
+

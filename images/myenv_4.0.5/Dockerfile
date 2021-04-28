@@ -13,6 +13,8 @@ RUN apt-get update -q -y \
   && apt-get clean all
 
 
+
+
 RUN pip3 config set global.index-url https://pypi.tuna.tsinghua.edu.cn/simple \
   && pip3 install --upgrade setuptools \
   && pip3 install --default-timeout=100 -U radian
@@ -64,3 +66,4 @@ RUN install2.r -n -1 --skipinstalled --error \
     minerva \
     smatr \
   && rm -rf /tmp/downloaded_packages
+

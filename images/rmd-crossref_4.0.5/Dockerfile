@@ -1,5 +1,5 @@
 # NOTE: THIS DOCKERFILE IS GENERATED VIA "update.py"
-FROM rocker/verse:4.0.5
+FROM rocker/tidyverse:4.0.5
 
 
 ENV DEBIAN_FRONTEND noninteractive
@@ -11,6 +11,8 @@ RUN apt-get update -q -y \
     python3-pip \
   && apt-get autoremove -y \
   && apt-get clean all
+
+
 
 RUN rm -rf /usr/lib/rstudio-server/bin/pandoc/pandoc \
   usr/local/bin/pandoc \
@@ -38,8 +40,6 @@ RUN CROSSREF_DL_URL=$(wget -qO- https://api.github.com/repos/lierdakil/pandoc-cr
   && mv pandoc-crossref /usr/local/bin \
   && rm -rf pandoc-crossref.1
 
-RUN tlmgr update --self \
-  && tlmgr install amsmath
 
 RUN pip3 config set global.index-url https://pypi.tuna.tsinghua.edu.cn/simple \
   && pip3 install --upgrade setuptools \
@@ -50,6 +50,7 @@ RUN pip3 config set global.index-url https://pypi.tuna.tsinghua.edu.cn/simple \
 RUN install2.r -n -1 --skipinstalled --error \
   --deps TRUE \
     methods \
+    bookdown \
     knitr \
     kableExtra \
     png \
@@ -57,3 +58,44 @@ RUN install2.r -n -1 --skipinstalled --error \
     pander \
     kfigr \
   && rm -rf /tmp/downloaded_packages
+
+   RUN apt-get update -qq \
+      && apt-get install -y --no-install-recommends \
+        cmake \
+        curl \
+        default-jdk \
+        fonts-roboto \
+        ghostscript \
+        hugo \
+        less \
+        libbz2-dev \
+        libglpk-dev \
+        libgmp3-dev \
+        libfribidi-dev \
+        libharfbuzz-dev \
+        libhunspell-dev \
+        libicu-dev \
+        liblzma-dev \
+        libmagick++-dev \
+        libopenmpi-dev \
+        libpcre2-dev \
+        libssl-dev \
+        libv8-dev \
+        libxml2-dev\
+        libxslt1-dev \
+        libzmq3-dev \
+        lsb-release \
+        qpdf \
+        texinfo \
+        software-properties-common \
+        vim \
+        wget
+
+    RUN install2.r -n -1 --skipinstalled --error \
+        --deps TRUE \
+        tinytex
+
+    RUN Rscript -e "tinytex::install_tinytex()"
+#Rscript -e "tinytex:::install_yihui_pkgs()"
+    RUN Rscript -e "tinytex::tlmgr_install('pdfcrop')"
+

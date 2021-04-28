@@ -25,6 +25,7 @@ From: rocker/geospatial:4.0.5
     && apt-get clean all
 
 
+
     pip3 config set global.index-url https://pypi.tuna.tsinghua.edu.cn/simple \
     && pip3 install --upgrade setuptools \
     && pip3 install --default-timeout=100 -U radian
@@ -33,7 +34,7 @@ From: rocker/geospatial:4.0.5
     installGithub.r \
     jinyizju/V.PhyloMaker
 
-    install2.r -n -1 --skipinstalled --error \
+    install2.r -n -2 --skipinstalled --error \
     --deps TRUE \
         adephylo \
         phytools \
@@ -45,3 +46,4 @@ From: rocker/geospatial:4.0.5
         nlme \
         caper \
     && rm -rf /tmp/downloaded_packages
+

@@ -17,6 +17,45 @@ RUN apt-get update -q -y \
   && apt-get clean all
 {% endif %}
 
+{% if texlive %}
+   RUN apt-get update -qq \
+      && apt-get install -y --no-install-recommends \
+        cmake \
+        curl \
+        default-jdk \
+        fonts-roboto \
+        ghostscript \
+        hugo \
+        less \
+        libbz2-dev \
+        libglpk-dev \
+        libgmp3-dev \
+        libfribidi-dev \
+        libharfbuzz-dev \
+        libhunspell-dev \
+        libicu-dev \
+        liblzma-dev \
+        libmagick++-dev \
+        libopenmpi-dev \
+        libpcre2-dev \
+        libssl-dev \
+        libv8-dev \
+        libxml2-dev\
+        libxslt1-dev \
+        libzmq3-dev \
+        lsb-release \
+        qpdf \
+        texinfo \
+        software-properties-common \
+        vim \
+        wget
+
+    RUN Rscript -e "tinytex::install_tinytex()"
+#Rscript -e "tinytex:::install_yihui_pkgs()"
+    RUN Rscript -e "tinytex::tlmgr_install('pdfcrop')"
+
+{% endif %}
+
 {% if crossref %}
 RUN rm -rf /usr/lib/rstudio-server/bin/pandoc/pandoc \
   usr/local/bin/pandoc \
@@ -44,8 +83,6 @@ RUN CROSSREF_DL_URL=$(wget -qO- https://api.github.com/repos/lierdakil/pandoc-cr
   && mv pandoc-crossref /usr/local/bin \
   && rm -rf pandoc-crossref.1
 
-RUN tlmgr update --self \
-  && tlmgr install amsmath
 {% endif %}
 
 {% if radian %}
@@ -72,3 +109,4 @@ RUN install2.r -n -1 --skipinstalled --error \
     {% endfor %}
   && rm -rf /tmp/downloaded_packages
 {% endif %}
+
