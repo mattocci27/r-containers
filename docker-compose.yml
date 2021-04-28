@@ -1,30 +1,30 @@
 version: '3'
 services:
-  rstan_4.0.4:
-    image: mattocci/rstan:4.0.4
+  rstan_4.0.5:
+    image: mattocci/rstan:4.0.5
     extra_hosts:
     - api.github.com:140.82.112.5
     build:
       context: .
-      dockerfile: images/rstan_4.0.4/Dockerfile
-  myenv_4.0.4:
-    image: mattocci/myenv:4.0.4
+      dockerfile: images/rstan_4.0.5/Dockerfile
+  myenv_4.0.5:
+    image: mattocci/myenv:4.0.5
     extra_hosts:
     - api.github.com:140.82.112.5
     build:
       context: .
-      dockerfile: images/myenv_4.0.4/Dockerfile
-  ppca_4.0.4:
-    image: mattocci/ppca:4.0.4
+      dockerfile: images/myenv_4.0.5/Dockerfile
+  ppca_4.0.5:
+    image: mattocci/ppca:4.0.5
     extra_hosts:
     - api.github.com:140.82.112.5
     build:
       context: .
-      dockerfile: images/ppca_4.0.4/Dockerfile
-  rmd-crossref_4.0.4:
-    image: mattocci/rmd-crossref:4.0.4
+      dockerfile: images/ppca_4.0.5/Dockerfile
+  rmd-crossref_4.0.5:
+    image: mattocci/rmd-crossref:4.0.5
     extra_hosts:
     - api.github.com:140.82.112.5
     build:
       context: .
-      dockerfile: images/rmd-crossref_4.0.4/Dockerfile
+      dockerfile: images/rmd-crossref_4.0.5/Dockerfile

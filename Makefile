@@ -1,5 +1,5 @@
 .PHONY: all
-all: update compose push_docker rstan_4.0.4.sif push_sing
+all: update compose push_docker rstan_4.0.5.sif push_sing
 
 .PHONY: update
 update: update.py images.json
@@ -14,7 +14,7 @@ push_docker:
 	bash push.sh
 
 # all the sif files will be created anyway
-rstan_4.0.4.sif:
+rstan_4.0.5.sif:
 	python3 docker_to_sing.py build_from_def
 
 .PHONY: push_sing

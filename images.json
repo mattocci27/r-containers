@@ -2,20 +2,20 @@
     "owner": "mattocci",
     "configs": [
         {
-            "baseImage": "rocker/geospatial:4.0.4",
-            "imageTag": "rstan_4.0.4",
+            "baseImage": "rocker/geospatial:4.0.5",
+            "imageTag": "rstan_4.0.5",
             "imageName": "rstan",
-            "imageVer": "4.0.4",
+            "imageVer": "4.0.5",
             "installCRAN": [
               "RcppParallel" ,
               "rstan"
             ]
         },
         {
-            "baseImage": "mattocci/rstan:4.0.4",
-            "imageTag": "myenv_4.0.4",
+            "baseImage": "mattocci/rstan:4.0.5",
+            "imageTag": "myenv_4.0.5",
             "imageName": "myenv",
-            "imageVer": "4.0.4",
+            "imageVer": "4.0.5",
             "radian": "install",
             "bio": "install",
             "systemPackages": ["libpython3-dev", "python3-dev", "python3-pip"],
@@ -29,6 +29,7 @@
                "snowfall",
                "sads",
                "ggthemes",
+               "gganimate",
                "blogdown",
                "kableExtra",
                "picante",
@@ -65,10 +66,10 @@
             ]
         },
         {
-            "baseImage": "rocker/geospatial:4.0.4",
-            "imageTag": "ppca_4.0.4",
+            "baseImage": "rocker/geospatial:4.0.5",
+            "imageTag": "ppca_4.0.5",
             "imageName": "ppca",
-            "imageVer": "4.0.4",
+            "imageVer": "4.0.5",
             "radian": "install",
             "systemPackages": ["libpython3-dev", "python3-dev", "python3-pip"],
             "installCRAN": [
@@ -85,11 +86,11 @@
             "installGithub": ["jinyizju/V.PhyloMaker"]
         },
         {
-            "baseImage": "rocker/verse:4.0.4",
-            "imageTag": "rmd-crossref_4.0.4",
+            "baseImage": "rocker/verse:4.0.5",
+            "imageTag": "rmd-crossref_4.0.5",
             "imageName": "rmd-crossref",
             "crossref": "install",
-            "imageVer": "4.0.4",
+            "imageVer": "4.0.5",
             "radian": "install",
             "systemPackages": ["libpython3-dev", "python3-dev", "python3-pip"],
             "installCRAN": [
