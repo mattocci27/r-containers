@@ -17,45 +17,63 @@ From: rocker/r-ver:4.0.5
     DEBIAN_FRONTEND=noninteractive
 
 
-    apt-get update -qq \
+   apt-get update -qq \
       && apt-get install -y --no-install-recommends \
-        cmake \
         curl \
-        default-jdk \
-        fonts-roboto \
-        ghostscript \
-        hugo \
-        less \
-        libbz2-dev \
-        libglpk-dev \
-        libgmp3-dev \
-        libfribidi-dev \
-        libharfbuzz-dev \
-        libhunspell-dev \
-        libicu-dev \
-        liblzma-dev \
-        libmagick++-dev \
-        libopenmpi-dev \
-        libpcre2-dev \
-        libssl-dev \
-        libv8-dev \
-        libxml2-dev\
-        libxslt1-dev \
-        libzmq3-dev \
-        lsb-release \
-        qpdf \
+        wget \
         texinfo \
-        software-properties-common \
-        vim \
-        wget
+        apt-utils \
+        ghostscript 
 
-        install2.r -n -1 --skipinstalled --error \
-        --deps TRUE \
+    TINYTEX_DIR='/opt/tinytex'
+
+    install2.r -n -1 --skipinstalled --error \
         tinytex
 
-        Rscript -e "tinytex::install_tinytex()"
-#Rscript -e "tinytex:::install_yihui_pkgs()"
-        Rscript -e "tinytex::tlmgr_install('pdfcrop')"
+
+    wget -qO- \
+      "https://github.com/yihui/tinytex/raw/master/tools/install-unx.sh" | \
+      TINYTEX_DIR=${TINYTEX_DIR} sh -s - --admin --no-path \
+    && ${TINYTEX_DIR}/bin/*/tlmgr path add 
+
+    Rscript -e "tinytex::tlmgr_install(c('pdfcrop', \
+      'koma-script', \
+      'setspace', \
+      'colortbl', \
+      'footnotebackref', \
+      'multirow', \
+      'wrapfig', \
+      'pdflscape', \
+      'tabu', \
+      'varwidth', \
+      'threeparttable', \
+      'threeparttablex', \
+      'environ', \
+      'trimspaces', \
+      'ulem', \
+      'makecell', \
+      'lineno', \
+      'babel-english', \
+      'csquotes', \
+      'caption', \
+      'mdframed', \
+      'zref', \
+      'needspace', \
+      'sourcesanspro', \
+      'ly1', \
+      'sourcecodepro', \
+      'titling', \
+      'fancyhdr', \
+      'bookmark'))"
+
+    tlmgr path add \
+      && Rscript -e "tinytex::r_texmf()" \
+      && chown -R root:staff ${TINYTEX_DIR} \
+      && chown -R root:staff /usr/local/lib/R/site-library \
+      && chmod -R g+w ${TINYTEX_DIR} \
+      && chmod -R g+wx "${TINYTEX_DIR}/bin" 
+
+    echo "PATH=${PATH}" >> ${R_HOME}/etc/Renviron
 
 
 
