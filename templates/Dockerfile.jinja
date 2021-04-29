@@ -52,6 +52,9 @@ RUN apt-get update -q -y \
    RUN apt-get update -qq \
       && apt-get install -y --no-install-recommends \
         curl \
+        wget \
+        texinfo \
+        apt-utils \
         ghostscript 
 
     ARG TINYTEX_DIR='/opt/tinytex'

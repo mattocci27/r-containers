@@ -39,6 +39,9 @@ ENV DEBIAN_FRONTEND noninteractive
    RUN apt-get update -qq \
       && apt-get install -y --no-install-recommends \
         curl \
+        wget \
+        texinfo \
+        apt-utils \
         ghostscript 
 
     ARG TINYTEX_DIR='/opt/tinytex'
