@@ -5,44 +5,13 @@ FROM rocker/r-ver:4.0.5
 ENV DEBIAN_FRONTEND noninteractive
 
 
-   #RUN apt-get update -qq \
-   #   && apt-get install -y --no-install-recommends \
-   #     cmake \
-   #     curl \
-   #     default-jdk \
-   #     fonts-roboto \
-   #     ghostscript \
-   #     hugo \
-   #     less \
-   #     libbz2-dev \
-   #     libglpk-dev \
-   #     libgmp3-dev \
-   #     libfribidi-dev \
-   #     libharfbuzz-dev \
-   #     libhunspell-dev \
-   #     libicu-dev \
-   #     liblzma-dev \
-   #     libmagick++-dev \
-   #     libopenmpi-dev \
-   #     libpcre2-dev \
-   #     libssl-dev \
-   #     libv8-dev \
-   #     libxml2-dev\
-   #     libxslt1-dev \
-   #     libzmq3-dev \
-   #     lsb-release \
-   #     qpdf \
-   #     texinfo \
-   #     software-properties-common \
-   #     vim \
-   #     wget
    RUN apt-get update -qq \
       && apt-get install -y --no-install-recommends \
         curl \
         wget \
         texinfo \
         apt-utils \
-        ghostscript 
+        ghostscript
 
     ARG TINYTEX_DIR='/opt/tinytex'
 
@@ -55,15 +24,9 @@ ENV DEBIAN_FRONTEND noninteractive
     RUN wget -qO- \
       "https://github.com/yihui/tinytex/raw/master/tools/install-unx.sh" | \
       TINYTEX_DIR=${TINYTEX_DIR} sh -s - --admin --no-path \
-    && ${TINYTEX_DIR}/bin/*/tlmgr path add 
+    && ${TINYTEX_DIR}/bin/*/tlmgr path add
 
-    #RUN tlmgr install latex-bin luatex xetex
-    #RUN tlmgr update --self \
-  #  RUN tlmgr install ae bibtex context inconsolata \
-  #    listings makeindex metafont mfware parskip pdfcrop tex tools url xkeyval
-   # RUN Rscript -e "tinytex:::install_yihui_pkgs()"
-    #RUN Rscript -e "tinytex::tlmgr_install('pdfcrop', '')"
-    
+
     RUN Rscript -e "tinytex::tlmgr_install(c('pdfcrop', \
       'koma-script', \
       'setspace', \
@@ -94,13 +57,23 @@ ENV DEBIAN_FRONTEND noninteractive
       'fancyhdr', \
       'bookmark'))"
 
+    RUN useradd -m rstudio -u 1000 \
+        && mkdir -p /home/rstudio \
+        && chown -R rstudio /home/rstudio \
+        && usermod -a -G staff rstudio
+
+    RUN  chown -R rstudio:staff ${TINYTEX_DIR} \
+        && chown -R rstudio:staff /usr/local/lib/R/site-library \
+        && chmod -R g+w ${TINYTEX_DIR} \
+        && chmod -R g+wx "${TINYTEX_DIR}/bin" \
+        && umask 022
 
     RUN tlmgr path add \
       && Rscript -e "tinytex::r_texmf()" \
-      && chown -R root:staff ${TINYTEX_DIR} \
-      && chown -R root:staff /usr/local/lib/R/site-library \
+      && chown -R rstudio:staff ${TINYTEX_DIR} \
+      && chown -R rstudio:staff /usr/local/lib/R/site-library \
       && chmod -R g+w ${TINYTEX_DIR} \
-      && chmod -R g+wx "${TINYTEX_DIR}/bin" 
+      && chmod -R g+wx "${TINYTEX_DIR}/bin"
 
     RUN echo "PATH=${PATH}" >> ${R_HOME}/etc/Renviron
 
@@ -108,7 +81,7 @@ ENV DEBIAN_FRONTEND noninteractive
 RUN rm -rf /usr/lib/rstudio-server/bin/pandoc/pandoc \
   usr/local/bin/pandoc \
   usr/lib/rstudio-server/bin/pandoc/pandoc-citeproc \
-  usr/local/bin/pandoc-citeproc 
+  usr/local/bin/pandoc-citeproc
 
 RUN PANDOC_DL_URL=$(wget -qO- https://api.github.com/repos/jgm/pandoc/releases/latest | grep -oP "(?<=\"browser_download_url\":\s\")https.*amd64.deb") \
   && wget ${PANDOC_DL_URL} -O pandoc-amd64.deb \

@@ -21,13 +21,6 @@ services:
     build:
       context: .
       dockerfile: images/ppca_4.0.5/Dockerfile
-  rmd-crossref_4.0.5:
-    image: mattocci/rmd-crossref:4.0.5
-    extra_hosts:
-    - api.github.com:140.82.112.5
-    build:
-      context: .
-      dockerfile: images/rmd-crossref_4.0.5/Dockerfile
   rmd-light_4.0.5:
     image: mattocci/rmd-light:4.0.5
     extra_hosts:
