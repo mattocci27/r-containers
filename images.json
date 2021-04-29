@@ -104,6 +104,25 @@
                 "pander",
                 "kfigr"
             ]
+        },
+        {
+            "baseImage": "rocker/r-ver:4.0.5",
+            "imageTag": "rmd-light_4.0.5",
+            "imageName": "rmd-light",
+            "texlive": "install",
+            "crossref": "install",
+            "imageVer": "4.0.5",
+            "installCRAN": [
+                "rmarkdown",
+                "methods",
+                "bookdown",
+                "knitr",
+                "kableExtra",
+                "png",
+                "grid",
+                "pander",
+                "kfigr"
+            ]
         }
     ]
 }

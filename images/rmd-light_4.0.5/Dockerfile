@@ -1,16 +1,9 @@
 # NOTE: THIS DOCKERFILE IS GENERATED VIA "update.py"
-FROM rocker/tidyverse:4.0.5
+FROM rocker/r-ver:4.0.5
 
 
 ENV DEBIAN_FRONTEND noninteractive
 
-RUN apt-get update -q -y \
-  && apt-get install --no-install-recommends --fix-missing -y \
-    libpython3-dev \
-    python3-dev \
-    python3-pip \
-  && apt-get autoremove -y \
-  && apt-get clean all
 
    RUN apt-get update -qq \
       && apt-get install -y --no-install-recommends \
@@ -101,14 +94,12 @@ RUN CROSSREF_DL_URL=$(wget -qO- https://api.github.com/repos/lierdakil/pandoc-cr
   && rm -rf pandoc-crossref.1
 
 
-RUN pip3 config set global.index-url https://pypi.tuna.tsinghua.edu.cn/simple \
-  && pip3 install --upgrade setuptools \
-  && pip3 install --default-timeout=100 -U radian
 
 
 
 RUN install2.r -n -1 --skipinstalled --error \
   --deps TRUE \
+    rmarkdown \
     methods \
     bookdown \
     knitr \

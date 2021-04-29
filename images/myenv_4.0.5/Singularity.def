@@ -26,6 +26,7 @@ From: mattocci/rstan:4.0.5
 
 
 
+
     pip3 config set global.index-url https://pypi.tuna.tsinghua.edu.cn/simple \
     && pip3 install --upgrade setuptools \
     && pip3 install --default-timeout=100 -U radian
@@ -77,4 +78,3 @@ From: mattocci/rstan:4.0.5
         minerva \
         smatr \
     && rm -rf /tmp/downloaded_packages
-

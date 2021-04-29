@@ -25,11 +25,20 @@ sudo time singularity build hoge.sif images/rmd-crossref_4.0.2/Singularity.def
 sudo time singularity build hoge.sif images/rmd-crossref_4.0.5/Singularity.def
 
 
+docker run -it --rm -v $(pwd):/home/rstudio/Russo2021 \
+  mattocci/rmd-crossref:4.0.5 /bin/bash
+
+docker run -it --rm -v $(pwd):/home/rstudio/Russo2021 \
+  rocker/r-ver /bin/bash
+
 singularity push -U alpine_3.sif library://mattocci27/default/rstan:3.6.3
 
 docker build --no-cache --add-host="api.github.com:140.82.112.5" -t mattocci/rmd-crossref:4.0.5 ./images/rmd-crossref_4.0.5 
+docker build --no-cache  -t mattocci/rmd-crossref:4.0.5 ./images/rmd-crossref_4.0.5 
 
-docker build --add-host="api.github.com:140.82.112.5" -t mattocci/rmd-crossref:4.0.5 ./images/rmd-crossref_4.0.5 
+docker build -t mattocci/rmd-crossref:4.0.5 ./images/rmd-crossref_4.0.5 
+
+docker build -t mattocci/rmd-light:4.0.5 ./images/rmd-light_4.0.5 
 
 docker run -d  \
   --name r-filebrowser \
