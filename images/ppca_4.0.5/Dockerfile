@@ -22,8 +22,7 @@ RUN pip3 config set global.index-url https://pypi.tuna.tsinghua.edu.cn/simple \
 RUN installGithub.r \
   jinyizju/V.PhyloMaker
 
-RUN install2.r -n -1 --skipinstalled --error \
-  --deps TRUE \
+RUN install2.r -n -2 --skipinstalled --error \
     adephylo \
     phytools \
     factoextra \

@@ -12,42 +12,45 @@ RUN apt-get update -q -y \
   && apt-get autoremove -y \
   && apt-get clean all
 
+   #RUN apt-get update -qq \
+   #   && apt-get install -y --no-install-recommends \
+   #     cmake \
+   #     curl \
+   #     default-jdk \
+   #     fonts-roboto \
+   #     ghostscript \
+   #     hugo \
+   #     less \
+   #     libbz2-dev \
+   #     libglpk-dev \
+   #     libgmp3-dev \
+   #     libfribidi-dev \
+   #     libharfbuzz-dev \
+   #     libhunspell-dev \
+   #     libicu-dev \
+   #     liblzma-dev \
+   #     libmagick++-dev \
+   #     libopenmpi-dev \
+   #     libpcre2-dev \
+   #     libssl-dev \
+   #     libv8-dev \
+   #     libxml2-dev\
+   #     libxslt1-dev \
+   #     libzmq3-dev \
+   #     lsb-release \
+   #     qpdf \
+   #     texinfo \
+   #     software-properties-common \
+   #     vim \
+   #     wget
    RUN apt-get update -qq \
       && apt-get install -y --no-install-recommends \
-        cmake \
         curl \
-        default-jdk \
-        fonts-roboto \
-        ghostscript \
-        hugo \
-        less \
-        libbz2-dev \
-        libglpk-dev \
-        libgmp3-dev \
-        libfribidi-dev \
-        libharfbuzz-dev \
-        libhunspell-dev \
-        libicu-dev \
-        liblzma-dev \
-        libmagick++-dev \
-        libopenmpi-dev \
-        libpcre2-dev \
-        libssl-dev \
-        libv8-dev \
-        libxml2-dev\
-        libxslt1-dev \
-        libzmq3-dev \
-        lsb-release \
-        qpdf \
-        texinfo \
-        software-properties-common \
-        vim \
-        wget
+        ghostscript 
 
     ARG TINYTEX_DIR='/opt/tinytex'
 
     RUN install2.r -n -1 --skipinstalled --error \
-        --deps TRUE \
         tinytex
 
     #RUN Rscript -e "tinytex::install_tinytex()"
@@ -63,7 +66,39 @@ RUN apt-get update -q -y \
   #  RUN tlmgr install ae bibtex context inconsolata \
   #    listings makeindex metafont mfware parskip pdfcrop tex tools url xkeyval
    # RUN Rscript -e "tinytex:::install_yihui_pkgs()"
-    RUN Rscript -e "tinytex::tlmgr_install('pdfcrop')"
+    #RUN Rscript -e "tinytex::tlmgr_install('pdfcrop', '')"
+    
+    RUN Rscript -e "tinytex::tlmgr_install(c('pdfcrop', \
+      'koma-script', \
+      'setspace', \
+      'colortbl', \
+      'footnotebackref', \
+      'multirow', \
+      'wrapfig', \
+      'pdflscape', \
+      'tabu', \
+      'varwidth', \
+      'threeparttable', \
+      'threeparttablex', \
+      'environ', \
+      'trimspaces', \
+      'ulem', \
+      'makecell', \
+      'lineno', \
+      'babel-english', \
+      'csquotes', \
+      'caption', \
+      'mdframed', \
+      'zref', \
+      'needspace', \
+      'sourcesanspro', \
+      'ly1', \
+      'sourcecodepro', \
+      'titling', \
+      'fancyhdr', \
+      'bookmark'))"
+
+
     RUN tlmgr path add \
       && Rscript -e "tinytex::r_texmf()" \
       && chown -R root:staff ${TINYTEX_DIR} \
@@ -107,8 +142,7 @@ RUN pip3 config set global.index-url https://pypi.tuna.tsinghua.edu.cn/simple \
 
 
 
-RUN install2.r -n -1 --skipinstalled --error \
-  --deps TRUE \
+RUN install2.r -n -2 --skipinstalled --error \
     methods \
     bookdown \
     knitr \

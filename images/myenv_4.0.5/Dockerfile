@@ -24,8 +24,7 @@ RUN Rscript -e "install.packages('BiocManager')" \
 RUN installGithub.r \
   rstudio/fontawesome\ hadley/emo\ gordy2x/ecoCopula
 
-RUN install2.r -n -1 --skipinstalled --error \
-  --deps TRUE \
+RUN install2.r -n -2 --skipinstalled --error \
     adespatial \
     carData \
     vegan \

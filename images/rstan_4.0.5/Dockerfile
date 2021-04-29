@@ -10,8 +10,7 @@ ENV DEBIAN_FRONTEND noninteractive
 
 
 
-RUN install2.r -n -1 --skipinstalled --error \
-  --deps TRUE \
+RUN install2.r -n -2 --skipinstalled --error \
     RcppParallel \
     rstan \
   && rm -rf /tmp/downloaded_packages

@@ -39,6 +39,7 @@ docker build --no-cache  -t mattocci/rmd-crossref:4.0.5 ./images/rmd-crossref_4.
 docker build -t mattocci/rmd-crossref:4.0.5 ./images/rmd-crossref_4.0.5 
 
 docker build -t mattocci/rmd-light:4.0.5 ./images/rmd-light_4.0.5 
+docker build --no-cache -t mattocci/rmd-light:4.0.5 ./images/rmd-light_4.0.5 
 
 docker run -d  \
   --name r-filebrowser \
@@ -55,3 +56,33 @@ docker run \
   -e ENV_DOCKER_REGISTRY_HOST=210.72.93.96 \
   -e ENV_DOCKER_REGISTRY_PORT=5000 \
   -p 8080:80 konradkleine/docker-registry-frontend:v2
+
+
+'koma-script',
+'setspace',
+'colortbl',
+'footnotebackref',
+'multirow',
+'wrapfig',
+'pdflscape',
+'tabu',
+'varwidth',
+'threeparttable',
+'threeparttablex',
+'environ',
+'trimspaces',
+'ulem',
+'makecell',
+'lineno',
+'babel-english',
+'csquotes',
+'caption',
+'mdframed',
+'zref',
+'needspace',
+'sourcesanspro',
+'ly1',
+'sourcecodepro',
+'titling',
+'fancyhdr',
+'bookmark',
