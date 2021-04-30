@@ -62,5 +62,7 @@ RUN install2.r -n -2 --skipinstalled --error \
     entropart \
     FD \
     minerva \
+    patchwork \
+    RColorBrewer \
     smatr \
   && rm -rf /tmp/downloaded_packages

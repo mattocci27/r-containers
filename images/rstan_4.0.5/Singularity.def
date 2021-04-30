@@ -27,4 +27,5 @@ From: rocker/geospatial:4.0.5
     --deps TRUE \
         RcppParallel \
         rstan \
+        rstanarm \
     && rm -rf /tmp/downloaded_packages

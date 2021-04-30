@@ -76,5 +76,7 @@ From: mattocci/rstan:4.0.5
         entropart \
         FD \
         minerva \
+        patchwork \
+        RColorBrewer \
         smatr \
     && rm -rf /tmp/downloaded_packages

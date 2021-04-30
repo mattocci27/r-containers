@@ -8,7 +8,8 @@
             "imageVer": "4.0.5",
             "installCRAN": [
               "RcppParallel" ,
-              "rstan"
+              "rstan",
+              "rstanarm"
             ]
         },
         {
@@ -57,6 +58,8 @@
                "entropart",
                "FD",
                "minerva",
+               "patchwork",
+               "RColorBrewer",
                "smatr"
             ],
             "installGithub": [
@@ -64,26 +67,6 @@
                 "hadley/emo",
                 "gordy2x/ecoCopula"
             ]
-        },
-        {
-            "baseImage": "rocker/geospatial:4.0.5",
-            "imageTag": "ppca_4.0.5",
-            "imageName": "ppca",
-            "imageVer": "4.0.5",
-            "radian": "install",
-            "systemPackages": ["libpython3-dev", "python3-dev", "python3-pip"],
-            "installCRAN": [
-                "adephylo",
-                "phytools",
-                "factoextra",
-                "picante",
-                "phylolm",
-                "smatr",
-                "lme4",
-                "nlme",
-                "caper"
-            ],
-            "installGithub": ["jinyizju/V.PhyloMaker"]
         },
         {
             "baseImage": "rocker/r-ver:4.0.5",
