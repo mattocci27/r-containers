@@ -60,12 +60,14 @@
                "minerva",
                "patchwork",
                "RColorBrewer",
-               "smatr"
+               "smatr",
+               "flair"
             ],
             "installGithub": [
                 "rstudio/fontawesome",
                 "hadley/emo",
-                "gordy2x/ecoCopula"
+                "gordy2x/ecoCopula",
+                "yihui/xaringan"
             ]
         },
         {
