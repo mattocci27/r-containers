@@ -1,6 +1,6 @@
 # NOTE: THIS SINGULARITY DEFINITION FILE IS GENERATED VIA "update.py"
 BootStrap: docker
-From: mattocci/rstan:4.0.5
+From: mattocci/rstan:4.1.0
 
 
 
