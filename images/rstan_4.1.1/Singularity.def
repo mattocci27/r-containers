@@ -1,6 +1,6 @@
 # NOTE: THIS SINGULARITY DEFINITION FILE IS GENERATED VIA "update.py"
 BootStrap: docker
-From: rocker/geospatial:4.1.0
+From: rocker/geospatial:4.1.1
 
 
 

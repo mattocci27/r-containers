@@ -36,7 +36,7 @@ From: {{ baseImage }}
         wget \
         texinfo \
         apt-utils \
-        ghostscript 
+        ghostscript
 
     TINYTEX_DIR='/opt/tinytex'
 
@@ -47,7 +47,7 @@ From: {{ baseImage }}
     wget -qO- \
       "https://github.com/yihui/tinytex/raw/master/tools/install-unx.sh" | \
       TINYTEX_DIR=${TINYTEX_DIR} sh -s - --admin --no-path \
-    && ${TINYTEX_DIR}/bin/*/tlmgr path add 
+    && ${TINYTEX_DIR}/bin/*/tlmgr path add
 
     Rscript -e "tinytex::tlmgr_install(c('pdfcrop', \
       'koma-script', \
@@ -84,7 +84,7 @@ From: {{ baseImage }}
       && chown -R root:staff ${TINYTEX_DIR} \
       && chown -R root:staff /usr/local/lib/R/site-library \
       && chmod -R g+w ${TINYTEX_DIR} \
-      && chmod -R g+wx "${TINYTEX_DIR}/bin" 
+      && chmod -R g+wx "${TINYTEX_DIR}/bin"
 
     echo "PATH=${PATH}" >> ${R_HOME}/etc/Renviron
 
@@ -121,8 +121,8 @@ From: {{ baseImage }}
 {% endif %}
 
 {% if radian %}
-    pip3 config set global.index-url https://pypi.tuna.tsinghua.edu.cn/simple \
-    && pip3 install --upgrade setuptools \
+   # pip3 config set global.index-url https://pypi.tuna.tsinghua.edu.cn/simple \
+  pip3 install --upgrade setuptools \
     && pip3 install --default-timeout=100 -U radian
 {% endif %}
 

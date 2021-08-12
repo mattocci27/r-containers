@@ -1,6 +1,6 @@
 # NOTE: THIS SINGULARITY DEFINITION FILE IS GENERATED VIA "update.py"
 BootStrap: docker
-From: mattocci/rstan:4.1.0
+From: mattocci/rstan:4.1.1
 
 
 
@@ -27,8 +27,8 @@ From: mattocci/rstan:4.1.0
 
 
 
-    pip3 config set global.index-url https://pypi.tuna.tsinghua.edu.cn/simple \
-    && pip3 install --upgrade setuptools \
+   # pip3 config set global.index-url https://pypi.tuna.tsinghua.edu.cn/simple \
+  pip3 install --upgrade setuptools \
     && pip3 install --default-timeout=100 -U radian
 
     Rscript -e "install.packages('BiocManager')" \

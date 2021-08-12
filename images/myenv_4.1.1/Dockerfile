@@ -1,5 +1,5 @@
 # NOTE: THIS DOCKERFILE IS GENERATED VIA "update.py"
-FROM mattocci/rstan:4.1.0
+FROM mattocci/rstan:4.1.1
 
 
 ENV DEBIAN_FRONTEND noninteractive
@@ -14,8 +14,8 @@ RUN apt-get update -q -y \
 
 
 
-RUN pip3 config set global.index-url https://pypi.tuna.tsinghua.edu.cn/simple \
-  && pip3 install --upgrade setuptools \
+#RUN pip3 config set global.index-url https://pypi.tuna.tsinghua.edu.cn/simple \
+RUN pip3 install --upgrade setuptools \
   && pip3 install --default-timeout=100 -U radian
 
 RUN Rscript -e "install.packages('BiocManager')" \

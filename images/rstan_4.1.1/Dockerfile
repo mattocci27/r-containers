@@ -1,5 +1,5 @@
 # NOTE: THIS DOCKERFILE IS GENERATED VIA "update.py"
-FROM rocker/geospatial:4.1.0
+FROM rocker/geospatial:4.1.1
 
 
 ENV DEBIAN_FRONTEND noninteractive
