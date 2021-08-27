@@ -114,6 +114,7 @@ RUN install2.r -n -2 --skipinstalled --error \
     bookdown \
     knitr \
     kableExtra \
+    tidyverse \
     png \
     grid \
     pander \

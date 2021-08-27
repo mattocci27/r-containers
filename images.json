@@ -83,6 +83,7 @@
                 "bookdown",
                 "knitr",
                 "kableExtra",
+                "tidyverse",
                 "png",
                 "grid",
                 "pander",
