@@ -61,7 +61,8 @@
                "patchwork",
                "RColorBrewer",
                "smatr",
-               "flair"
+               "flair",
+               "httpgd"
             ],
             "installGithub": [
                 "rstudio/fontawesome",

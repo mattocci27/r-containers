@@ -66,4 +66,5 @@ RUN install2.r -n -2 --skipinstalled --error \
     RColorBrewer \
     smatr \
     flair \
+    httpgd \
   && rm -rf /tmp/downloaded_packages
