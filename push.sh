@@ -1,6 +1,6 @@
 #!/bin/bash
 LATEST_TAG="4.1.1"
-MY_IP="210.72.93.96:5000"
+#MY_IP="210.72.93.96:5000"
 
 # push to dockerhub without latest tag
 docker-compose push

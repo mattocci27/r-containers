@@ -2,6 +2,13 @@
     "owner": "mattocci",
     "configs": [
         {
+            "baseImage": "rocker/ml:4.1.1-cuda10.1",
+            "imageTag": "cmdstan_4.1.1",
+            "imageName": "cmdstan",
+            "imageVer": "4.1.1",
+            "cmdstan": "yes"
+        },
+        {
             "baseImage": "rocker/geospatial:4.1.1",
             "imageTag": "rstan_4.1.1",
             "imageName": "rstan",

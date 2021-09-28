@@ -15,3 +15,5 @@ RUN install2.r -n -2 --skipinstalled --error \
     rstan \
     rstanarm \
   && rm -rf /tmp/downloaded_packages
+
+

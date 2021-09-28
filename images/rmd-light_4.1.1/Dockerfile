@@ -122,3 +122,5 @@ RUN install2.r -n -2 --skipinstalled --error \
     pander \
     kfigr \
   && rm -rf /tmp/downloaded_packages
+
+
