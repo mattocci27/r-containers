@@ -3,8 +3,8 @@
     "configs": [
         {
             "baseImage": "rocker/ml:4.1.1-cuda10.1",
-            "imageTag": "cmdstan_4.1.1",
-            "imageName": "cmdstan",
+            "imageTag": "cmdstanr_4.1.1",
+            "imageName": "cmdstanr",
             "imageVer": "4.1.1",
             "cmdstan": "yes"
         },
