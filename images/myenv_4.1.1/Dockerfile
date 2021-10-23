@@ -67,6 +67,8 @@ RUN install2.r -n -2 --skipinstalled --error \
     smatr \
     flair \
     httpgd \
+    doMC \
+    doSNOW \
   && rm -rf /tmp/downloaded_packages
 
 

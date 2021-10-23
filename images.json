@@ -69,7 +69,9 @@
                "RColorBrewer",
                "smatr",
                "flair",
-               "httpgd"
+               "httpgd",
+               "doMC",
+               "doSNOW"
             ],
             "installGithub": [
                 "rstudio/fontawesome",
