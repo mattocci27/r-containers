@@ -71,7 +71,10 @@
                "flair",
                "httpgd",
                "doMC",
-               "doSNOW"
+               "doSNOW",
+               "lavaan",
+               "lavaanPlot",
+               "semPlot"
             ],
             "installGithub": [
                 "rstudio/fontawesome",

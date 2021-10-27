@@ -69,6 +69,9 @@ RUN install2.r -n -2 --skipinstalled --error \
     httpgd \
     doMC \
     doSNOW \
+    lavaan \
+    lavaanPlot \
+    semPlot \
   && rm -rf /tmp/downloaded_packages
 
 
