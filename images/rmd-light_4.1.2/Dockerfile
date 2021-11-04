@@ -1,23 +1,10 @@
-# {{ note }}
-FROM {{ baseImage }}
+# NOTE: THIS DOCKERFILE IS GENERATED VIA "update.py"
+FROM rocker/r-ver:4.1.2
 
-{% if label %}
-LABEL {{ label | join('\ ') }}
-{% endif %}
 
 ENV DEBIAN_FRONTEND noninteractive
 
-{% if systemPackages %}
-RUN apt-get update -q -y \
-  && apt-get install --no-install-recommends --fix-missing -y \
-    {% for package in systemPackages %}
-    {{ package }} \
-    {% endfor %}
-  && apt-get autoremove -y \
-  && apt-get clean all
-{% endif %}
 
-{% if texlive %}
    RUN apt-get update -qq \
       && apt-get install -y --no-install-recommends \
         curl \
@@ -92,9 +79,7 @@ RUN apt-get update -q -y \
 
     RUN echo "PATH=${PATH}" >> ${R_HOME}/etc/Renviron
 
-{% endif %}
 
-{% if crossref %}
 RUN rm -rf /usr/lib/rstudio-server/bin/pandoc/pandoc \
   usr/local/bin/pandoc \
   usr/lib/rstudio-server/bin/pandoc/pandoc-citeproc \
@@ -123,47 +108,21 @@ RUN CROSSREF_DL_URL=https://github.com/lierdakil/pandoc-crossref/releases/downlo
   && mv pandoc-crossref /usr/local/bin \
   && rm -rf pandoc-crossref.1
 
-{% endif %}
 
-{% if radian %}
-#RUN pip3 config set global.index-url https://pypi.tuna.tsinghua.edu.cn/simple \
-RUN pip3 install --upgrade setuptools \
-  && pip3 install --default-timeout=100 -U radian
-{% endif %}
 
-{% if bio %}
-RUN Rscript -e "install.packages('BiocManager')" \
-  && Rscript -e "BiocManager::install(c('marray', 'affy', 'Biobase'))"
-{% endif %}
 
-{% if installGithub %}
-RUN installGithub.r \
-  {{ installGithub | join('\ ') }}
-{% endif %}
 
-{% if installCRAN %}
 RUN install2.r -n -2 --skipinstalled --error \
-    {% for cran in installCRAN %}
-    {{ cran }} \
-    {% endfor %}
+    rmarkdown \
+    methods \
+    bookdown \
+    knitr \
+    kableExtra \
+    tidyverse \
+    png \
+    grid \
+    pander \
+    kfigr \
   && rm -rf /tmp/downloaded_packages
-{% endif %}
 
-
-{% if cmdstan %}
-# libtbb2 for cmdstan (cpu)
-RUN apt update && apt -y install libtbb2 \
-    clinfo
-
-RUN installGithub.r \
-      stan-dev/cmdstanr
-
-RUN mkdir -p  /opt/cmdstan \
- && Rscript -e "cmdstanr::install_cmdstan(dir = '/opt/cmdstan', release_url = 'https://github.com/stan-dev/cmdstan/releases/download/v2.27.0/cmdstan-2.27.0.tar.gz', cores = 2, timeout = 2400)"
-
-RUN ln -s /usr/local/cuda-10.1/targets/x86_64-linux/lib/libOpenCL.so /usr/lib/libOpenCL.so
-
-RUN mkdir -p /etc/OpenCL/vendors && \
-    echo "libnvidia-opencl.so.1" > /etc/OpenCL/vendors/nvidia.icd
-{% endif %}
 

@@ -2,17 +2,17 @@
     "owner": "mattocci",
     "configs": [
         {
-            "baseImage": "rocker/ml:4.1.1-cuda10.1",
-            "imageTag": "cmdstanr_4.1.1",
+            "baseImage": "rocker/ml:4.1.2-cuda10.1",
+            "imageTag": "cmdstanr_4.1.2",
             "imageName": "cmdstanr",
-            "imageVer": "4.1.1",
+            "imageVer": "4.1.2",
             "cmdstan": "yes"
         },
         {
-            "baseImage": "rocker/geospatial:4.1.1",
-            "imageTag": "rstan_4.1.1",
+            "baseImage": "rocker/geospatial:4.1.2",
+            "imageTag": "rstan_4.1.2",
             "imageName": "rstan",
-            "imageVer": "4.1.1",
+            "imageVer": "4.1.2",
             "installCRAN": [
               "RcppParallel" ,
               "rstan",
@@ -20,10 +20,10 @@
             ]
         },
         {
-            "baseImage": "mattocci/rstan:4.1.1",
-            "imageTag": "myenv_4.1.1",
+            "baseImage": "mattocci/rstan:4.1.2",
+            "imageTag": "myenv_4.1.2",
             "imageName": "myenv",
-            "imageVer": "4.1.1",
+            "imageVer": "4.1.2",
             "radian": "install",
             "bio": "install",
             "systemPackages": ["libpython3-dev", "python3-dev", "python3-pip"],
@@ -84,12 +84,12 @@
             ]
         },
         {
-            "baseImage": "rocker/r-ver:4.1.1",
-            "imageTag": "rmd-light_4.1.1",
+            "baseImage": "rocker/r-ver:4.1.2",
+            "imageTag": "rmd-light_4.1.2",
             "imageName": "rmd-light",
             "texlive": "install",
             "crossref": "install",
-            "imageVer": "4.1.1",
+            "imageVer": "4.1.2",
             "installCRAN": [
                 "rmarkdown",
                 "methods",
