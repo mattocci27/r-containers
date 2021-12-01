@@ -22,7 +22,7 @@ RUN Rscript -e "install.packages('BiocManager')" \
   && Rscript -e "BiocManager::install(c('marray', 'affy', 'Biobase'))"
 
 RUN installGithub.r \
-  rstudio/fontawesome\ hadley/emo\ gordy2x/ecoCopula\ yihui/xaringan
+  rstudio/fontawesome\ hadley/emo\ gordy2x/ecoCopula\ yihui/xaringan\ curso-r/treesnip
 
 RUN install2.r -n -2 --skipinstalled --error \
     adespatial \
@@ -72,6 +72,12 @@ RUN install2.r -n -2 --skipinstalled --error \
     lavaan \
     lavaanPlot \
     semPlot \
+    tidymodels \
+    skimr \
+    janitor \
+    lightgbm \
+    AmesHousing \
+    ParBayesianOptimization \
   && rm -rf /tmp/downloaded_packages
 
 

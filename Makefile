@@ -4,7 +4,7 @@ all: update compose push_docker
 
 .PHONY: update
 update: update.py images.json
-	python3 update.py
+	python3 $<
 
 .PHONY: compose
 compose:

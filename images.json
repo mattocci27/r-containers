@@ -74,13 +74,20 @@
                "doSNOW",
                "lavaan",
                "lavaanPlot",
-               "semPlot"
+               "semPlot",
+               "tidymodels",
+               "skimr",
+               "janitor",
+               "lightgbm",
+               "AmesHousing",
+               "ParBayesianOptimization"
             ],
             "installGithub": [
                 "rstudio/fontawesome",
                 "hadley/emo",
                 "gordy2x/ecoCopula",
-                "yihui/xaringan"
+                "yihui/xaringan",
+                "curso-r/treesnip"
             ]
         },
         {
