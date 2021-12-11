@@ -16,6 +16,11 @@ From: rocker/geospatial:4.1.2
 %post
     DEBIAN_FRONTEND=noninteractive
 
+    apt-get update -q -y \
+    && apt-get install --no-install-recommends --fix-missing -y \
+        gosu \
+    && apt-get autoremove -y \
+    && apt-get clean all
 
 
 

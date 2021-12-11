@@ -2,17 +2,48 @@
     "owner": "mattocci",
     "configs": [
         {
-            "baseImage": "rocker/ml:4.1.2-cuda10.1",
-            "imageTag": "cmdstanr_4.1.2",
-            "imageName": "cmdstanr",
+            "baseImage": "rocker/r-ver:4.1.2",
+            "imageTag": "rmd-light_4.1.2",
+            "imageName": "rmd-light",
+            "texlive": "install",
+            "crossref": "install",
             "imageVer": "4.1.2",
-            "cmdstan": "yes"
+            "systemPackages": [
+                "libxml2-dev",
+                "libcairo2-dev",
+                "libgit2-dev",
+                "default-libmysqlclient-dev",
+                "libpq-dev",
+                "libsasl2-dev",
+                "libsqlite3-dev",
+                "libssh2-1-dev",
+                "libxtst6",
+                "libcurl4-openssl-dev",
+                "unixodbc-dev",
+                "libglpk-dev",
+                "libxt-dev",
+                "gosu"
+            ],
+            "installCRAN": [
+                "rmarkdown",
+                "methods",
+                "bookdown",
+                "knitr",
+                "kableExtra",
+                "tidyverse",
+                "png",
+                "grid",
+                "pander",
+                "kfigr",
+                "remotes"
+            ]
         },
         {
             "baseImage": "rocker/geospatial:4.1.2",
             "imageTag": "rstan_4.1.2",
             "imageName": "rstan",
             "imageVer": "4.1.2",
+            "systemPackages": ["gosu"],
             "installCRAN": [
               "RcppParallel" ,
               "rstan",
@@ -91,24 +122,11 @@
             ]
         },
         {
-            "baseImage": "rocker/r-ver:4.1.2",
-            "imageTag": "rmd-light_4.1.2",
-            "imageName": "rmd-light",
-            "texlive": "install",
-            "crossref": "install",
+            "baseImage": "rocker/ml:4.1.2-cuda10.1",
+            "imageTag": "cmdstanr_4.1.2",
+            "imageName": "cmdstanr",
             "imageVer": "4.1.2",
-            "installCRAN": [
-                "rmarkdown",
-                "methods",
-                "bookdown",
-                "knitr",
-                "kableExtra",
-                "tidyverse",
-                "png",
-                "grid",
-                "pander",
-                "kfigr"
-            ]
+            "cmdstan": "yes"
         }
     ]
 }

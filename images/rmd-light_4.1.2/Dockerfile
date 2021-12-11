@@ -4,6 +4,24 @@ FROM rocker/r-ver:4.1.2
 
 ENV DEBIAN_FRONTEND noninteractive
 
+RUN apt-get update -q -y \
+  && apt-get install --no-install-recommends --fix-missing -y \
+    libxml2-dev \
+    libcairo2-dev \
+    libgit2-dev \
+    default-libmysqlclient-dev \
+    libpq-dev \
+    libsasl2-dev \
+    libsqlite3-dev \
+    libssh2-1-dev \
+    libxtst6 \
+    libcurl4-openssl-dev \
+    unixodbc-dev \
+    libglpk-dev \
+    libxt-dev \
+    gosu \
+  && apt-get autoremove -y \
+  && apt-get clean all
 
    RUN apt-get update -qq \
       && apt-get install -y --no-install-recommends \
@@ -11,7 +29,8 @@ ENV DEBIAN_FRONTEND noninteractive
         wget \
         texinfo \
         apt-utils \
-        ghostscript
+        ghostscript \
+        latexdiff
 
     ARG TINYTEX_DIR='/opt/tinytex'
 
@@ -55,6 +74,7 @@ ENV DEBIAN_FRONTEND noninteractive
       'sourcesanspro', \
       'ly1', \
       'sourcecodepro', \
+      'oberdiek', \
       'titling', \
       'fancyhdr', \
       'bookmark'))"
@@ -86,7 +106,7 @@ RUN rm -rf /usr/lib/rstudio-server/bin/pandoc/pandoc \
   usr/local/bin/pandoc-citeproc
 
 #RUN PANDOC_DL_URL=$(wget -qO- https://api.github.com/repos/jgm/pandoc/releases/latest | grep -oP "(?<=\"browser_download_url\":\s\")https.*amd64.deb") \
-RUN PANDOC_DL_URL=https://github.com/jgm/pandoc/releases/download/2.14.1/pandoc-2.14.1-1-amd64.deb \
+RUN PANDOC_DL_URL=https://github.com/jgm/pandoc/releases/download/2.16.2/pandoc-2.16.2-1-amd64.deb \
   && wget ${PANDOC_DL_URL} -O pandoc-amd64.deb \
   && dpkg -i pandoc-amd64.deb \
   && rm pandoc-amd64.deb
@@ -102,7 +122,7 @@ RUN PANDOC_TEMPLATES_VERSION=`pandoc -v | grep -oP "(?<=pandoc\s)[0-9\.]+$"` \
  && mkdir /root/.pandoc && ln -s /opt/pandoc/templates /root/.pandoc/templates
 
 #RUN CROSSREF_DL_URL=$(wget -qO- https://api.github.com/repos/lierdakil/pandoc-crossref/releases/latest | grep -oP "(?<=\"browser_download_url\":\s\")https.*tar\.xz" | grep Linux) \
-RUN CROSSREF_DL_URL=https://github.com/lierdakil/pandoc-crossref/releases/download/v0.3.12.0b/pandoc-crossref-Linux.tar.xz \
+RUN CROSSREF_DL_URL=https://github.com/lierdakil/pandoc-crossref/releases/download/v0.3.12.1a/pandoc-crossref-Linux.tar.xz \
   && wget -O - ${CROSSREF_DL_URL} | \
   tar Jxf - \
   && mv pandoc-crossref /usr/local/bin \
@@ -123,6 +143,7 @@ RUN install2.r -n -2 --skipinstalled --error \
     grid \
     pander \
     kfigr \
+    remotes \
   && rm -rf /tmp/downloaded_packages
 
 
