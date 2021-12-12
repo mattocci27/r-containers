@@ -135,9 +135,9 @@ From: rocker/r-ver:4.1.2
         knitr \
         kableExtra \
         tidyverse \
+        devtools \
         png \
         grid \
         pander \
         kfigr \
-        remotes \
     && rm -rf /tmp/downloaded_packages

@@ -31,11 +31,11 @@
                 "knitr",
                 "kableExtra",
                 "tidyverse",
+                "devtools",
                 "png",
                 "grid",
                 "pander",
-                "kfigr",
-                "remotes"
+                "kfigr"
             ]
         },
         {
