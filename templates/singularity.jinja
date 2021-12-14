@@ -36,13 +36,15 @@ From: {{ baseImage }}
         wget \
         texinfo \
         apt-utils \
-        ghostscript
+        ghostscript \
+        latexdiff \
+      && apt-get autoremove -y \
+      && apt-get autoclean -y
 
     TINYTEX_DIR='/opt/tinytex'
 
     install2.r -n -1 --skipinstalled --error \
         tinytex
-
 
     wget -qO- \
       "https://github.com/yihui/tinytex/raw/master/tools/install-unx.sh" | \
@@ -75,6 +77,7 @@ From: {{ baseImage }}
       'sourcesanspro', \
       'ly1', \
       'sourcecodepro', \
+      'oberdiek', \
       'titling', \
       'fancyhdr', \
       'bookmark'))"
@@ -87,7 +90,6 @@ From: {{ baseImage }}
       && chmod -R g+wx "${TINYTEX_DIR}/bin"
 
     echo "PATH=${PATH}" >> ${R_HOME}/etc/Renviron
-
 {% endif %}
 
 
@@ -98,7 +100,7 @@ From: {{ baseImage }}
     usr/local/bin/pandoc-citeproc
 
   #  PANDOC_DL_URL=$(wget -qO- https://api.github.com/repos/jgm/pandoc/releases/latest | grep -oP "(?<=\"browser_download_url\":\s\")https.*amd64.deb") \
-    PANDOC_DL_URL=https://github.com/jgm/pandoc/releases/download/2.14.1/pandoc-2.14.1-1-amd64.deb \
+    PANDOC_DL_URL=https://github.com/jgm/pandoc/releases/download/2.16.2/pandoc-2.16.2-1-amd64.deb \
     && wget ${PANDOC_DL_URL} -O pandoc-amd64.deb \
     && dpkg -i pandoc-amd64.deb \
     && rm pandoc-amd64.deb
@@ -114,12 +116,11 @@ From: {{ baseImage }}
     && mkdir /root/.pandoc && ln -s /opt/pandoc/templates /root/.pandoc/templates
 
   #  CROSSREF_DL_URL=$(wget -qO- https://api.github.com/repos/lierdakil/pandoc-crossref/releases/latest | grep -oP "(?<=\"browser_download_url\":\s\")https.*tar\.xz" | grep Linux) \
-    CROSSREF_DL_URL=https://github.com/lierdakil/pandoc-crossref/releases/download/v0.3.12.0b/pandoc-crossref-Linux.tar.xz \
+    CROSSREF_DL_URL=https://github.com/lierdakil/pandoc-crossref/releases/download/v0.3.12.1a/pandoc-crossref-Linux.tar.xz \
     && wget -O - ${CROSSREF_DL_URL} | \
     tar Jxf - \
     && mv pandoc-crossref /usr/local/bin \
     && rm -rf pandoc-crossref.1
-
 {% endif %}
 
 {% if radian %}
@@ -147,3 +148,15 @@ From: {{ baseImage }}
     && rm -rf /tmp/downloaded_packages
 {% endif %}
 
+{% if font %}
+    yes | apt-get install ttf-mscorefonts-installer \
+        && fc-cache -f \
+        && apt-get autoremove -y \
+        && apt-get autoclean -y
+
+    install2.r -n -2 --skipinstalled --error \
+      extrafont
+
+    R -e 'remotes::install_version("Rttf2pt1", version = "1.3.8")'
+    R -e 'extrafont::font_import(prompt = FALSE)'
+{% endif %}

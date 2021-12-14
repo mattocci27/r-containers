@@ -4,12 +4,12 @@ FROM mattocci/rstan:4.1.2
 
 ENV DEBIAN_FRONTEND noninteractive
 
-
 RUN apt-get update -q -y \
   && apt-get install --no-install-recommends --fix-missing -y \
     libpython3-dev \
     python3-dev \
     python3-pip \
+    gosu \
   && apt-get autoremove -y \
   && apt-get clean all
 
@@ -82,3 +82,14 @@ RUN install2.r -n -2 --skipinstalled --error \
   && rm -rf /tmp/downloaded_packages
 
 
+ENV DEBIAN_FRONTEND teletype
+RUN yes | apt-get install ttf-mscorefonts-installer \
+    && fc-cache -f \
+    && apt-get autoremove -y \
+    && apt-get autoclean -y
+
+RUN install2.r -n -2 --skipinstalled --error \
+  extrafont
+
+RUN R -e 'remotes::install_version("Rttf2pt1", version = "1.3.8")'
+RUN R -e 'extrafont::font_import(prompt = FALSE)'

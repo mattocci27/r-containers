@@ -4,7 +4,6 @@ FROM rocker/r-ver:4.1.2
 
 ENV DEBIAN_FRONTEND noninteractive
 
-
 RUN apt-get update -q -y \
   && apt-get install --no-install-recommends --fix-missing -y \
     libxml2-dev \
@@ -24,8 +23,6 @@ RUN apt-get update -q -y \
   && apt-get autoremove -y \
   && apt-get clean all
 
-ENV DEBIAN_FRONTEND teletype
-
 RUN apt-get update -qq \
     && apt-get install -y --no-install-recommends \
       apt-utils \
@@ -35,11 +32,6 @@ RUN apt-get update -qq \
       apt-utils \
       ghostscript \
       latexdiff \
-    && apt-get autoremove -y \
-    && apt-get autoclean -y
-
-RUN yes | apt-get install ttf-mscorefonts-installer \
-    && fc-cache -f \
     && apt-get autoremove -y \
     && apt-get autoclean -y
 
@@ -110,15 +102,6 @@ RUN tlmgr path add \
 
 RUN echo "PATH=${PATH}" >> ${R_HOME}/etc/Renviron
 
-RUN install2.r -n -2 --skipinstalled --error \
-  remotes \
-  extrafont
-
-RUN R -e 'remotes::install_version("Rttf2pt1", version = "1.3.8")'
-
-RUN R -e 'extrafont::font_import(prompt = FALSE)'
-
-
 RUN rm -rf /usr/lib/rstudio-server/bin/pandoc/pandoc \
   usr/local/bin/pandoc \
   usr/lib/rstudio-server/bin/pandoc/pandoc-citeproc \
@@ -150,7 +133,6 @@ RUN CROSSREF_DL_URL=https://github.com/lierdakil/pandoc-crossref/releases/downlo
 
 
 
-
 RUN install2.r -n -2 --skipinstalled --error \
     rmarkdown \
     methods \
@@ -166,3 +148,14 @@ RUN install2.r -n -2 --skipinstalled --error \
   && rm -rf /tmp/downloaded_packages
 
 
+ENV DEBIAN_FRONTEND teletype
+RUN yes | apt-get install ttf-mscorefonts-installer \
+    && fc-cache -f \
+    && apt-get autoremove -y \
+    && apt-get autoclean -y
+
+RUN install2.r -n -2 --skipinstalled --error \
+  extrafont
+
+RUN R -e 'remotes::install_version("Rttf2pt1", version = "1.3.8")'
+RUN R -e 'extrafont::font_import(prompt = FALSE)'

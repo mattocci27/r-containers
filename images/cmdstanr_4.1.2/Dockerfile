@@ -11,8 +11,6 @@ ENV DEBIAN_FRONTEND noninteractive
 
 
 
-
-
 # libtbb2 for cmdstan (cpu)
 RUN apt update && apt -y install libtbb2 \
     clinfo
@@ -27,3 +25,4 @@ RUN ln -s /usr/local/cuda-10.1/targets/x86_64-linux/lib/libOpenCL.so /usr/lib/li
 
 RUN mkdir -p /etc/OpenCL/vendors && \
     echo "libnvidia-opencl.so.1" > /etc/OpenCL/vendors/nvidia.icd
+
