@@ -112,7 +112,8 @@
                "janitor",
                "lightgbm",
                "AmesHousing",
-               "ParBayesianOptimization"
+               "ParBayesianOptimization",
+               "animation"
             ],
             "installGithub": [
                 "rstudio/fontawesome",

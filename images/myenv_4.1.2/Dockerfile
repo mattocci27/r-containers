@@ -79,6 +79,7 @@ RUN install2.r -n -2 --skipinstalled --error \
     lightgbm \
     AmesHousing \
     ParBayesianOptimization \
+    animation \
   && rm -rf /tmp/downloaded_packages
 
 

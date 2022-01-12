@@ -93,6 +93,7 @@ From: mattocci/rstan:4.1.2
         lightgbm \
         AmesHousing \
         ParBayesianOptimization \
+        animation \
     && rm -rf /tmp/downloaded_packages
 
     yes | apt-get install ttf-mscorefonts-installer \
