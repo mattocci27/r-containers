@@ -4,6 +4,7 @@ services:
     image: mattocci/rmd-light:4.1.2
     extra_hosts:
     - api.github.com:140.82.113.6
+    - github.com:140:82:114:4
     build:
       context: .
       dockerfile: images/rmd-light_4.1.2/Dockerfile
@@ -11,6 +12,7 @@ services:
     image: mattocci/rstan:4.1.2
     extra_hosts:
     - api.github.com:140.82.113.6
+    - github.com:140:82:114:4
     build:
       context: .
       dockerfile: images/rstan_4.1.2/Dockerfile
@@ -18,6 +20,7 @@ services:
     image: mattocci/myenv:4.1.2
     extra_hosts:
     - api.github.com:140.82.113.6
+    - github.com:140:82:114:4
     build:
       context: .
       dockerfile: images/myenv_4.1.2/Dockerfile
@@ -25,6 +28,7 @@ services:
     image: mattocci/cmdstanr:4.1.2
     extra_hosts:
     - api.github.com:140.82.113.6
+    - github.com:140:82:114:4
     build:
       context: .
       dockerfile: images/cmdstanr_4.1.2/Dockerfile
