@@ -113,7 +113,8 @@
                "lightgbm",
                "AmesHousing",
                "ParBayesianOptimization",
-               "animation"
+               "animation",
+               "drake"
             ],
             "installGithub": [
                 "rstudio/fontawesome",
