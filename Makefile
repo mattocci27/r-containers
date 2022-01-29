@@ -1,5 +1,5 @@
 .PHONY: all
-#all: update compose push_docker rstan_4.1.0.sif push_sing
+
 all: update compose push_docker
 
 .PHONY: update
@@ -14,10 +14,12 @@ compose:
 push_docker:
 	bash push.sh
 
-# all the sif files will be created anyway
-#rstan_4.1.0.sif:
-#	python3 docker_to_sing.py build_from_def
-#
-#.PHONY: push_sing
-#push_sing:
-#	python3 docker_to_sing.py push
+
+.PHONY: clean_container
+clean_container:
+	docker rm `docker ps -a -q`
+
+# Be careful
+.PHONY: clean_everything
+clean_everything:
+	docker image rm -f `docker image ls -a -q`
