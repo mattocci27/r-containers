@@ -80,7 +80,7 @@ RUN install2.r -n -2 --skipinstalled --error \
     AmesHousing \
     ParBayesianOptimization \
     animation \
-    drake \
+    targets \
   && rm -rf /tmp/downloaded_packages
 
 

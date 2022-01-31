@@ -94,7 +94,7 @@ From: mattocci/rstan:4.1.2
         AmesHousing \
         ParBayesianOptimization \
         animation \
-        drake \
+        targets \
     && rm -rf /tmp/downloaded_packages
 
     yes | apt-get install ttf-mscorefonts-installer \

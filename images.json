@@ -114,7 +114,7 @@
                "AmesHousing",
                "ParBayesianOptimization",
                "animation",
-               "drake"
+               "targets"
             ],
             "installGithub": [
                 "rstudio/fontawesome",
