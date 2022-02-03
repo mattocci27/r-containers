@@ -171,7 +171,9 @@ RUN mkdir -p /etc/OpenCL/vendors && \
 
 {% if font %}
 ENV DEBIAN_FRONTEND teletype
-RUN yes | apt-get install ttf-mscorefonts-installer \
+
+RUN  apt-get update -q -y \
+    && apt-get install ttf-mscorefonts-installer --fix-missing -y \
     && fc-cache -f \
     && apt-get autoremove -y \
     && apt-get autoclean -y

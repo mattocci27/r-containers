@@ -114,7 +114,10 @@
                "AmesHousing",
                "ParBayesianOptimization",
                "animation",
-               "targets"
+               "targets",
+               "future",
+               "future.callr",
+               "future.batchtools"
             ],
             "installGithub": [
                 "rstudio/fontawesome",

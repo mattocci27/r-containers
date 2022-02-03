@@ -81,11 +81,16 @@ RUN install2.r -n -2 --skipinstalled --error \
     ParBayesianOptimization \
     animation \
     targets \
+    future \
+    future.callr \
+    future.batchtools \
   && rm -rf /tmp/downloaded_packages
 
 
 ENV DEBIAN_FRONTEND teletype
-RUN yes | apt-get install ttf-mscorefonts-installer \
+
+RUN  apt-get update -q -y \
+    && apt-get install ttf-mscorefonts-installer --fix-missing -y \
     && fc-cache -f \
     && apt-get autoremove -y \
     && apt-get autoclean -y

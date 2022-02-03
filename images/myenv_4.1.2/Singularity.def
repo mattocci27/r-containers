@@ -95,6 +95,9 @@ From: mattocci/rstan:4.1.2
         ParBayesianOptimization \
         animation \
         targets \
+        future \
+        future.callr \
+        future.batchtools \
     && rm -rf /tmp/downloaded_packages
 
     yes | apt-get install ttf-mscorefonts-installer \
