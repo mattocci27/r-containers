@@ -22,6 +22,8 @@ RUN pip3 install --upgrade setuptools \
 RUN Rscript -e "install.packages('BiocManager')" \
   && Rscript -e "BiocManager::install(c('marray', 'affy', 'Biobase'))"
 
+RUN Rscript -e "install.packages('Rcpp')"
+
 RUN installGithub.r \
   rstudio/fontawesome\ hadley/emo\ gordy2x/ecoCopula\ yihui/xaringan\ curso-r/treesnip
 
@@ -84,6 +86,7 @@ RUN install2.r -n -2 --skipinstalled --error \
     future \
     future.callr \
     future.batchtools \
+    clustermq \
   && rm -rf /tmp/downloaded_packages
 
 

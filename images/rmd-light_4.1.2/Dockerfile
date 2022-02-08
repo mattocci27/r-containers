@@ -133,6 +133,7 @@ RUN CROSSREF_DL_URL=https://github.com/lierdakil/pandoc-crossref/releases/downlo
 
 
 
+
 RUN install2.r -n -2 --skipinstalled --error \
     rmarkdown \
     methods \

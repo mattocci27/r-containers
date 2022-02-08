@@ -139,6 +139,10 @@ RUN Rscript -e "install.packages('BiocManager')" \
   && Rscript -e "BiocManager::install(c('marray', 'affy', 'Biobase'))"
 {% endif %}
 
+{% if Rcpp %}
+RUN Rscript -e "install.packages('Rcpp')"
+{% endif %}
+
 {% if installGithub %}
 RUN installGithub.r \
   {{ installGithub | join('\ ') }}

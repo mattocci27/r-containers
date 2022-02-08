@@ -58,6 +58,7 @@
             "radian": "install",
             "bio": "install",
             "font": "install",
+            "Rcpp": "install",
             "systemPackages": ["libpython3-dev", "python3-dev", "python3-pip", "gosu"],
             "installCRAN": [
                "adespatial",
@@ -117,7 +118,8 @@
                "targets",
                "future",
                "future.callr",
-               "future.batchtools"
+               "future.batchtools",
+               "clustermq"
             ],
             "installGithub": [
                 "rstudio/fontawesome",
