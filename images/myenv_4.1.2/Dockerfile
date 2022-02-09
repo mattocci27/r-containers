@@ -25,7 +25,7 @@ RUN Rscript -e "install.packages('BiocManager')" \
 RUN Rscript -e "install.packages('Rcpp')"
 
 RUN installGithub.r \
-  rstudio/fontawesome\ hadley/emo\ gordy2x/ecoCopula\ yihui/xaringan\ curso-r/treesnip
+  rstudio/fontawesome\ hadley/emo\ gordy2x/ecoCopula\ yihui/xaringan\ curso-r/treesnip\ ropensci/stantargets
 
 RUN install2.r -n -2 --skipinstalled --error \
     adespatial \
@@ -83,11 +83,13 @@ RUN install2.r -n -2 --skipinstalled --error \
     ParBayesianOptimization \
     animation \
     targets \
+    tarchetypes \
     future \
     future.callr \
     future.batchtools \
     clustermq \
   && rm -rf /tmp/downloaded_packages
+
 
 
 ENV DEBIAN_FRONTEND teletype

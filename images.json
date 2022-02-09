@@ -48,7 +48,8 @@
               "RcppParallel" ,
               "rstan",
               "rstanarm"
-            ]
+            ],
+            "cmdstan": "yes"
         },
         {
             "baseImage": "mattocci/rstan:4.1.2",
@@ -116,6 +117,7 @@
                "ParBayesianOptimization",
                "animation",
                "targets",
+               "tarchetypes",
                "future",
                "future.callr",
                "future.batchtools",
@@ -126,7 +128,8 @@
                 "hadley/emo",
                 "gordy2x/ecoCopula",
                 "yihui/xaringan",
-                "curso-r/treesnip"
+                "curso-r/treesnip",
+                "ropensci/stantargets"
             ]
         },
         {
@@ -134,7 +137,8 @@
             "imageTag": "cmdstanr_4.1.2",
             "imageName": "cmdstanr",
             "imageVer": "4.1.2",
-            "cmdstan": "yes"
+            "cmdstan": "yes",
+            "gpu": "yes"
         }
     ]
 }

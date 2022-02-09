@@ -18,3 +18,9 @@ RUN install2.r -n -2 --skipinstalled --error \
   && rm -rf /tmp/downloaded_packages
 
 
+RUN installGithub.r \
+      stan-dev/cmdstanr
+
+RUN mkdir -p  /opt/cmdstan \
+ && Rscript -e "cmdstanr::install_cmdstan(dir = '/opt/cmdstan', release_url = 'https://github.com/stan-dev/cmdstan/releases/download/v2.28.2/cmdstan-2.28.2.tar.gz', cores = 2, timeout = 2400)"
+
