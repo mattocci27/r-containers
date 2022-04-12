@@ -116,7 +116,6 @@
                "AmesHousing",
                "ParBayesianOptimization",
                "animation",
-               "targets",
                "tarchetypes",
                "future",
                "future.callr",
@@ -129,6 +128,7 @@
                 "gordy2x/ecoCopula",
                 "yihui/xaringan",
                 "curso-r/treesnip",
+                "ropensci/targets",
                 "ropensci/stantargets"
             ]
         },

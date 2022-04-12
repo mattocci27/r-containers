@@ -24,8 +24,15 @@ RUN Rscript -e "install.packages('BiocManager')" \
 
 RUN Rscript -e "install.packages('Rcpp')"
 
-RUN installGithub.r \
-  rstudio/fontawesome\ hadley/emo\ gordy2x/ecoCopula\ yihui/xaringan\ curso-r/treesnip\ ropensci/stantargets
+RUN installGithub.r --update FALSE \
+    rstudio/fontawesome \
+    hadley/emo \
+    gordy2x/ecoCopula \
+    yihui/xaringan \
+    curso-r/treesnip \
+    ropensci/targets \
+    ropensci/stantargets \
+  && rm -rf /tmp/downloaded_packages
 
 RUN install2.r -n -2 --skipinstalled --error \
     adespatial \
@@ -82,7 +89,6 @@ RUN install2.r -n -2 --skipinstalled --error \
     AmesHousing \
     ParBayesianOptimization \
     animation \
-    targets \
     tarchetypes \
     future \
     future.callr \

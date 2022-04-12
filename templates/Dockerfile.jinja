@@ -144,8 +144,11 @@ RUN Rscript -e "install.packages('Rcpp')"
 {% endif %}
 
 {% if installGithub %}
-RUN installGithub.r \
-  {{ installGithub | join('\ ') }}
+RUN installGithub.r --update FALSE \
+    {% for github in installGithub %}
+    {{ github }} \
+    {% endfor %}
+  && rm -rf /tmp/downloaded_packages
 {% endif %}
 
 {% if installCRAN %}
