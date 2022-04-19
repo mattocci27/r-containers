@@ -1,75 +1,31 @@
 # NOTE: THIS DOCKERFILE IS GENERATED VIA "update.py"
-FROM rocker/r-ver:4.1.2
+FROM mattocci/rstan:4.1.2
 
 
 ENV DEBIAN_FRONTEND noninteractive
 
 RUN apt-get update -q -y \
   && apt-get install --no-install-recommends --fix-missing -y \
-    libxml2-dev \
-    libcairo2-dev \
-    libgit2-dev \
     default-libmysqlclient-dev \
+    libcairo2-dev \
+    libcurl4-openssl-dev \
+    libgit2-dev \
+    libglpk-dev \
     libpq-dev \
+    libpython3-dev \
     libsasl2-dev \
     libsqlite3-dev \
     libssh2-1-dev \
-    libxtst6 \
-    libcurl4-openssl-dev \
-    unixodbc-dev \
-    libglpk-dev \
+    libxml2-dev \
     libxt-dev \
+    libxtst6 \
+    python3-dev \
+    python3-pip \
+    unixodbc-dev \
     gosu \
   && apt-get autoremove -y \
   && apt-get clean all
 
-RUN apt-get update -qq \
-    && apt-get install -y --no-install-recommends \
-      apt-utils \
-      curl \
-      wget \
-      texinfo \
-      apt-utils \
-      ghostscript \
-      latexdiff \
-    && apt-get autoremove -y \
-    && apt-get autoclean -y
-
-ARG TINYTEX_DIR='/opt/tinytex'
-
-RUN mkdir ${TINYTEX_DIR}
-
-RUN install2.r -n -1 --skipinstalled --error \
-      tinytex
-
-  #RUN Rscript -e "tinytex::install_tinytex()"
-  #ENV PATH=$PATH:/root/.TinTeX/bin/x86_64-linux/
-
-RUN wget -qO- \
-    "https://github.com/yihui/tinytex/raw/main/tools/install-unx.sh" | \
-    TINYTEX_DIR=${TINYTEX_DIR} sh -s - --admin --no-path \
-  && ${TINYTEX_DIR}/bin/*/tlmgr path add
-
-
-RUN useradd -m rstudio -u 1000 \
-    && mkdir -p /home/rstudio \
-    && chown -R rstudio /home/rstudio \
-    && usermod -a -G staff rstudio
-
-RUN chown -R rstudio:staff ${TINYTEX_DIR} \
-    && chown -R rstudio:staff /usr/local/lib/R/site-library \
-    && chmod -R g+w ${TINYTEX_DIR} \
-    && chmod -R g+wx "${TINYTEX_DIR}/bin" \
-    && umask 022
-
-RUN tlmgr path add \
-  && Rscript -e "tinytex::r_texmf()" \
-  && chown -R rstudio:staff ${TINYTEX_DIR} \
-  && chown -R rstudio:staff /usr/local/lib/R/site-library \
-  && chmod -R g+w ${TINYTEX_DIR} \
-  && chmod -R g+wx "${TINYTEX_DIR}/bin"
-
-RUN echo "PATH=${PATH}" >> ${R_HOME}/etc/Renviron
 
 RUN tlmgr update --self
 RUN tlmgr install \
@@ -158,8 +114,14 @@ RUN CROSSREF_DL_URL=https://github.com/lierdakil/pandoc-crossref/releases/downlo
   && mv pandoc-crossref /usr/local/bin \
   && rm -rf pandoc-crossref.1
 
+#RUN pip3 config set global.index-url https://pypi.tuna.tsinghua.edu.cn/simple \
+RUN pip3 install --upgrade setuptools \
+  && pip3 install --default-timeout=100 -U radian
 
+RUN Rscript -e "install.packages('BiocManager')" \
+  && Rscript -e "BiocManager::install(c('marray', 'affy', 'Biobase'))"
 
+RUN Rscript -e "install.packages('Rcpp')"
 
 
 RUN install2.r -n -2 --skipinstalled --error \

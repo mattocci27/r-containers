@@ -46,37 +46,6 @@ RUN wget -qO- \
   && ${TINYTEX_DIR}/bin/*/tlmgr path add
 
 
-RUN Rscript -e "tinytex::tlmgr_install(c('pdfcrop', \
-    'koma-script', \
-    'setspace', \
-    'colortbl', \
-    'footnotebackref', \
-    'multirow', \
-    'wrapfig', \
-    'pdflscape', \
-    'tabu', \
-    'varwidth', \
-    'threeparttable', \
-    'threeparttablex', \
-    'environ', \
-    'trimspaces', \
-    'ulem', \
-    'makecell', \
-    'lineno', \
-    'babel-english', \
-    'csquotes', \
-    'caption', \
-    'mdframed', \
-    'zref', \
-    'needspace', \
-    'sourcesanspro', \
-    'ly1', \
-    'sourcecodepro', \
-    'oberdiek', \
-    'titling', \
-    'fancyhdr', \
-    'bookmark'))"
-
 RUN useradd -m rstudio -u 1000 \
     && mkdir -p /home/rstudio \
     && chown -R rstudio /home/rstudio \
@@ -96,6 +65,67 @@ RUN tlmgr path add \
   && chmod -R g+wx "${TINYTEX_DIR}/bin"
 
 RUN echo "PATH=${PATH}" >> ${R_HOME}/etc/Renviron
+{% endif %}
+
+{% if updateLatex %}
+RUN tlmgr update --self
+RUN tlmgr install \
+  amsmath \
+  latex-amsmath-dev \
+  babel-english \
+  bigintcalc \
+  bitset \
+  bookmark \
+  booktabs \
+  caption \
+  colortbl \
+  csquotes \
+  environ \
+  epstopdf-pkg \
+  etexcmds \
+  fancyhdr \
+  float \
+  footnotebackref \
+  geometry \
+  gettitlestring \
+  hycolor \
+  hyperref \
+  intcalc \
+  koma-script \
+  kvdefinekeys \
+  kvsetkeys \
+  latexmk \
+  letltxmacro \
+  lineno \
+  ltxcmds \
+  ly1 \
+  makecell \
+  mdframed \
+  mdwtools \
+  multirow \
+  needspace \
+  oberdiek \
+  pdfcrop \
+  pdfescape \
+  pdflscape \
+  refcount \
+  rerunfilecheck \
+  setspace \
+  sourcecodepro \
+  sourcesanspro \
+  stringenc \
+  tabu \
+  threeparttable \
+  threeparttablex \
+  titling \
+  trimspaces \
+  ulem \
+  uniquecounter \
+  varwidth \
+  wrapfig \
+  xcolor \
+  zapfding \
+  zref
 {% endif %}
 
 {% if crossref %}

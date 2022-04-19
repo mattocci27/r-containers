@@ -32,3 +32,11 @@ services:
     build:
       context: .
       dockerfile: images/cmdstanr_4.1.2/Dockerfile
+  myenv-light_4.1.2:
+    image: mattocci/myenv-light:4.1.2
+    extra_hosts:
+    - api.github.com:140.82.113.6
+    - github.com:140:82:114:4
+    build:
+      context: .
+      dockerfile: images/myenv-light_4.1.2/Dockerfile
