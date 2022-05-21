@@ -89,9 +89,7 @@ RUN tlmgr install \
   zref
 
 
-#RUN pip3 config set global.index-url https://pypi.tuna.tsinghua.edu.cn/simple \
-RUN pip3 install --upgrade setuptools \
-  && pip3 install --default-timeout=100 -U radian
+RUN pip3 install --default-timeout=100 -U radian
 
 
 

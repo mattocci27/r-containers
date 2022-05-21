@@ -5,13 +5,13 @@
 
 ## Images
 
-| docker                                                                         | singularity                                                                     | description                                                                                | r-ver        |
-|--------------------------------------------------------------------------------|---------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------|--------------|
-| [rstan](https://hub.docker.com/repository/docker/mattocci/rstan)               | [rstan](https://cloud.sylabs.io/library/mattocci27/default/rstan)               | adds rstan on [geospatial](https://hub.docker.com/r/rocker/geospatial)                     | 3.6.3, 4.1.2 |
-| [myenv](https://hub.docker.com/repository/docker/mattocci/myenv)               | [myenv](https://cloud.sylabs.io/library/mattocci27/default/myenv)               | adds a bunch of packages on 'rstan'                                                        | 3.6.3, 4.1.2 |
-| [rmd-light](https://hub.docker.com/repository/docker/mattocci/rmd-light)               | -               | R markdown + TinyTex + pandoc-crossref without Rstudio |  4.1.2 |
-| [cmdstanr](https://hub.docker.com/repository/docker/mattocci/cmdstanr)               | -               | adds cmdstanr on [ml](https://hub.docker.com/r/rocker/ml) (GPU supported)                  | 4.1.2 |
-
+| docker                                                                   | singularity                                                       | description                                                                       |
+|--------------------------------------------------------------------------|-------------------------------------------------------------------|-----------------------------------------------------------------------------------|
+| [rstan](https://hub.docker.com/repository/docker/mattocci/rstan)         | [rstan](https://cloud.sylabs.io/library/mattocci27/default/rstan) | adds rstan on [geospatial](https://hub.docker.com/r/rocker/geospatial)            |
+| [radian](https://hub.docker.com/repository/docker/mattocci/radian)       | -                                                                 | adds radian and fonts on [geospatial](https://hub.docker.com/r/rocker/geospatial) |
+| [radian-ml](https://hub.docker.com/repository/docker/mattocci/radian-ml) | -                                                                 | adds radian and fonts on [ml-verse](https://hub.docker.com/r/rocker/ml-verse)     |
+| [rmd-light](https://hub.docker.com/repository/docker/mattocci/rmd-light) | -                                                                 | R markdown + TinyTex + pandoc-crossref without Rstudio                            |
+| [cmdstanr](https://hub.docker.com/repository/docker/mattocci/cmdstanr)   | -                                                                 | adds cmdstanr on [ml](https://hub.docker.com/r/rocker/ml) (GPU supported)         |
 
 
 ## Push to a private repository

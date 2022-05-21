@@ -170,10 +170,6 @@ RUN install2.r -n -2 --skipinstalled --error \
     kableExtra \
     tidyverse \
     devtools \
-    png \
-    grid \
-    pander \
-    kfigr \
   && rm -rf /tmp/downloaded_packages
 
 

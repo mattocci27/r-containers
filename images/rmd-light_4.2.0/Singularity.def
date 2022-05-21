@@ -137,10 +137,6 @@ From: rocker/r-ver:4.2.0
         kableExtra \
         tidyverse \
         devtools \
-        png \
-        grid \
-        pander \
-        kfigr \
     && rm -rf /tmp/downloaded_packages
 
     yes | apt-get install ttf-mscorefonts-installer \

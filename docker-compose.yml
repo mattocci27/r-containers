@@ -16,14 +16,6 @@ services:
     build:
       context: .
       dockerfile: images/rstan_4.2.0/Dockerfile
-  myenv_4.2.0:
-    image: mattocci/myenv:4.2.0
-    extra_hosts:
-    - api.github.com:140.82.113.6
-    - github.com:140.82.114.4
-    build:
-      context: .
-      dockerfile: images/myenv_4.2.0/Dockerfile
   cmdstanr_4.2.0:
     image: mattocci/cmdstanr:4.2.0
     extra_hosts:
@@ -32,14 +24,6 @@ services:
     build:
       context: .
       dockerfile: images/cmdstanr_4.2.0/Dockerfile
-  myenv-light_4.2.0:
-    image: mattocci/myenv-light:4.2.0
-    extra_hosts:
-    - api.github.com:140.82.113.6
-    - github.com:140.82.114.4
-    build:
-      context: .
-      dockerfile: images/myenv-light_4.2.0/Dockerfile
   radian_4.2.0:
     image: mattocci/radian:4.2.0
     extra_hosts:
