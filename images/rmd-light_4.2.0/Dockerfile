@@ -6,19 +6,7 @@ ENV DEBIAN_FRONTEND noninteractive
 
 RUN apt-get update -q -y \
   && apt-get install --no-install-recommends --fix-missing -y \
-    libxml2-dev \
     libcairo2-dev \
-    libgit2-dev \
-    default-libmysqlclient-dev \
-    libpq-dev \
-    libsasl2-dev \
-    libsqlite3-dev \
-    libssh2-1-dev \
-    libxtst6 \
-    libcurl4-openssl-dev \
-    unixodbc-dev \
-    libglpk-dev \
-    libxt-dev \
     gosu \
   && apt-get autoremove -y \
   && apt-get clean all
@@ -130,33 +118,12 @@ RUN tlmgr install \
   zapfding \
   zref
 
-RUN rm -rf /usr/lib/rstudio-server/bin/pandoc/pandoc \
-  usr/local/bin/pandoc \
-  usr/lib/rstudio-server/bin/pandoc/pandoc-citeproc \
-  usr/local/bin/pandoc-citeproc
+ENV PANDOC_VERSION=2.17.1.1
+ENV CROSSREF_VERSION=0.3.12.2a
 
-#RUN PANDOC_DL_URL=$(wget -qO- https://api.github.com/repos/jgm/pandoc/releases/latest | grep -oP "(?<=\"browser_download_url\":\s\")https.*amd64.deb") \
-RUN PANDOC_DL_URL=https://github.com/jgm/pandoc/releases/download/2.16.2/pandoc-2.16.2-1-amd64.deb \
-  && wget ${PANDOC_DL_URL} -O pandoc-amd64.deb \
-  && dpkg -i pandoc-amd64.deb \
-  && rm pandoc-amd64.deb
+COPY scripts/install_crossref.sh  /rocker_scripts/install_crossref.sh
 
-## Symlink pandoc & standard pandoc templates for use system-wide
-RUN PANDOC_TEMPLATES_VERSION=`pandoc -v | grep -oP "(?<=pandoc\s)[0-9\.]+$"` \
- && wget https://github.com/jgm/pandoc-templates/archive/${PANDOC_TEMPLATES_VERSION}.tar.gz -O pandoc-templates.tar.gz \
- && rm -fr /opt/pandoc/templates \
- && mkdir -p /opt/pandoc/templates \
- && tar xvf pandoc-templates.tar.gz \
- && cp -r pandoc-templates*/* /opt/pandoc/templates && rm -rf pandoc-templates* \
- && rm -fr /root/.pandoc \
- && mkdir /root/.pandoc && ln -s /opt/pandoc/templates /root/.pandoc/templates
-
-#RUN CROSSREF_DL_URL=$(wget -qO- https://api.github.com/repos/lierdakil/pandoc-crossref/releases/latest | grep -oP "(?<=\"browser_download_url\":\s\")https.*tar\.xz" | grep Linux) \
-RUN CROSSREF_DL_URL=https://github.com/lierdakil/pandoc-crossref/releases/download/v0.3.12.1a/pandoc-crossref-Linux.tar.xz \
-  && wget -O - ${CROSSREF_DL_URL} | \
-  tar Jxf - \
-  && mv pandoc-crossref /usr/local/bin \
-  && rm -rf pandoc-crossref.1
+RUN /rocker_scripts/install_crossref.sh
 
 
 

@@ -1,92 +1,16 @@
 # NOTE: THIS DOCKERFILE IS GENERATED VIA "update.py"
-FROM rocker/ml-verse:4.2.0
+FROM rocker/ml:4.2.0
 
 
 ENV DEBIAN_FRONTEND noninteractive
 
 RUN apt-get update -q -y \
   && apt-get install --no-install-recommends --fix-missing -y \
-    default-libmysqlclient-dev \
     libcairo2-dev \
-    libcurl4-openssl-dev \
-    libgit2-dev \
-    libglpk-dev \
-    libpq-dev \
-    libpython3-dev \
-    libsasl2-dev \
-    libsqlite3-dev \
-    libssh2-1-dev \
-    libxml2-dev \
-    libxt-dev \
-    libxtst6 \
-    python3-dev \
-    python3-pip \
-    unixodbc-dev \
-    latexdiff \
-    clinfo \
-    gosu \
   && apt-get autoremove -y \
   && apt-get clean all
 
 
-RUN tlmgr update --self
-RUN tlmgr install \
-  amsmath \
-  latex-amsmath-dev \
-  babel-english \
-  bigintcalc \
-  bitset \
-  bookmark \
-  booktabs \
-  caption \
-  colortbl \
-  csquotes \
-  environ \
-  epstopdf-pkg \
-  etexcmds \
-  fancyhdr \
-  float \
-  footnotebackref \
-  geometry \
-  gettitlestring \
-  hycolor \
-  hyperref \
-  intcalc \
-  koma-script \
-  kvdefinekeys \
-  kvsetkeys \
-  latexmk \
-  letltxmacro \
-  lineno \
-  ltxcmds \
-  ly1 \
-  makecell \
-  mdframed \
-  mdwtools \
-  multirow \
-  needspace \
-  oberdiek \
-  pdfcrop \
-  pdfescape \
-  pdflscape \
-  refcount \
-  rerunfilecheck \
-  setspace \
-  sourcecodepro \
-  sourcesanspro \
-  stringenc \
-  tabu \
-  threeparttable \
-  threeparttablex \
-  titling \
-  trimspaces \
-  ulem \
-  uniquecounter \
-  varwidth \
-  wrapfig \
-  xcolor \
-  zapfding \
-  zref
 
 
 RUN pip3 install --default-timeout=100 -U radian
@@ -94,7 +18,18 @@ RUN pip3 install --default-timeout=100 -U radian
 
 
 
+RUN install2.r -n -2 --skipinstalled --error \
+    remotes \
+  && rm -rf /tmp/downloaded_packages
 
+# libtbb2 for cmdstan (cpu)
+RUN apt update && apt -y install libtbb2 \
+    clinfo
+
+RUN ln -s /usr/local/cuda-10.1/targets/x86_64-linux/lib/libOpenCL.so /usr/lib/libOpenCL.so
+
+RUN mkdir -p /etc/OpenCL/vendors && \
+    echo "libnvidia-opencl.so.1" > /etc/OpenCL/vendors/nvidia.icd
 
 
 ENV DEBIAN_FRONTEND teletype

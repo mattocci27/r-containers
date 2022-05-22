@@ -8,22 +8,6 @@ services:
     build:
       context: .
       dockerfile: images/rmd-light_4.2.0/Dockerfile
-  rstan_4.2.0:
-    image: mattocci/rstan:4.2.0
-    extra_hosts:
-    - api.github.com:140.82.113.6
-    - github.com:140.82.114.4
-    build:
-      context: .
-      dockerfile: images/rstan_4.2.0/Dockerfile
-  cmdstanr_4.2.0:
-    image: mattocci/cmdstanr:4.2.0
-    extra_hosts:
-    - api.github.com:140.82.113.6
-    - github.com:140.82.114.4
-    build:
-      context: .
-      dockerfile: images/cmdstanr_4.2.0/Dockerfile
   radian_4.2.0:
     image: mattocci/radian:4.2.0
     extra_hosts:
@@ -40,3 +24,19 @@ services:
     build:
       context: .
       dockerfile: images/radian-ml_4.2.0/Dockerfile
+  rstan_4.2.0:
+    image: mattocci/rstan:4.2.0
+    extra_hosts:
+    - api.github.com:140.82.113.6
+    - github.com:140.82.114.4
+    build:
+      context: .
+      dockerfile: images/rstan_4.2.0/Dockerfile
+  cmdstanr_4.2.0:
+    image: mattocci/cmdstanr:4.2.0
+    extra_hosts:
+    - api.github.com:140.82.113.6
+    - github.com:140.82.114.4
+    build:
+      context: .
+      dockerfile: images/cmdstanr_4.2.0/Dockerfile
