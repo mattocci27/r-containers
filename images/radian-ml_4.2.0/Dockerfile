@@ -7,6 +7,8 @@ ENV DEBIAN_FRONTEND noninteractive
 RUN apt-get update -q -y \
   && apt-get install --no-install-recommends --fix-missing -y \
     libcairo2-dev \
+    libglpk-dev \
+    libxml2-dev \
   && apt-get autoremove -y \
   && apt-get clean all
 

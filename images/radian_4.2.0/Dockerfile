@@ -7,6 +7,8 @@ ENV DEBIAN_FRONTEND noninteractive
 RUN apt-get update -q -y \
   && apt-get install --no-install-recommends --fix-missing -y \
     libcairo2-dev \
+    libglpk-dev \
+    libxml2-dev \
     python3-dev \
     python3-pip \
   && apt-get autoremove -y \

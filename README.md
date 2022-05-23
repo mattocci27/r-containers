@@ -8,8 +8,8 @@
 | docker                                                                   | singularity                                                       | description                                                                       |
 |--------------------------------------------------------------------------|-------------------------------------------------------------------|-----------------------------------------------------------------------------------|
 | [rstan](https://hub.docker.com/repository/docker/mattocci/rstan)         | [rstan](https://cloud.sylabs.io/library/mattocci27/default/rstan) | adds rstan on [geospatial](https://hub.docker.com/r/rocker/geospatial)            |
-| [radian](https://hub.docker.com/repository/docker/mattocci/radian)       | -                                                                 | adds radian and fonts on [geospatial](https://hub.docker.com/r/rocker/geospatial) |
-| [radian-ml](https://hub.docker.com/repository/docker/mattocci/radian-ml) | -                                                                 | adds radian and fonts on [ml-verse](https://hub.docker.com/r/rocker/ml-verse)     |
+| [radian](https://hub.docker.com/repository/docker/mattocci/radian)       | -                                                                 | adds radian and fonts on [rstudio](https://hub.docker.com/r/rocker/rstudio)       |
+| [radian-ml](https://hub.docker.com/repository/docker/mattocci/radian-ml) | -                                                                 | adds radian and fonts on [ml](https://hub.docker.com/r/rocker/ml)                 |
 | [rmd-light](https://hub.docker.com/repository/docker/mattocci/rmd-light) | -                                                                 | R markdown + TinyTex + pandoc-crossref without Rstudio                            |
 | [cmdstanr](https://hub.docker.com/repository/docker/mattocci/cmdstanr)   | -                                                                 | adds cmdstanr on [ml](https://hub.docker.com/r/rocker/ml) (GPU supported)         |
 

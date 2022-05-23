@@ -13,6 +13,8 @@
             "imageVer": "4.2.0",
             "systemPackages": [
                 "libcairo2-dev",
+                "libglpk-dev",
+                "libxml2-dev",
                 "gosu"
             ],
             "installCRAN": [
@@ -34,6 +36,8 @@
             "imageVer": "4.2.0",
             "systemPackages": [
                 "libcairo2-dev",
+                "libglpk-dev",
+                "libxml2-dev",
                 "python3-dev",
                 "python3-pip"
             ],
@@ -50,7 +54,9 @@
             "imageVer": "4.2.0",
             "gpu": "yes",
             "systemPackages": [
-                "libcairo2-dev"
+                "libcairo2-dev",
+                "libglpk-dev",
+                "libxml2-dev"
             ],
             "installCRAN": [
                 "remotes"
