@@ -1,23 +1,19 @@
-# {{ note }}
-FROM {{ baseImage }}
+# NOTE: THIS DOCKERFILE IS GENERATED VIA "update.py"
+FROM rocker/r-ver:4.2.0
 
-{% if label %}
-LABEL {{ label | join('\ ') }}
-{% endif %}
 
 ENV DEBIAN_FRONTEND noninteractive
 
-{% if systemPackages %}
 RUN apt-get update -q -y \
   && apt-get install --no-install-recommends --fix-missing -y \
-    {% for package in systemPackages %}
-    {{ package }} \
-    {% endfor %}
+    libcairo2-dev \
+    libglpk-dev \
+    libxml2-dev \
+    sudo \
+    gosu \
   && apt-get autoremove -y \
   && apt-get clean all
-{% endif %}
 
-{% if tinytex %}
 ENV USER_NAME=rstudio
 
 RUN useradd -m rstudio -u 1000 \
@@ -122,81 +118,29 @@ RUN /opt/TinyTeX/bin/*/tlmgr path add \
 #     "https://github.com/yihui/tinytex/raw/main/tools/install-unx.sh" | \
 #     TINYTEX_DIR=${TINYTEX_DIR} sh -s - --admin --no-path
 
-{% endif %}
 
-{% if updateLatex %}
 RUN tlmgr update --self
-{% endif %}
 
-{% if crossrefVer %}
-ENV PANDOC_VERSION={{pandocVer}}
-ENV CROSSREF_VERSION={{crossrefVer}}
+ENV PANDOC_VERSION=2.17.1.1
+ENV CROSSREF_VERSION=0.3.12.2a
 
 COPY scripts/install_crossref.sh  /rocker_scripts/install_crossref.sh
 
 RUN /rocker_scripts/install_crossref.sh
-{% endif %}
 
-{% if radian %}
-RUN pip3 install --default-timeout=100 -U radian
-{% endif %}
 
-{% if bio %}
-RUN Rscript -e "install.packages('BiocManager')" \
-  && Rscript -e "BiocManager::install(c('marray', 'affy', 'Biobase'))"
-{% endif %}
 
-{% if Rcpp %}
-RUN Rscript -e "install.packages('Rcpp')"
-{% endif %}
 
-{% if installGithub %}
-RUN installGithub.r --update FALSE \
-    {% for github in installGithub %}
-    {{ github }} \
-    {% endfor %}
-  && rm -rf /tmp/downloaded_packages
-{% endif %}
-
-{% if installCRAN %}
-RUN install2.r -n -2 --skipinstalled --error \
-    {% for cran in installCRAN %}
-    {{ cran }} \
-    {% endfor %}
-  && rm -rf /tmp/downloaded_packages
-{% endif %}
-
-{% if gpu %}
-# libtbb2 for cmdstan (cpu)
-RUN apt update && apt -y install libtbb2 \
-    clinfo
-
-RUN ln -s /usr/local/cuda-10.1/targets/x86_64-linux/lib/libOpenCL.so /usr/lib/libOpenCL.so
-
-RUN mkdir -p /etc/OpenCL/vendors && \
-    echo "libnvidia-opencl.so.1" > /etc/OpenCL/vendors/nvidia.icd
-{% endif %}
-
-{% if cmdstan %}
-RUN installGithub.r \
-      stan-dev/cmdstanr
-
-RUN mkdir -p  /opt/cmdstan \
- && Rscript -e "cmdstanr::install_cmdstan(dir = '/opt/cmdstan', release_url = 'https://github.com/stan-dev/cmdstan/releases/download/v2.29.0/cmdstan-2.29.0.tar.gz', cores = 2, timeout = 3600)"
-{% endif %}
-
-{% if font %}
-ENV DEBIAN_FRONTEND teletype
-
-RUN  apt-get update -q -y \
-    && apt-get install ttf-mscorefonts-installer --fix-missing -y \
-    && fc-cache -f \
-    && apt-get autoremove -y \
-    && apt-get autoclean -y
 
 RUN install2.r -n -2 --skipinstalled --error \
-  extrafont
+    rmarkdown \
+    methods \
+    bookdown \
+    knitr \
+    kableExtra \
+    tidyverse \
+    devtools \
+  && rm -rf /tmp/downloaded_packages
 
-RUN R -e 'remotes::install_version("Rttf2pt1", version = "1.3.8")'
-RUN R -e 'extrafont::font_import(prompt = FALSE)'
-{% endif %}
+
+

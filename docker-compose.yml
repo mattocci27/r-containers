@@ -1,13 +1,13 @@
 version: '3'
 services:
-  rmd-light_4.2.0:
-    image: mattocci/rmd-light:4.2.0
+  tinytex_4.2.0:
+    image: mattocci/tinytex:4.2.0
     extra_hosts:
     - api.github.com:140.82.113.6
     - github.com:140.82.114.4
     build:
       context: .
-      dockerfile: images/rmd-light_4.2.0/Dockerfile
+      dockerfile: images/tinytex_4.2.0/Dockerfile
   radian_4.2.0:
     image: mattocci/radian:4.2.0
     extra_hosts:

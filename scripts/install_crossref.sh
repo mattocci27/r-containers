@@ -17,7 +17,7 @@ usr/lib/rstudio-server/bin/pandoc/pandoc-citeproc \
 usr/local/bin/pandoc-citeproc
 
 #  PANDOC_DL_URL=$(wget -qO- https://api.github.com/repos/jgm/pandoc/releases/latest | grep -oP "(?<=\"browser_download_url\":\s\")https.*amd64.deb") \
-PANDOC_DL_URL=https://github.com/jgm/pandoc/releases/download/${PANDOC_VERSION}/pandoc-${PANDOC_VERSION}-amd64.deb \
+PANDOC_DL_URL=https://github.com/jgm/pandoc/releases/download/${PANDOC_VERSION}/pandoc-${PANDOC_VERSION}-1-amd64.deb \
 && wget ${PANDOC_DL_URL} -O pandoc-amd64.deb \
 && dpkg -i pandoc-amd64.deb \
 && rm pandoc-amd64.deb

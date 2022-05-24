@@ -3,18 +3,18 @@
     "configs": [
         {
             "baseImage": "rocker/r-ver:4.2.0",
-            "imageTag": "rmd-light_4.2.0",
-            "imageName": "rmd-light",
+            "imageTag": "tinytex_4.2.0",
+            "imageName": "tinytex",
             "updateLatex": "update",
-            "texlive": "install",
+            "tinytex": "install",
             "pandocVer": "2.17.1.1",
             "crossrefVer": "0.3.12.2a",
-            "font": "install",
             "imageVer": "4.2.0",
             "systemPackages": [
                 "libcairo2-dev",
                 "libglpk-dev",
                 "libxml2-dev",
+                "sudo",
                 "gosu"
             ],
             "installCRAN": [
