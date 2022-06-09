@@ -12,7 +12,7 @@ compose:
 
 .PHONY: push_docker
 push_docker:
-	bash push.sh
+	bash scripts/push.sh
 
 
 .PHONY: clean_container

@@ -19,5 +19,9 @@
 `push_to_pr.sh <r-version> <ip>`
 
 ```
-push_to_pr.sh 4.1.3 xxx.xxx.xx.xx:xxx
+scripts/push_to_pr.sh 4.1.3 xxx.xxx.xx.xx:xxx
+```
+
+```
+scripts/pull_from_pr.sh 4.2.0 xxxx
 ```
