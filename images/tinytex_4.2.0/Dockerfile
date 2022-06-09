@@ -11,6 +11,7 @@ RUN apt-get update -q -y \
     libxml2-dev \
     sudo \
     gosu \
+    git \
   && apt-get autoremove -y \
   && apt-get clean all
 
@@ -118,6 +119,12 @@ RUN /opt/TinyTeX/bin/*/tlmgr path add \
 #     "https://github.com/yihui/tinytex/raw/main/tools/install-unx.sh" | \
 #     TINYTEX_DIR=${TINYTEX_DIR} sh -s - --admin --no-path
 
+
+ENV QUARTO_VERSION=
+
+COPY scripts/install_quarto.sh  /rocker_scripts/install_quarto.sh
+
+RUN /rocker_scripts/install_quarto.sh
 
 RUN tlmgr update --self
 

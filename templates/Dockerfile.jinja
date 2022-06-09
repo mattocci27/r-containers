@@ -124,6 +124,14 @@ RUN /opt/TinyTeX/bin/*/tlmgr path add \
 
 {% endif %}
 
+{% if quarto %}
+ENV QUARTO_VERSION={{quartoVer}}
+
+COPY scripts/install_quarto.sh  /rocker_scripts/install_quarto.sh
+
+RUN /rocker_scripts/install_quarto.sh
+{% endif %}
+
 {% if updateLatex %}
 RUN tlmgr update --self
 {% endif %}

@@ -9,8 +9,11 @@ RUN apt-get update -q -y \
     libcairo2-dev \
     libglpk-dev \
     libxml2-dev \
+    libzmq3-dev \
+    libxt6 \
   && apt-get autoremove -y \
   && apt-get clean all
+
 
 
 

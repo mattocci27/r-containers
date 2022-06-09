@@ -7,6 +7,7 @@
             "imageName": "tinytex",
             "updateLatex": "update",
             "tinytex": "install",
+            "quarto": "install",
             "pandocVer": "2.17.1.1",
             "crossrefVer": "0.3.12.2a",
             "imageVer": "4.2.0",
@@ -15,7 +16,8 @@
                 "libglpk-dev",
                 "libxml2-dev",
                 "sudo",
-                "gosu"
+                "gosu",
+                "git"
             ],
             "installCRAN": [
                 "rmarkdown",
@@ -33,11 +35,13 @@
             "imageName": "radian",
             "radian": "install",
             "font": "install",
-            "imageVer": "4.2.0",
+            "imageVer":"4.2.0",
             "systemPackages": [
                 "libcairo2-dev",
                 "libglpk-dev",
                 "libxml2-dev",
+                "libzmq3-dev",
+                "libxt6",
                 "python3-dev",
                 "python3-pip"
             ],
@@ -56,7 +60,9 @@
             "systemPackages": [
                 "libcairo2-dev",
                 "libglpk-dev",
-                "libxml2-dev"
+                "libxml2-dev",
+                "libzmq3-dev",
+                "libxt6"
             ],
             "installCRAN": [
                 "remotes"

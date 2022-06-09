@@ -9,10 +9,13 @@ RUN apt-get update -q -y \
     libcairo2-dev \
     libglpk-dev \
     libxml2-dev \
+    libzmq3-dev \
+    libxt6 \
     python3-dev \
     python3-pip \
   && apt-get autoremove -y \
   && apt-get clean all
+
 
 
 
