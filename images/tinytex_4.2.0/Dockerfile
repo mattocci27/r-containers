@@ -62,6 +62,7 @@ RUN /opt/TinyTeX/bin/*/tlmgr path add \
     fancyhdr \
     float \
     footnotebackref \
+    fvextra \
     geometry \
     gettitlestring \
     hycolor \
@@ -106,6 +107,7 @@ RUN /opt/TinyTeX/bin/*/tlmgr path add \
     trimspaces \
     ulem \
     uniquecounter \
+    upquote \
     varwidth \
     wrapfig \
     xcolor \
