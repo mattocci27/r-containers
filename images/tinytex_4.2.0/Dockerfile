@@ -90,6 +90,7 @@ RUN /opt/TinyTeX/bin/*/tlmgr path add \
     pdfcrop \
     pdfescape \
     pdflscape \
+    pgf \
     refcount \
     rerunfilecheck \
     setspace \
@@ -97,6 +98,7 @@ RUN /opt/TinyTeX/bin/*/tlmgr path add \
     sourcesanspro \
     stringenc \
     tabu \
+    tcolorbox \
     tex \
     threeparttable \
     threeparttablex \
