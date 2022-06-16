@@ -1,5 +1,5 @@
 # NOTE: THIS DOCKERFILE IS GENERATED VIA "update.py"
-FROM rocker/r-ver:4.2.0
+FROM rocker/r-ver:4.1.3
 
 
 ENV DEBIAN_FRONTEND noninteractive

@@ -2,15 +2,15 @@
     "owner": "mattocci",
     "configs": [
         {
-            "baseImage": "rocker/r-ver:4.2.0",
-            "imageTag": "tinytex_4.2.0",
+            "baseImage": "rocker/r-ver:4.1.3",
+            "imageTag": "tinytex_4.1.3",
             "imageName": "tinytex",
             "updateLatex": "update",
             "tinytex": "install",
             "quarto": "install",
             "pandocVer": "2.17.1.1",
             "crossrefVer": "0.3.12.2a",
-            "imageVer": "4.2.0",
+            "imageVer": "4.1.3",
             "systemPackages": [
                 "libcairo2-dev",
                 "libglpk-dev",
@@ -30,12 +30,12 @@
             ]
         },
         {
-            "baseImage": "rocker/rstudio:4.2.0",
-            "imageTag": "radian_4.2.0",
+            "baseImage": "rocker/rstudio:4.1.3",
+            "imageTag": "radian_4.1.3",
             "imageName": "radian",
             "radian": "install",
             "font": "install",
-            "imageVer":"4.2.0",
+            "imageVer":"4.1.3",
             "systemPackages": [
                 "libcairo2-dev",
                 "libglpk-dev",
@@ -48,45 +48,6 @@
             "installCRAN": [
                 "remotes"
             ]
-        },
-        {
-            "baseImage": "rocker/ml:4.2.0",
-            "imageTag": "radian-ml_4.2.0",
-            "imageName": "radian-ml",
-            "radian": "install",
-            "font": "install",
-            "imageVer": "4.2.0",
-            "gpu": "yes",
-            "systemPackages": [
-                "libcairo2-dev",
-                "libglpk-dev",
-                "libxml2-dev",
-                "libzmq3-dev",
-                "libxt6"
-            ],
-            "installCRAN": [
-                "remotes"
-            ]
-        },
-        {
-            "baseImage": "rocker/geospatial:4.2.0",
-            "imageTag": "rstan_4.2.0",
-            "imageName": "rstan",
-            "imageVer": "4.2.0",
-            "installCRAN": [
-              "RcppParallel" ,
-              "rstan",
-              "rstanarm"
-            ],
-            "cmdstan": "yes"
-        },
-        {
-            "baseImage": "rocker/ml:4.2.0-cuda10.1",
-            "imageTag": "cmdstanr_4.2.0",
-            "imageName": "cmdstanr",
-            "imageVer": "4.2.0",
-            "cmdstan": "yes",
-            "gpu": "yes"
         }
     ]
 }
