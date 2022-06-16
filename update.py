@@ -56,13 +56,13 @@ for d in config_data.get('configs', []):
   }}
   imgs.update(d2)
 
-  # singularity
-  note = 'NOTE: THIS SINGULARITY DEFINITION FILE IS GENERATED VIA "update.py"'
-  template_sg = env.get_template('singularity.jinja')
-  template_sg.stream({
-    'note': note,
-    **d
-  }).dump('{}/Singularity.def'.format(dockerfile_dir))
+  # # singularity
+  # note = 'NOTE: THIS SINGULARITY DEFINITION FILE IS GENERATED VIA "update.py"'
+  # template_sg = env.get_template('singularity.jinja')
+  # template_sg.stream({
+  #   'note': note,
+  #   **d
+  # }).dump('{}/Singularity.def'.format(dockerfile_dir))
 
 # docker-compose
 d3 =  {'version': '3', 'services':imgs}

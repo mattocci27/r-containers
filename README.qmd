@@ -1,0 +1,47 @@
+---
+title: " Docker and singularity images for R"
+format: gfm
+---
+
+[![](https://img.shields.io/badge/license-MIT-green.svg)](https://opensource.org/licenses/MIT)
+
+
+## Images
+
+| docker                                                                   | singularity                                                       | description                                                                       |
+|--------------------------------------------------------------------------|-------------------------------------------------------------------|-----------------------------------------------------------------------------------|
+| [rstan](https://hub.docker.com/repository/docker/mattocci/rstan)         | [rstan](https://cloud.sylabs.io/library/mattocci27/default/rstan) | adds rstan on [geospatial](https://hub.docker.com/r/rocker/geospatial)            |
+| [radian](https://hub.docker.com/repository/docker/mattocci/radian)       | -                                                                 | adds radian and fonts on [rstudio](https://hub.docker.com/r/rocker/rstudio) (packages need to be installed by {{renv}})       |
+| [radian-ml](https://hub.docker.com/repository/docker/mattocci/radian-ml) | -                                                                 | adds radian and fonts on [ml](https://hub.docker.com/r/rocker/ml) (packages need to be installed by {{renv}})                |
+| [tinytex](https://hub.docker.com/repository/docker/mattocci/tinytex) | -                                                                 | R markdown + TinyTex + pandoc-crossref + quarto without Rstudio                            |
+| [cmdstanr](https://hub.docker.com/repository/docker/mattocci/cmdstanr)   | -                                                                 | adds cmdstanr on [ml](https://hub.docker.com/r/rocker/ml) (GPU supported)         |
+
+
+## Push to a private repository
+
+`push_to_pr.sh <r-version> <ip>`
+
+```
+scripts/push_to_pr.sh 4.1.3 xxx.xxx.xx.xx:xxx
+```
+
+```
+scripts/pull_from_pr.sh 4.2.0 xxxx
+```
+
+```{r,  include=FALSE}
+```
+
+# Usage (working)
+
+
+- Build a singularity container:
+
+```
+cd examples
+sudo singularity build radian.sif radian.def
+```
+
+
+```{bash, file="examples/radian.def", eval=FALSE, echo=TRUE}
+```
