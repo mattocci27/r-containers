@@ -18,7 +18,8 @@ RUN apt-get update -q -y \
 
 
 
-RUN pip3 install --default-timeout=100 -U radian
+RUN pip3 install setuptools==58.2.0 \
+  && pip3 install -U radian
 
 
 
