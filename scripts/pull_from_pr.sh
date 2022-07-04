@@ -2,7 +2,7 @@
 LATEST_TAG=$1
 MY_IP=$2
 
-for IMG in mattocci/radian:4.2.0 mattocci/tinytex:4.2.0
+for IMG in mattocci/radian:4.2.1 mattocci/tinytex:4.2.1 mattocci/radian-ml:4.2.1
 #for IMG in $(docker-compose config | grep -oP -e "(?<=\s)[^\s]+:[0-9]\.[0-9]\.[0-9]")
     do
         docker pull $MY_IP/$IMG
