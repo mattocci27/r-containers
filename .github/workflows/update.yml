@@ -1,4 +1,4 @@
-name: Slack Cleaner
+name: Build and push
 on:
   push:
     branches:
@@ -13,20 +13,20 @@ jobs:
       - uses: actions/setup-python@v1
         with:
           python-version: 3.8
-      - uses: Gr1N/setup-poetry@v7
       - name: Setup poetry
+        uses: Gr1N/setup-poetry@v7
         run: |
           poetry --version
           poetry install
-      # - name: Setup poetry
-      #   run: make
-      #         - name: Login to Docker Hub
-      - uses: docker/login-action@v2
+      - name: Login to Docker Hub
+        uses: docker/login-action@v2
         with:
           username: ${{ secrets.DOCKER_USER }}
           password: ${{ secrets.DOCKER_PASSWORD }}
-      - name: test
-        run: |
-          docker pull ubuntu
-          docker tag ubuntu:latest mattocci/test
-          docker push mattocci/test
+      - name: Setup poetry
+        run: make
+      # - name: test
+      #   run: |
+      #     docker pull ubuntu
+      #     docker tag ubuntu:latest mattocci/test
+      #     docker push mattocci/test
