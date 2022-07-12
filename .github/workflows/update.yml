@@ -1,10 +1,10 @@
 name: Build and push
 on:
-  push:
-    branches:
-      - master
-        # schedule:
-        # - cron:  '0 0 * * *'
+  schedule:
+    - cron:  '0 0 * * *'
+  # push:
+  #   branches:
+  #     - master
 jobs:
   make:
     runs-on: ubuntu-latest
@@ -13,8 +13,7 @@ jobs:
       - uses: actions/setup-python@v1
         with:
           python-version: 3.8
-      - name: Setup poetry
-        uses: Gr1N/setup-poetry@v7
+      - uses: Gr1N/setup-poetry@v7
         run: |
           poetry --version
           poetry install
