@@ -1,7 +1,7 @@
 name: Build and push
 on:
-  # schedule:
-  #   - cron:  '0 0 * * *'
+  schedule:
+    - cron:  '0 0 * * *'
   push:
     branches:
       - master
@@ -22,7 +22,7 @@ jobs:
         with:
           username: ${{ secrets.DOCKER_USER }}
           password: ${{ secrets.DOCKER_PASSWORD }}
-      - name: Setup poetry
+      - name: Build and push
         run: make
       # - name: test
       #   run: |
