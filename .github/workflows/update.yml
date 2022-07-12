@@ -14,6 +14,9 @@ jobs:
         with:
           python-version: 3.8
       - uses: Gr1N/setup-poetry@v7
-      - run: |
+      - name: Setup poetry
+        run: |
           poetry --version
           poetry install
+      - name: Make
+        run: make
