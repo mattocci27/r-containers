@@ -18,5 +18,10 @@ jobs:
         run: |
           poetry --version
           poetry install
-      - name: Make
-        run: make
+      # - name: Setup poetry
+      #   run: make
+      - name: test
+        run: |
+          docker pull ubuntu
+          docker tag ubuntu:latest mattocci/test
+          docker push mattocci/test
