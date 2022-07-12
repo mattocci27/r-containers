@@ -1,0 +1,14 @@
+name: Slack Cleaner
+on:
+  push:
+    branches:
+      - master
+  # schedule:
+  # - cron:  '0 0 * * *'
+jobs:
+  make:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Run make
+        run: make
