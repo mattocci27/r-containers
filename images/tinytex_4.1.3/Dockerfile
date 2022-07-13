@@ -1,5 +1,5 @@
 # NOTE: THIS DOCKERFILE IS GENERATED VIA "update.py"
-FROM rocker/r-ver:4.2.0
+FROM rocker/r-ver:4.1.3
 
 
 ENV DEBIAN_FRONTEND noninteractive
@@ -132,8 +132,8 @@ RUN /rocker_scripts/install_quarto.sh
 
 RUN tlmgr update --self
 
-ENV PANDOC_VERSION=2.17.1.1
-ENV CROSSREF_VERSION=0.3.12.2a
+ENV PANDOC_VERSION=2.18
+ENV CROSSREF_VERSION=0.3.13.0
 
 COPY scripts/install_crossref.sh  /rocker_scripts/install_crossref.sh
 
