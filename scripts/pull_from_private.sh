@@ -1,8 +1,9 @@
 #!/bin/bash
-LATEST_TAG=$1
-MY_IP=$2
+IMG_TAG=$1
+LATEST_TAG=$2
+MY_IP=$3
 
-for IMG in mattocci/radian:LATEST_TAG mattocci/tinytex:LATEST_TAG mattocci/radian-ml:LATEST_TAG
+for IMG in mattocci/radian:$IMG_TAG mattocci/tinytex:$IMG_TAG rocker/rstudio:$IMG_TAG rocker/geospatioal:$IMG_TAG
 #for IMG in $(docker-compose config | grep -oP -e "(?<=\s)[^\s]+:[0-9]\.[0-9]\.[0-9]")
     do
         docker pull $MY_IP/$IMG

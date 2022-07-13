@@ -22,7 +22,7 @@
 ```
 
 ```
-./scripts/pull_from_private.sh 4.2.1 xxx.xxx.xxx.xxx:xxxx
+./scripts/pull_from_private.sh 4.1.3 4.2.1 xxx.xxx.xxx.xxx:xxxx
 ```
 
 # Example for Apptainer (Singularity)
