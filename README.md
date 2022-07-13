@@ -18,11 +18,11 @@
 `push_to_pr.sh <r-version> <ip>`
 
 ```
-scripts/push_to_pr.sh 4.2.0 xxx.xxx.xx.xx:xxx
+./scripts/push_to_private.sh 4.2.1 xxx.xxx.xxx.xxx:xxxx
 ```
 
 ```
-scripts/pull_from_pr.sh 4.2.0 xxxx
+./scripts/pull_from_private.sh 4.2.1 xxx.xxx.xxx.xxx:xxxx
 ```
 
 # Example for Apptainer (Singularity)

@@ -2,9 +2,9 @@ name: Build and push
 on:
   schedule:
     - cron:  '0 0 * * *'
-  push:
-    branches:
-      - master
+  # push:
+  #   branches:
+  #     - master
 jobs:
   make:
     runs-on: ubuntu-latest
@@ -24,8 +24,3 @@ jobs:
           password: ${{ secrets.DOCKER_PASSWORD }}
       - name: Build and push
         run: make
-      # - name: test
-      #   run: |
-      #     docker pull ubuntu
-      #     docker tag ubuntu:latest mattocci/test
-      #     docker push mattocci/test

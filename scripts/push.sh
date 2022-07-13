@@ -1,5 +1,5 @@
 #!/bin/bash
-LATEST_TAG="4.2.1"
+LATEST_TAG=$1
 
 # push to dockerhub without latest tag
 docker-compose push
