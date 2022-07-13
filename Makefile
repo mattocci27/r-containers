@@ -1,5 +1,5 @@
 .PHONY: all
-TAG = 4.1.2
+LATEST_TAG = 4.2.1
 
 all: update compose push_docker
 
@@ -13,7 +13,7 @@ compose:
 
 .PHONY: push_docker
 push_docker:
-	bash scripts/push.sh $(TAG)
+	bash scripts/push.sh $(LATEST_TAG)
 
 .PHONY: clean_container
 clean_container:

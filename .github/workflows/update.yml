@@ -2,9 +2,7 @@ name: Build and push
 on:
   schedule:
     - cron:  '0 0 * * *'
-  # push:
-  #   branches:
-  #     - master
+  push:
 jobs:
   make:
     runs-on: ubuntu-latest
