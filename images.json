@@ -1,92 +1,92 @@
 {
-    "owner": "mattocci",
-    "configs": [
-        {
-            "baseImage": "rocker/r-ver:4.2.1",
-            "imageTag": "tinytex_4.2.1",
-            "imageName": "tinytex",
-            "updateLatex": "update",
-            "tinytex": "install",
-            "quarto": "install",
-            "pandocVer": "2.18",
-            "crossrefVer": "0.3.13.0",
-            "imageVer": "4.2.1",
-            "systemPackages": [
-                "libcairo2-dev",
-                "libglpk-dev",
-                "libxml2-dev",
-                "sudo",
-                "gosu",
-                "git"
-            ],
-            "installCRAN": [
-                "rmarkdown",
-                "methods",
-                "bookdown",
-                "knitr",
-                "kableExtra",
-                "tidyverse",
-                "devtools"
-            ]
-        },
-        {
-            "baseImage": "rocker/rstudio:4.2.1",
-            "imageTag": "radian_4.2.1",
-            "imageName": "radian",
-            "radian": "install",
-            "font": "install",
-            "imageVer":"4.2.1",
-            "systemPackages": [
-                "libcairo2-dev",
-                "libglpk-dev",
-                "libxml2-dev",
-                "libzmq3-dev",
-                "libxt6",
-                "python3-dev",
-                "python3-pip"
-            ],
-            "installCRAN": [
-                "remotes"
-            ]
-        },
-        {
-            "baseImage": "rocker/ml:4.2.1",
-            "imageTag": "radian-ml_4.2.1",
-            "imageName": "radian-ml",
-            "radian": "install",
-            "font": "install",
-            "imageVer": "4.2.1",
-            "gpu": "yes",
-            "systemPackages": [
-                "libcairo2-dev",
-                "libglpk-dev",
-                "libxml2-dev",
-                "libzmq3-dev",
-                "libxt6"
-            ],
-            "installCRAN": [
-                "remotes"
-            ]
-        },
-        {
-            "baseImage": "rocker/geospatial:4.2.1",
-            "imageTag": "rstan_4.2.1",
-            "imageName": "rstan",
-            "imageVer": "4.2.1",
-            "installCRAN": [
-              "RcppParallel" ,
-              "rstan",
-              "rstanarm"
-            ],
-            "cmdstan": "yes"
-        },
-        {
-            "baseImage": "rocker/ml:4.2.1-cuda10.1",
-            "imageTag": "cmdstanr_4.2.1",
-            "imageName": "cmdstanr",
-            "imageVer": "4.2.1",
-            "cmdstan": "yes",
-            "gpu": "yes"
-        }
-    ]
+  "owner": "mattocci",
+  "configs": [
+    {
+      "baseImage": "rocker/r-ver:4.2.1",
+      "imageTag": "tinytex_4.2.1",
+      "imageName": "tinytex",
+      "updateLatex": "update",
+      "tinytex": "install",
+      "quarto": "install",
+      "pandocVer": "2.18",
+      "crossrefVer": "0.3.13.0",
+      "imageVer": "4.2.1",
+      "systemPackages": [
+        "libcairo2-dev",
+        "libglpk-dev",
+        "libxml2-dev",
+        "sudo",
+        "gosu",
+        "git"
+      ],
+      "installCRAN": [
+        "rmarkdown",
+        "methods",
+        "bookdown",
+        "knitr",
+        "kableExtra",
+        "tidyverse",
+        "devtools"
+      ]
+    },
+    {
+      "baseImage": "rocker/rstudio:4.2.1",
+      "imageTag": "radian_4.2.1",
+      "imageName": "radian",
+      "radian": "install",
+      "font": "install",
+      "imageVer": "4.2.1",
+      "systemPackages": [
+        "libcairo2-dev",
+        "libglpk-dev",
+        "libxml2-dev",
+        "libzmq3-dev",
+        "libxt6",
+        "python3-dev",
+        "python3-pip"
+      ],
+      "installCRAN": [
+        "remotes"
+      ]
+    },
+    {
+      "baseImage": "rocker/ml:4.2.1",
+      "imageTag": "radian-ml_4.2.1",
+      "imageName": "radian-ml",
+      "radian": "install",
+      "font": "install",
+      "imageVer": "4.2.1",
+      "gpu": "yes",
+      "systemPackages": [
+        "libcairo2-dev",
+        "libglpk-dev",
+        "libxml2-dev",
+        "libzmq3-dev",
+        "libxt6"
+      ],
+      "installCRAN": [
+        "remotes"
+      ]
+    },
+    {
+      "baseImage": "rocker/geospatial:4.2.1",
+      "imageTag": "rstan_4.2.1",
+      "imageName": "rstan",
+      "imageVer": "4.2.1",
+      "installCRAN": [
+        "RcppParallel",
+        "rstan",
+        "rstanarm"
+      ],
+      "cmdstan": "yes"
+    },
+    {
+      "baseImage": "rocker/ml:4.2.1-cuda10.1",
+      "imageTag": "cmdstanr_4.2.1",
+      "imageName": "cmdstanr",
+      "imageVer": "4.2.1",
+      "cmdstan": "yes",
+      "gpu": "yes"
+    }
+  ]
 }
