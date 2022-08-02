@@ -34,7 +34,6 @@
       "imageTag": "radian_4.2.1",
       "imageName": "radian",
       "radian": "install",
-      "font": "install",
       "imageVer": "4.2.1",
       "systemPackages": [
         "libcairo2-dev",
@@ -54,7 +53,6 @@
       "imageTag": "radian-ml_4.2.1",
       "imageName": "radian-ml",
       "radian": "install",
-      "font": "install",
       "imageVer": "4.2.1",
       "gpu": "yes",
       "systemPackages": [

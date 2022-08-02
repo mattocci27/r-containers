@@ -38,16 +38,3 @@ RUN mkdir -p /etc/OpenCL/vendors && \
     echo "libnvidia-opencl.so.1" > /etc/OpenCL/vendors/nvidia.icd
 
 
-ENV DEBIAN_FRONTEND teletype
-
-RUN  apt-get update -q -y \
-    && apt-get install ttf-mscorefonts-installer --fix-missing -y \
-    && fc-cache -f \
-    && apt-get autoremove -y \
-    && apt-get autoclean -y
-
-RUN install2.r -n -2 --skipinstalled --error \
-  extrafont
-
-RUN R -e 'remotes::install_version("Rttf2pt1", version = "1.3.8")'
-RUN R -e 'extrafont::font_import(prompt = FALSE)'
