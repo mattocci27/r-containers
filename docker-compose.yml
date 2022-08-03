@@ -16,6 +16,22 @@ services:
     build:
       context: .
       dockerfile: images/radian_4.2.1/Dockerfile
+  radian-verse_4.2.1:
+    image: mattocci/radian-verse:4.2.1
+    extra_hosts:
+    - api.github.com:140.82.113.6
+    - github.com:140.82.114.4
+    build:
+      context: .
+      dockerfile: images/radian-verse_4.2.1/Dockerfile
+  radian-verse-test_4.2.1:
+    image: mattocci/radian-verse-test:4.2.1
+    extra_hosts:
+    - api.github.com:140.82.113.6
+    - github.com:140.82.114.4
+    build:
+      context: .
+      dockerfile: images/radian-verse-test_4.2.1/Dockerfile
   radian-ml_4.2.1:
     image: mattocci/radian-ml:4.2.1
     extra_hosts:

@@ -6,6 +6,7 @@
       "imageTag": "tinytex_4.2.1",
       "imageName": "tinytex",
       "updateLatex": "update",
+      "useradd": "add",
       "tinytex": "install",
       "quarto": "install",
       "pandocVer": "2.18",
@@ -35,6 +36,34 @@
       "imageName": "radian",
       "radian": "install",
       "imageVer": "4.2.1",
+      "systemPackages": [
+        "libcairo2-dev",
+        "libglpk-dev",
+        "libxml2-dev",
+        "libzmq3-dev",
+        "libxt6",
+        "python3-dev",
+        "python3-pip"
+      ],
+      "installCRAN": [
+        "remotes"
+      ]
+    },
+    {
+      "baseImage": "mattocci/radian:4.2.1",
+      "imageTag": "radian-verse_4.2.1",
+      "imageName": "radian-verse",
+      "updateLatex": "update",
+      "tinytex": "install",
+      "quarto": "install",
+      "imageVer": "4.2.1"
+    },
+    {
+      "baseImage": "rocker/verse:4.2.1",
+      "imageTag": "radian-verse-test_4.2.1",
+      "imageName": "radian-verse-test",
+      "imageVer": "4.2.1",
+      "radian": "install",
       "systemPackages": [
         "libcairo2-dev",
         "libglpk-dev",

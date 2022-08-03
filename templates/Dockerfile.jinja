@@ -17,14 +17,16 @@ RUN apt-get update -q -y \
   && apt-get clean all
 {% endif %}
 
-{% if tinytex %}
+{% if useradd %}
 ENV USER_NAME=rstudio
 
 RUN useradd -m rstudio -u 1000 \
   && mkdir -p /home/rstudio \
   && chown -R rstudio /home/rstudio \
   && usermod -a -G staff rstudio
+{% endif %}
 
+{% if tinytex %}
 RUN apt-get update -qq \
     && apt-get install -y --no-install-recommends \
       apt-utils \
@@ -131,9 +133,12 @@ RUN /opt/TinyTeX/bin/*/tlmgr path add \
 {% if quarto %}
 ENV QUARTO_VERSION={{quartoVer}}
 
-COPY scripts/install_quarto.sh  /rocker_scripts/install_quarto.sh
+RUN  wget -N --no-check-certificate -q -O install_quarto.sh \
+  "https://raw.githubusercontent.com/rocker-org/rocker-versioned2/master/scripts/install_quarto.sh" \
+  && chmod +x install_quarto.sh \
+  && bash install_quarto.sh \
+  && rm install_quarto.sh
 
-RUN /rocker_scripts/install_quarto.sh
 {% endif %}
 
 {% if updateLatex %}
