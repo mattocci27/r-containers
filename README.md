@@ -6,8 +6,8 @@
 
 | docker                                                                   | description                                                                                                             |
 |--------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------|
-| [radian](https://hub.docker.com/repository/docker/mattocci/radian)       | adds radian and fonts on [rstudio](https://hub.docker.com/r/rocker/rstudio) (packages need to be installed by `renv`) |
-| [radian-ml](https://hub.docker.com/repository/docker/mattocci/radian-ml) | adds radian and fonts on [ml](https://hub.docker.com/r/rocker/ml) (packages need to be installed by `renv`)           |
+| [radian](https://hub.docker.com/repository/docker/mattocci/radian)       | adds radian on [rstudio](https://hub.docker.com/r/rocker/rstudio) (packages need to be installed by `renv`) |
+| [radian-ml](https://hub.docker.com/repository/docker/mattocci/radian-ml) | adds radian on [ml](https://hub.docker.com/r/rocker/ml) (packages need to be installed by `renv`)           |
 | [tinytex](https://hub.docker.com/repository/docker/mattocci/tinytex)     | R markdown + TinyTex + pandoc-crossref + quarto without Rstudio                                                         |
 | [rstan](https://hub.docker.com/repository/docker/mattocci/rstan)         | adds rstan on [geospatial](https://hub.docker.com/r/rocker/geospatial)                                                  |
 | [cmdstanr](https://hub.docker.com/repository/docker/mattocci/cmdstanr)   | adds cmdstanr on [ml](https://hub.docker.com/r/rocker/ml) (GPU supported)                                               |
