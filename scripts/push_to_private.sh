@@ -3,7 +3,7 @@ LATEST_TAG=$1
 MY_IP=$2
 
 
-for IMG in $(docker-compose config | grep -oP -e "(?<=\s)[^\s]+:[0-9]\.[0-9]\.[0-9]") rocker/rstudio:$LATEST_TAG rocker/geospatioal:$IMG_TAG
+for IMG in $(docker-compose config | grep -oP -e "(?<=\s)[^\s]+:[0-9]\.[0-9]\.[0-9]") rocker/rstudio:$LATEST_TAG rocker/verse:$LATEST_TAG rocker/geospatial:$IMG_TAG
     do
         # push to docker registory without latest tag
         docker pull $IMG
