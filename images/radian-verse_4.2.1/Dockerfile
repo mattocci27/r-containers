@@ -72,6 +72,7 @@ RUN /opt/TinyTeX/bin/*/tlmgr path add \
     needspace \
     oberdiek \
     parskip \
+    pdfcol \
     pdfcrop \
     pdfescape \
     pdflscape \
