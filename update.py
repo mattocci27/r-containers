@@ -48,7 +48,7 @@ for d in config_data.get('configs', []):
   # docker-compose
   d2 =  {d['imageTag'] : {
     'image': d['owner'] + "/" + d['imageName'] + ':' + d['imageVer'],
-    'extra_hosts': ['api.github.com:140.82.113.6', 'github.com:140.82.114.4'],
+    # 'extra_hosts': ['api.github.com:140.82.113.6', 'github.com:140.82.114.4'],
     'build': {
       'context': '.',
       'dockerfile': 'images/' + d['imageTag'] + '/Dockerfile'
