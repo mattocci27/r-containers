@@ -9,8 +9,8 @@
       "useradd": "add",
       "tinytex": "install",
       "quarto": "install",
-      "pandocVer": "2.18",
-      "crossrefVer": "0.3.13.0",
+      "pandocVer": "2.19.2",
+      "crossrefVer": "0.3.13.0b",
       "imageVer": "4.2.2",
       "systemPackages": [
         "libcairo2-dev",

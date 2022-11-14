@@ -136,8 +136,8 @@ RUN  wget -N --no-check-certificate -q -O install_quarto.sh \
 
 RUN tlmgr update --self
 
-ENV PANDOC_VERSION=2.18
-ENV CROSSREF_VERSION=0.3.13.0
+ENV PANDOC_VERSION=2.19.2
+ENV CROSSREF_VERSION=0.3.13.0b
 
 COPY scripts/install_crossref.sh  /rocker_scripts/install_crossref.sh
 
