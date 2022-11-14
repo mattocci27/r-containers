@@ -2,8 +2,8 @@
   "owner": "mattocci",
   "configs": [
     {
-      "baseImage": "rocker/r-ver:4.2.1",
-      "imageTag": "tinytex_4.2.1",
+      "baseImage": "rocker/r-ver:4.2.2",
+      "imageTag": "tinytex_4.2.2",
       "imageName": "tinytex",
       "updateLatex": "update",
       "useradd": "add",
@@ -11,7 +11,7 @@
       "quarto": "install",
       "pandocVer": "2.18",
       "crossrefVer": "0.3.13.0",
-      "imageVer": "4.2.1",
+      "imageVer": "4.2.2",
       "systemPackages": [
         "libcairo2-dev",
         "libglpk-dev",
@@ -31,11 +31,11 @@
       ]
     },
     {
-      "baseImage": "rocker/rstudio:4.2.1",
-      "imageTag": "radian_4.2.1",
+      "baseImage": "rocker/rstudio:4.2.2",
+      "imageTag": "radian_4.2.2",
       "imageName": "radian",
       "radian": "install",
-      "imageVer": "4.2.1",
+      "imageVer": "4.2.2",
       "systemPackages": [
         "libcairo2-dev",
         "libglpk-dev",
@@ -50,20 +50,20 @@
       ]
     },
     {
-      "baseImage": "mattocci/radian:4.2.1",
-      "imageTag": "radian-verse_4.2.1",
+      "baseImage": "mattocci/radian:4.2.2",
+      "imageTag": "radian-verse_4.2.2",
       "imageName": "radian-verse",
       "updateLatex": "update",
       "tinytex": "install",
       "quarto": "install",
-      "imageVer": "4.2.1"
+      "imageVer": "4.2.2"
     },
     {
-      "baseImage": "rocker/ml:4.2.1",
-      "imageTag": "radian-ml_4.2.1",
+      "baseImage": "rocker/ml:4.2.2",
+      "imageTag": "radian-ml_4.2.2",
       "imageName": "radian-ml",
       "radian": "install",
-      "imageVer": "4.2.1",
+      "imageVer": "4.2.2",
       "gpu": "yes",
       "systemPackages": [
         "libcairo2-dev",
@@ -77,10 +77,10 @@
       ]
     },
     {
-      "baseImage": "rocker/geospatial:4.2.1",
-      "imageTag": "rstan_4.2.1",
+      "baseImage": "rocker/geospatial:4.2.2",
+      "imageTag": "rstan_4.2.2",
       "imageName": "rstan",
-      "imageVer": "4.2.1",
+      "imageVer": "4.2.2",
       "installCRAN": [
         "RcppParallel",
         "rstan",
@@ -89,8 +89,8 @@
       "cmdstan": "yes"
     },
     {
-      "baseImage": "rocker/ml:4.2.1-cuda10.1",
-      "imageTag": "cmdstanr_4.2.1",
+      "baseImage": "rocker/ml:4.2.2-cuda10.1",
+      "imageTag": "cmdstanr_4.2.2",
       "imageName": "cmdstanr",
       "imageVer": "4.2.1",
       "cmdstan": "yes",

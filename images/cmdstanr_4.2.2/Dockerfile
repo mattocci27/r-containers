@@ -1,5 +1,5 @@
 # NOTE: THIS DOCKERFILE IS GENERATED VIA "update.py"
-FROM rocker/ml:4.2.1-cuda10.1
+FROM rocker/ml:4.2.2-cuda10.1
 
 
 ENV DEBIAN_FRONTEND noninteractive
