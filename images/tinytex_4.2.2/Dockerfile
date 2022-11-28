@@ -25,6 +25,7 @@ RUN useradd -m rstudio -u 1000 \
 RUN apt-get update -qq \
     && apt-get install -y --no-install-recommends \
       apt-utils \
+      xz-utils \
       curl \
       wget \
       libxt6 \
