@@ -89,7 +89,7 @@
       "cmdstan": "yes"
     },
     {
-      "baseImage": "rocker/ml:4.2.2-cuda10.1",
+      "baseImage": "rocker/ml:4.2.2",
       "imageTag": "cmdstanr_4.2.2",
       "imageName": "cmdstanr",
       "imageVer": "4.2.1",
