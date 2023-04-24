@@ -58,24 +58,24 @@
       "quarto": "install",
       "imageVer": "4.3.0"
     },
-    {
-      "baseImage": "rocker/ml:4.3.0",
-      "imageTag": "radian-ml_4.3.0",
-      "imageName": "radian-ml",
-      "radian": "install",
-      "imageVer": "4.3.0",
-      "gpu": "yes",
-      "systemPackages": [
-        "libcairo2-dev",
-        "libglpk-dev",
-        "libxml2-dev",
-        "libzmq3-dev",
-        "libxt6"
-      ],
-      "installCRAN": [
-        "remotes"
-      ]
-    },
+    // {
+    //   "baseImage": "rocker/ml:4.3.0",
+    //   "imageTag": "radian-ml_4.3.0",
+    //   "imageName": "radian-ml",
+    //   "radian": "install",
+    //   "imageVer": "4.3.0",
+    //   "gpu": "yes",
+    //   "systemPackages": [
+    //     "libcairo2-dev",
+    //     "libglpk-dev",
+    //     "libxml2-dev",
+    //     "libzmq3-dev",
+    //     "libxt6"
+    //   ],
+    //   "installCRAN": [
+    //     "remotes"
+    //   ]
+    // },
     {
       "baseImage": "rocker/geospatial:4.3.0",
       "imageTag": "rstan_4.3.0",
@@ -88,13 +88,13 @@
       ],
       "cmdstan": "yes"
     },
-    {
-      "baseImage": "rocker/ml:4.3.0",
-      "imageTag": "cmdstanr_4.3.0",
-      "imageName": "cmdstanr",
-      "imageVer": "4.3.0",
-      "cmdstan": "yes",
-      "gpu": "yes"
-    }
+    // {
+    //   "baseImage": "rocker/ml:4.3.0",
+    //   "imageTag": "cmdstanr_4.3.0",
+    //   "imageName": "cmdstanr",
+    //   "imageVer": "4.3.0",
+    //   "cmdstan": "yes",
+    //   "gpu": "yes"
+    // }
   ]
 }
