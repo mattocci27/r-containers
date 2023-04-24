@@ -1,13 +1,13 @@
 import yaml
 import subprocess
-from concurrent.futures import ThreadPoolExecutor
+from concurrent.futures import ThreadPoolExecutor, as_completed
 from collections import defaultdict
 
 dependencies = {
     'radian-verse_4.3.0': 'radian_4.3.0'
 }
 
-def build_docker_image(service_info, build_info):
+def build_docker_image(service_name, service_info, build_info):
     context = build_info['context']
     dockerfile = build_info['dockerfile']
     image = service_info['image']
@@ -18,10 +18,9 @@ def build_docker_image(service_info, build_info):
     process = subprocess.run(cmd.split(), capture_output=True, text=True)
 
     if process.returncode == 0:
-        print(f'Successfully built {image}')
+        return f'Successfully built {image}'
     else:
-        print(f'Failed to build {image}')
-        print(process.stderr)
+        return f'Failed to build {image}\n{process.stderr}'
 
 def build_images_in_order(services):
     # Perform topological sort on the dependency graph
@@ -44,10 +43,15 @@ def build_images_in_order(services):
             visit(service_name)
 
     # Build images in the correct order
+    futures = []
     with ThreadPoolExecutor() as executor:
         for service_name in build_order:
             service_info = services[service_name]
-            executor.submit(build_docker_image, service_info, service_info['build']).result()
+            future = executor.submit(build_docker_image, service_name, service_info, service_info['build'])
+            futures.append(future)
+
+        for future in as_completed(futures):
+            print(future.result())
 
 def main():
     with open('docker-compose.yml', 'r') as file:
