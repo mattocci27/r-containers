@@ -15,18 +15,8 @@ services:
     build:
       context: .
       dockerfile: images/radian-verse_4.3.0/Dockerfile
-  radian-ml_4.3.0:
-    image: mattocci/radian-ml:4.3.0
-    build:
-      context: .
-      dockerfile: images/radian-ml_4.3.0/Dockerfile
   rstan_4.3.0:
     image: mattocci/rstan:4.3.0
     build:
       context: .
       dockerfile: images/rstan_4.3.0/Dockerfile
-  cmdstanr_4.3.0:
-    image: mattocci/cmdstanr:4.3.0
-    build:
-      context: .
-      dockerfile: images/cmdstanr_4.3.0/Dockerfile
