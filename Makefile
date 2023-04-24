@@ -9,7 +9,7 @@ update: update.py images.json
 
 .PHONY: compose
 compose:
-	poetry run python build_images.py
+	docker-compose build
 
 .PHONY: push_docker
 push_docker:
