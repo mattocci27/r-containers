@@ -2,16 +2,16 @@
   "owner": "mattocci",
   "configs": [
     {
-      "baseImage": "rocker/r-ver:4.2.2",
-      "imageTag": "tinytex_4.2.2",
+      "baseImage": "rocker/r-ver:4.3.0",
+      "imageTag": "tinytex_4.3.0",
       "imageName": "tinytex",
       "updateLatex": "update",
       "useradd": "add",
       "tinytex": "install",
       "quarto": "install",
-      "pandocVer": "2.19.2",
-      "crossrefVer": "0.3.13.0b",
-      "imageVer": "4.2.2",
+      "pandocVer": "3.1.2",
+      "crossrefVer": "0.3.15.2a",
+      "imageVer": "4.3.0",
       "systemPackages": [
         "libcairo2-dev",
         "libglpk-dev",
@@ -31,11 +31,11 @@
       ]
     },
     {
-      "baseImage": "rocker/rstudio:4.2.2",
-      "imageTag": "radian_4.2.2",
+      "baseImage": "rocker/rstudio:4.3.0",
+      "imageTag": "radian_4.3.0",
       "imageName": "radian",
       "radian": "install",
-      "imageVer": "4.2.2",
+      "imageVer": "4.3.0",
       "systemPackages": [
         "libcairo2-dev",
         "libglpk-dev",
@@ -50,20 +50,20 @@
       ]
     },
     {
-      "baseImage": "mattocci/radian:4.2.2",
-      "imageTag": "radian-verse_4.2.2",
+      "baseImage": "mattocci/radian:4.3.0",
+      "imageTag": "radian-verse_4.3.0",
       "imageName": "radian-verse",
       "updateLatex": "update",
       "tinytex": "install",
       "quarto": "install",
-      "imageVer": "4.2.2"
+      "imageVer": "4.3.0"
     },
     {
-      "baseImage": "rocker/ml:4.2.2",
-      "imageTag": "radian-ml_4.2.2",
+      "baseImage": "rocker/ml:4.3.0",
+      "imageTag": "radian-ml_4.3.0",
       "imageName": "radian-ml",
       "radian": "install",
-      "imageVer": "4.2.2",
+      "imageVer": "4.3.0",
       "gpu": "yes",
       "systemPackages": [
         "libcairo2-dev",
@@ -77,10 +77,10 @@
       ]
     },
     {
-      "baseImage": "rocker/geospatial:4.2.2",
-      "imageTag": "rstan_4.2.2",
+      "baseImage": "rocker/geospatial:4.3.0",
+      "imageTag": "rstan_4.3.0",
       "imageName": "rstan",
-      "imageVer": "4.2.2",
+      "imageVer": "4.3.0",
       "installCRAN": [
         "RcppParallel",
         "rstan",
@@ -89,10 +89,10 @@
       "cmdstan": "yes"
     },
     {
-      "baseImage": "rocker/ml:4.2.2",
-      "imageTag": "cmdstanr_4.2.2",
+      "baseImage": "rocker/ml:4.3.0",
+      "imageTag": "cmdstanr_4.3.0",
       "imageName": "cmdstanr",
-      "imageVer": "4.2.1",
+      "imageVer": "4.3.0",
       "cmdstan": "yes",
       "gpu": "yes"
     }
