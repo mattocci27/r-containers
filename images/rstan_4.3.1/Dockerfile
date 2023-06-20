@@ -1,5 +1,5 @@
 # NOTE: THIS DOCKERFILE IS GENERATED VIA "update.py"
-FROM rocker/ml:4.3.0
+FROM rocker/geospatial:4.3.1
 
 
 ENV DEBIAN_FRONTEND noninteractive
@@ -14,15 +14,12 @@ ENV DEBIAN_FRONTEND noninteractive
 
 
 
+RUN install2.r -n -2 --skipinstalled --error \
+    RcppParallel \
+    rstan \
+    rstanarm \
+  && rm -rf /tmp/downloaded_packages
 
-# libtbb2 for cmdstan (cpu)
-RUN apt update && apt -y install libtbb2 \
-    clinfo
-
-RUN ln -s /usr/local/cuda-11.8/targets/x86_64-linux/lib/libOpenCL.so /usr/lib/libOpenCL.so
-
-RUN mkdir -p /etc/OpenCL/vendors && \
-    echo "libnvidia-opencl.so.1" > /etc/OpenCL/vendors/nvidia.icd
 
 RUN installGithub.r \
       stan-dev/cmdstanr

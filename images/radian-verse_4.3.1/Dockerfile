@@ -1,26 +1,10 @@
 # NOTE: THIS DOCKERFILE IS GENERATED VIA "update.py"
-FROM rocker/r-ver:4.3.0
+FROM mattocci/radian:4.3.1
 
 
 ENV DEBIAN_FRONTEND noninteractive
 
-RUN apt-get update -q -y \
-  && apt-get install --no-install-recommends --fix-missing -y \
-    libcairo2-dev \
-    libglpk-dev \
-    libxml2-dev \
-    sudo \
-    gosu \
-    git \
-  && apt-get autoremove -y \
-  && apt-get clean all
 
-ENV USER_NAME=rstudio
-
-RUN useradd -m rstudio -u 1000 \
-  && mkdir -p /home/rstudio \
-  && chown -R rstudio /home/rstudio \
-  && usermod -a -G staff rstudio
 
 RUN apt-get update -qq \
     && apt-get install -y --no-install-recommends \
@@ -137,26 +121,11 @@ RUN  wget -N --no-check-certificate -q -O install_quarto.sh \
 
 RUN tlmgr update --self
 
-ENV PANDOC_VERSION=3.1.2
-ENV CROSSREF_VERSION=0.3.15.2a
-
-COPY scripts/install_crossref.sh  /rocker_scripts/install_crossref.sh
-
-RUN /rocker_scripts/install_crossref.sh
 
 
 
 
 
-RUN install2.r -n -2 --skipinstalled --error \
-    rmarkdown \
-    methods \
-    bookdown \
-    knitr \
-    kableExtra \
-    tidyverse \
-    devtools \
-  && rm -rf /tmp/downloaded_packages
 
 
 

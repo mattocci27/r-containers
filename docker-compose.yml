@@ -1,22 +1,22 @@
 version: '3'
 services:
-  tinytex_4.3.0:
-    image: mattocci/tinytex:4.3.0
+  tinytex_4.3.1:
+    image: mattocci/tinytex:4.3.1
     build:
       context: .
-      dockerfile: images/tinytex_4.3.0/Dockerfile
-  radian_4.3.0:
-    image: mattocci/radian:4.3.0
+      dockerfile: images/tinytex_4.3.1/Dockerfile
+  radian_4.3.1:
+    image: mattocci/radian:4.3.1
     build:
       context: .
-      dockerfile: images/radian_4.3.0/Dockerfile
-  radian-verse_4.3.0:
-    image: mattocci/radian-verse:4.3.0
+      dockerfile: images/radian_4.3.1/Dockerfile
+  radian-verse_4.3.1:
+    image: mattocci/radian-verse:4.3.1
     build:
       context: .
-      dockerfile: images/radian-verse_4.3.0/Dockerfile
-  rstan_4.3.0:
-    image: mattocci/rstan:4.3.0
+      dockerfile: images/radian-verse_4.3.1/Dockerfile
+  rstan_4.3.1:
+    image: mattocci/rstan:4.3.1
     build:
       context: .
-      dockerfile: images/rstan_4.3.0/Dockerfile
+      dockerfile: images/rstan_4.3.1/Dockerfile

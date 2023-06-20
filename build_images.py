@@ -4,7 +4,7 @@ from concurrent.futures import ThreadPoolExecutor, as_completed
 from collections import defaultdict
 
 dependencies = {
-    'radian-verse_4.3.0': 'radian_4.3.0'
+    'radian-verse_4.3.1': 'radian_4.3.1'
 }
 
 def build_docker_image(service_name, service_info, build_info):
