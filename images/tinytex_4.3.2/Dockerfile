@@ -40,7 +40,7 @@ RUN echo "PATH=${PATH}" >> ${R_HOME}/etc/Renviron
 RUN install2.r -n -2 --skipinstalled --error \
    tinytex
 
-RUN wget -qO- \
+RUN wget --no-check-certificate -qO- \
     "https://github.com/yihui/tinytex/raw/main/tools/install-unx.sh" | \
     sh -s - --admin --no-path \
   && mv ~/.TinyTeX /opt/TinyTeX
