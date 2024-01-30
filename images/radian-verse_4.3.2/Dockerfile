@@ -25,7 +25,7 @@ RUN install2.r -n -2 --skipinstalled --error \
    tinytex
 
 RUN wget -qO- "https://yihui.org/tinytex/install-bin-unix.sh" | sh  \
-  && mv ~/.TinyTeX /opt/TinyTeX
+  && mv ~/.TinyTeX/opt/TinyTeX
 
 RUN /opt/TinyTeX/bin/*/tlmgr path add \
   && tlmgr install \
