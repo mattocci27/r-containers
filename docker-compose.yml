@@ -20,8 +20,3 @@ services:
     build:
       context: .
       dockerfile: images/cmdstan-verse_4.3.2/Dockerfile
-  rstan_4.3.2:
-    image: mattocci/rstan:4.3.2
-    build:
-      context: .
-      dockerfile: images/rstan_4.3.2/Dockerfile

@@ -65,18 +65,6 @@
       "cmdstanVer": "2.34.1",
       "cmdstan": "install",
       "imageVer": "4.3.2"
-    },
-    {
-      "baseImage": "rocker/geospatial:4.3.2",
-      "imageTag": "rstan_4.3.2",
-      "imageName": "rstan",
-      "imageVer": "4.3.2",
-      "installCRAN": [
-        "RcppParallel",
-        "rstan",
-        "rstanarm"
-      ],
-      "cmdstan": "yes"
     }
   ]
 }
