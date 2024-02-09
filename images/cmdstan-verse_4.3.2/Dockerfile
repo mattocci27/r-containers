@@ -1,5 +1,5 @@
 # NOTE: THIS DOCKERFILE IS GENERATED VIA "update.py"
-FROM rocker/geospatial:4.3.2
+FROM mattocci/radian-verse:4.3.2
 
 
 ENV DEBIAN_FRONTEND noninteractive
@@ -14,14 +14,9 @@ ENV DEBIAN_FRONTEND noninteractive
 
 
 
-RUN install2.r -n -2 --skipinstalled --error \
-    RcppParallel \
-    rstan \
-    rstanarm \
-  && rm -rf /tmp/downloaded_packages
 
 
-ENV CMDSTAN_VERSION=
+ENV CMDSTAN_VERSION=2.34.1
 
 RUN R -e "install.packages("cmdstanr", repos = c("https://mc-stan.org/r-packages/", getOption("repos")))"
 
