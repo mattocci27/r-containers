@@ -20,3 +20,8 @@ services:
     build:
       context: .
       dockerfile: images/cmdstan-verse_4.3.2/Dockerfile
+  cmdstan-verse-zsh_4.3.2:
+    image: mattocci/cmdstan-verse-zsh:4.3.2
+    build:
+      context: .
+      dockerfile: images/cmdstan-verse-zsh_4.3.2/Dockerfile

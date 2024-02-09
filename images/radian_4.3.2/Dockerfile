@@ -29,7 +29,9 @@ RUN pip3 install setuptools==58.2.0 \
 
 RUN install2.r -n -2 --skipinstalled --error \
     remotes \
+    renv \
   && rm -rf /tmp/downloaded_packages
+
 
 
 

@@ -221,3 +221,40 @@ RUN install2.r -n -2 --skipinstalled --error \
 RUN R -e 'remotes::install_version("Rttf2pt1", version = "1.3.8")'
 RUN R -e 'extrafont::font_import(prompt = FALSE)'
 {% endif %}
+
+{% if zsh %}
+# Install dependencies and tools including Cargo and Rust
+RUN apt-get update && apt-get install -y \
+  software-properties-common \
+  build-essential \
+  curl \
+  git \
+  wget \
+  xsel \
+  # Other dependencies
+  && add-apt-repository ppa:neovim-ppa/unstable \
+  && apt-get update \
+  && apt-get install -y \
+  neovim \
+  peco \
+  fzf \
+  zsh \
+  tmux \
+  tree \
+  make \
+  neofetch \
+  ripgrep \
+  exa \
+  htop \
+  stow \
+  cargo \
+  fd-find \
+  && rm -rf /var/lib/apt/lists/*
+
+USER rstudio
+WORKDIR /home/rstudio
+
+# Install Rust applications using Cargo, installed via apt
+RUN cargo install bottom zoxide --locked \
+  && cargo install dutree
+{% endif %}

@@ -46,7 +46,8 @@
         "python3-pip"
       ],
       "installCRAN": [
-        "remotes"
+        "remotes",
+        "renv"
       ]
     },
     {
@@ -64,6 +65,13 @@
       "imageName": "cmdstan-verse",
       "cmdstanVer": "2.34.1",
       "cmdstan": "install",
+      "imageVer": "4.3.2"
+    },
+    {
+      "baseImage": "mattocci/cmdstan-verse:4.3.2",
+      "imageTag": "cmdstan-verse-zsh_4.3.2",
+      "imageName": "cmdstan-verse-zsh",
+      "zsh": "install",
       "imageVer": "4.3.2"
     }
   ]
