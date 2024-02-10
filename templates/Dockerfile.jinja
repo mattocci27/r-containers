@@ -257,4 +257,6 @@ WORKDIR /home/rstudio
 # Install Rust applications using Cargo, installed via apt
 RUN cargo install bottom zoxide --locked \
   && cargo install dutree
+
+RUN sed -i 's|/home/rstudio:/bin/bash|/home/rstudio:/usr/bin/zsh|' /etc/passwd
 {% endif %}
