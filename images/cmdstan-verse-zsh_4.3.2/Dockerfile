@@ -53,4 +53,6 @@ WORKDIR /home/rstudio
 RUN cargo install bottom zoxide --locked \
   && cargo install dutree
 
+USER root
+
 RUN sed -i 's|/home/rstudio:/bin/bash|/home/rstudio:/usr/bin/zsh|' /etc/passwd
