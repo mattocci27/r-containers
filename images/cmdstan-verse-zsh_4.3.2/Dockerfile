@@ -20,27 +20,18 @@ ENV DEBIAN_FRONTEND noninteractive
 
 # Install dependencies and tools including Cargo and Rust
 RUN apt-get update && apt-get install -y \
-  software-properties-common \
-  build-essential \
   curl \
   git \
   wget \
-  xsel \
-  # Other dependencies
-  && add-apt-repository ppa:neovim-ppa/unstable \
-  && apt-get update \
-  && apt-get install -y \
-  neovim \
+  vim \
   peco \
   fzf \
   zsh \
-  tmux \
-  tree \
-  make \
-  neofetch \
-  ripgrep \
-  exa \
   htop \
+  tree \
+  ripgrep \
+  neofetch \
+  exa \
   stow \
   cargo \
   fd-find \
@@ -50,7 +41,7 @@ USER rstudio
 WORKDIR /home/rstudio
 
 # Install Rust applications using Cargo, installed via apt
-RUN cargo install bottom zoxide --locked \
+RUN cargo install zoxide --locked \
   && cargo install dutree
 
 USER root
