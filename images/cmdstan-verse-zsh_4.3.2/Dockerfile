@@ -35,6 +35,7 @@ RUN apt-get update && apt-get install -y \
   stow \
   cargo \
   fd-find \
+  openssh-client \
   && rm -rf /var/lib/apt/lists/*
 
 USER rstudio
