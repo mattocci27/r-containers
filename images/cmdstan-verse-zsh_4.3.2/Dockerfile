@@ -38,8 +38,16 @@ RUN apt-get update && apt-get install -y \
   openssh-client \
   && rm -rf /var/lib/apt/lists/*
 
+# vscode-R
 USER rstudio
+RUN mkdir -p /home/rstudio/vscode-R
+
 WORKDIR /home/rstudio
+
+RUN R -e 'renv::init(project = "/home/rstudio/vscode-R")'
+
+WORKDIR /home/rstudio/vscode-R
+RUN R -e 'renv::install(c("languageserver", "nx10/httpgd"))'
 
 # Install Rust applications using Cargo, installed via apt
 RUN cargo install zoxide --locked \
