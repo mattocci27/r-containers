@@ -47,10 +47,10 @@ WORKDIR /home/rstudio
 RUN R -e 'renv::init(project = "/home/rstudio/vscode-R")'
 
 WORKDIR /home/rstudio/vscode-R
-RUN R -e 'renv::install(c("languageserver", "nx10/httpgd"))'
+RUN R -e 'renv::install(c("languageserver", "nx10/httpgd", "devtools"))'
 
 # Install Rust applications using Cargo, installed via apt
-RUN cargo install zoxide --locked \
+RUN cargo install zoxide --locked --version 0.9.2 \
   && cargo install dutree
 
 USER root
@@ -75,8 +75,21 @@ RUN source /home/rstudio/.local/share/zinit/zinit.git/zinit.zsh && \
     zinit load zdharma-continuum/zinit-annex-rust
 
 # Source Zinit script and perform any additional setup
-RUN source "/home/rstudio/.local/share/zinit/zinit.git/zinit.zsh" && \
+RUN source /home/rstudio/.local/share/zinit/zinit.git/zinit.zsh && \
+    zinit load zdharma-continuum/zinit-annex-as-monitor && \
+    zinit load zdharma-continuum/zinit-annex-bin-gem-node && \
+    zinit load zdharma-continuum/zinit-annex-patch-dl && \
+    zinit load zdharma-continuum/zinit-annex-rust
+
+# Source Zinit script and perform any additional setup
+RUN source /home/rstudio/.local/share/zinit/zinit.git/zinit.zsh && \
     zinit light zsh-users/zsh-autosuggestions && \
     zinit light zdharma-continuum/fast-syntax-highlighting && \
     zinit light zsh-users/zsh-completions
+
+RUN source /home/rstudio/.local/share/zinit/zinit.git/zinit.zsh && \
+    zinit ice depth=1 && \
+    zinit light jeffreytse/zsh-vi-mode
+
+RUN git clone https://github.com/sindresorhus/pure.git /home/rstudio/.local/share/zinit/plugins/sindresorhus---pure
 
