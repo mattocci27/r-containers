@@ -35,6 +35,7 @@
       "imageTag": "radian_4.3.2",
       "imageName": "radian",
       "radian": "install",
+      "vscodeRenv": "install",
       "imageVer": "4.3.2",
       "systemPackages": [
         "libcairo2-dev",

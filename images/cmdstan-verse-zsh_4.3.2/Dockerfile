@@ -18,6 +18,7 @@ ENV DEBIAN_FRONTEND noninteractive
 
 
 
+
 # Install dependencies and tools including Cargo and Rust
 RUN apt-get update && apt-get install -y \
   curl \
@@ -38,18 +39,8 @@ RUN apt-get update && apt-get install -y \
   openssh-client \
   && rm -rf /var/lib/apt/lists/*
 
-# vscode-R
-USER rstudio
-RUN mkdir -p /home/rstudio/vscode-R
-
-WORKDIR /home/rstudio
-
-RUN R -e 'renv::init(project = "/home/rstudio/vscode-R")'
-
-WORKDIR /home/rstudio/vscode-R
-RUN R -e 'renv::install(c("languageserver", "nx10/httpgd", "devtools"))'
-
 # Install Rust applications using Cargo, installed via apt
+USER rstudio
 RUN cargo install zoxide --locked --version 0.9.2 \
   && cargo install dutree
 
