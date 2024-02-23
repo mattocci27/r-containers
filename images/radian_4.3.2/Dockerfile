@@ -46,3 +46,5 @@ RUN R -e 'renv::init(project = "/home/rstudio/vscode-R")'
 WORKDIR /home/rstudio/vscode-R
 RUN R -e 'renv::install(c("languageserver", "nx10/httpgd", "devtools"))'
 
+USER root
+
