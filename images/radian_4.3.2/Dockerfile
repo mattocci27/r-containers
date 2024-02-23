@@ -47,4 +47,5 @@ WORKDIR /home/rstudio/vscode-R
 RUN R -e 'renv::install(c("languageserver", "nx10/httpgd", "devtools"))'
 
 USER root
+WORKDIR /
 
