@@ -1,5 +1,5 @@
 # NOTE: THIS DOCKERFILE IS GENERATED VIA "update.py"
-FROM mattocci/radian-verse:4.3.2
+FROM mattocci/radian-verse:4.2.2
 
 
 ENV DEBIAN_FRONTEND noninteractive
@@ -16,7 +16,7 @@ ENV DEBIAN_FRONTEND noninteractive
 
 
 
-ENV CMDSTAN_VERSION=2.34.1
+ENV CMDSTAN_VERSION=2.29.2
 
 RUN R -e 'install.packages("cmdstanr", repos = c("https://mc-stan.org/r-packages/", getOption("repos")))'
 
