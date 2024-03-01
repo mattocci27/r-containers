@@ -2,12 +2,12 @@
   "owner": "mattocci",
   "configs": [
     {
-      "baseImage": "rocker/rstudio:4.2.1",
-      "imageTag": "radian_4.2.1",
+      "baseImage": "rocker/rstudio:4.3.1",
+      "imageTag": "radian_4.3.1",
       "imageName": "radian",
       "radian": "install",
       "vscodeRenv": "install",
-      "imageVer": "4.2.1",
+      "imageVer": "4.3.1",
       "systemPackages": [
         "libcairo2-dev",
         "libglpk-dev",
@@ -23,28 +23,28 @@
       ]
     },
     {
-      "baseImage": "mattocci/radian:4.2.1",
-      "imageTag": "radian-verse_4.2.1",
+      "baseImage": "mattocci/radian:4.3.1",
+      "imageTag": "radian-verse_4.3.1",
       "imageName": "radian-verse",
       "updateLatex": "update",
       "tinytex": "install",
       "quarto": "install",
-      "imageVer": "4.2.1"
+      "imageVer": "4.3.1"
     },
     {
-      "baseImage": "mattocci/radian-verse:4.2.1",
-      "imageTag": "cmdstan-verse_4.2.1",
+      "baseImage": "mattocci/radian-verse:4.3.1",
+      "imageTag": "cmdstan-verse_4.3.1",
       "imageName": "cmdstan-verse",
-      "cmdstanVer": "2.29.2",
+      "cmdstanVer": "2.33.1",
       "cmdstan": "install",
-      "imageVer": "4.2.1"
+      "imageVer": "4.3.1"
     },
     {
-      "baseImage": "mattocci/cmdstan-verse:4.2.1",
-      "imageTag": "cmdstan-verse-zsh_4.2.1",
+      "baseImage": "mattocci/cmdstan-verse:4.3.1",
+      "imageTag": "cmdstan-verse-zsh_4.3.1",
       "imageName": "cmdstan-verse-zsh",
       "zsh": "install",
-      "imageVer": "4.2.1"
+      "imageVer": "4.3.1"
     }
   ]
 }

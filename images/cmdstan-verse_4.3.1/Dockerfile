@@ -1,5 +1,5 @@
 # NOTE: THIS DOCKERFILE IS GENERATED VIA "update.py"
-FROM mattocci/radian-verse:4.2.1
+FROM mattocci/radian-verse:4.3.1
 
 
 ENV DEBIAN_FRONTEND noninteractive
@@ -16,9 +16,9 @@ ENV DEBIAN_FRONTEND noninteractive
 
 
 
-ENV CMDSTAN_VERSION=2.29.2
+ENV CMDSTAN_VERSION=2.33.1
 
-RUN R -e 'remotes::install_github("stan-dev/cmdstanr@v0.5.2")'
+RUN R -e 'remotes::install_github("stan-dev/cmdstanr@v0.6.1")'
 
 RUN mkdir -p  /opt/cmdstan \
  && Rscript -e "cmdstanr::install_cmdstan(dir = '/opt/cmdstan', release_url = 'https://github.com/stan-dev/cmdstan/releases/download/v${CMDSTAN_VERSION}/cmdstan-${CMDSTAN_VERSION}.tar.gz', cores = 2, timeout = 3600)"
