@@ -200,7 +200,7 @@ RUN mkdir -p /etc/OpenCL/vendors && \
 {% if cmdstan %}
 ENV CMDSTAN_VERSION={{cmdstanVer}}
 
-RUN R -e 'install.packages("cmdstanr", repos = c("https://mc-stan.org/r-packages/", getOption("repos")))'
+RUN R -e 'remotes::install_github("stan-dev/cmdstanr@v0.5.2")'
 
 RUN mkdir -p  /opt/cmdstan \
  && Rscript -e "cmdstanr::install_cmdstan(dir = '/opt/cmdstan', release_url = 'https://github.com/stan-dev/cmdstan/releases/download/v${CMDSTAN_VERSION}/cmdstan-${CMDSTAN_VERSION}.tar.gz', cores = 2, timeout = 3600)"
@@ -235,7 +235,7 @@ WORKDIR /home/rstudio
 RUN R -e 'renv::init(project = "/home/rstudio/vscode-R")'
 
 WORKDIR /home/rstudio/vscode-R
-RUN R -e 'renv::install(c("languageserver", "nx10/httpgd", "devtools"))'
+RUN R -e 'renv::install(c("languageserver", "httpgd@1.3.0", "devtools"))'
 
 USER root
 WORKDIR /

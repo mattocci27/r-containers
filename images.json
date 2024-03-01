@@ -2,41 +2,12 @@
   "owner": "mattocci",
   "configs": [
     {
-      "baseImage": "rocker/r-ver:4.2.2",
-      "imageTag": "tinytex_4.2.2",
-      "imageName": "tinytex",
-      "updateLatex": "update",
-      "useradd": "add",
-      "tinytex": "install",
-      "quarto": "install",
-      "pandocVer": "3.1.3",
-      "crossrefVer": "0.3.16.0a",
-      "imageVer": "4.2.2",
-      "systemPackages": [
-        "libcairo2-dev",
-        "libglpk-dev",
-        "libxml2-dev",
-        "sudo",
-        "gosu",
-        "git"
-      ],
-      "installCRAN": [
-        "rmarkdown",
-        "methods",
-        "bookdown",
-        "knitr",
-        "kableExtra",
-        "tidyverse",
-        "devtools"
-      ]
-    },
-    {
-      "baseImage": "rocker/rstudio:4.2.2",
-      "imageTag": "radian_4.2.2",
+      "baseImage": "rocker/rstudio:4.2.1",
+      "imageTag": "radian_4.2.1",
       "imageName": "radian",
       "radian": "install",
       "vscodeRenv": "install",
-      "imageVer": "4.2.2",
+      "imageVer": "4.2.1",
       "systemPackages": [
         "libcairo2-dev",
         "libglpk-dev",
@@ -52,28 +23,28 @@
       ]
     },
     {
-      "baseImage": "mattocci/radian:4.2.2",
-      "imageTag": "radian-verse_4.2.2",
+      "baseImage": "mattocci/radian:4.2.1",
+      "imageTag": "radian-verse_4.2.1",
       "imageName": "radian-verse",
       "updateLatex": "update",
       "tinytex": "install",
       "quarto": "install",
-      "imageVer": "4.2.2"
+      "imageVer": "4.2.1"
     },
     {
-      "baseImage": "mattocci/radian-verse:4.2.2",
-      "imageTag": "cmdstan-verse_4.2.2",
+      "baseImage": "mattocci/radian-verse:4.2.1",
+      "imageTag": "cmdstan-verse_4.2.1",
       "imageName": "cmdstan-verse",
       "cmdstanVer": "2.29.2",
       "cmdstan": "install",
-      "imageVer": "4.2.2"
+      "imageVer": "4.2.1"
     },
     {
-      "baseImage": "mattocci/cmdstan-verse:4.2.2",
-      "imageTag": "cmdstan-verse-zsh_4.2.2",
+      "baseImage": "mattocci/cmdstan-verse:4.2.1",
+      "imageTag": "cmdstan-verse-zsh_4.2.1",
       "imageName": "cmdstan-verse-zsh",
       "zsh": "install",
-      "imageVer": "4.2.2"
+      "imageVer": "4.2.1"
     }
   ]
 }
