@@ -32,7 +32,6 @@ RUN apt-get update && apt-get install -y \
   tree \
   ripgrep \
   neofetch \
-  exa \
   stow \
   cargo \
   fd-find \
@@ -42,7 +41,7 @@ RUN apt-get update && apt-get install -y \
 # Install Rust applications using Cargo, installed via apt
 USER rstudio
 RUN cargo install zoxide --locked --version 0.9.2 \
-  && cargo install dutree
+  && cargo install dutree exa
 
 USER root
 
