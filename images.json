@@ -58,6 +58,7 @@
       "updateLatex": "update",
       "tinytex": "install",
       "quarto": "install",
+      "quartoVer": "1.4.550",
       "imageVer": "4.3.2"
     },
     {
