@@ -110,7 +110,7 @@ RUN /opt/TinyTeX/bin/*/tlmgr path add \
 #     TINYTEX_DIR=${TINYTEX_DIR} sh -s - --admin --no-path
 
 
-ENV QUARTO_VERSION=
+ENV QUARTO_VERSION=1.4.550
 
 RUN  wget -N --no-check-certificate -q -O install_quarto.sh \
   "https://raw.githubusercontent.com/rocker-org/rocker-versioned2/master/scripts/install_quarto.sh" \
