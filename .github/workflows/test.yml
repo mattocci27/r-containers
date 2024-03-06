@@ -51,7 +51,7 @@ jobs:
           context: .
           file: images/radian_4.3.2/Dockerfile
           push: true
-          platforms: linux/amd64
+          platforms: linux/arm64
           tags: mattocci/radian:4.3.2
 
       - name: Build and push radian-verse_4.3.2
@@ -60,7 +60,7 @@ jobs:
           context: .
           file: images/radian-verse_4.3.2/Dockerfile
           push: true
-          platforms: linux/amd64
+          platforms: linux/arm64
           tags: mattocci/radian-verse:4.3.2
 
       - name: Build and push cmdstan-verse_4.3.2
@@ -69,7 +69,7 @@ jobs:
           context: .
           file: images/cmdstan-verse_4.3.2/Dockerfile
           push: true
-          platforms: linux/amd64
+          platforms: linux/arm64
           tags: mattocci/cmdstan-verse:4.3.2
 
       - name: Build and push cmdstan-verse-zsh_4.3.2
@@ -78,5 +78,5 @@ jobs:
           context: .
           file: images/cmdstan-verse-zsh_4.3.2/Dockerfile
           push: true
-          platforms: linux/amd64
+          platforms: linux/arm64
           tags: mattocci/cmdstan-verse-zsh:4.3.2
