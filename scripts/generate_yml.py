@@ -24,4 +24,4 @@ def generate_yaml(platform):
 
 # Generate YAML files for each platform
 generate_yaml('amd64')
-generate_yaml('arm64')
+# generate_yaml('arm64')
