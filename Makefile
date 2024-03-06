@@ -1,10 +1,14 @@
 .PHONY: all
 LATEST_TAG = 4.3.2
 
-all: update compose push_docker
+all: update update_yml compose push_docker
 
 .PHONY: update
-update: update.py images.json
+update: scripts/update.py images.json
+	poetry run python3 $<
+
+.PHONY: update_yml
+update_yml: scripts/generate_yml.py templates/update_template.yml.jinja
 	poetry run python3 $<
 
 .PHONY: compose
