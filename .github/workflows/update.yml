@@ -34,6 +34,7 @@ jobs:
           poetry --version
           poetry install
           poetry run python scripts/update.py
+          poetry run python scripts/generate_bake.py
 
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v3
