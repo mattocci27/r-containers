@@ -1,5 +1,8 @@
- {
+{
   "target": {
+    "default": {
+      "depends": ["radian", "radian-verse", "cmdstan-verse", "cmdstan-verse-zsh"]
+    },
     "radian": {
       "context": ".",
       "dockerfile": "images/radian_4.3.2/Dockerfile",
