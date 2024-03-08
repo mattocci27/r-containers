@@ -47,39 +47,39 @@ jobs:
           username: ${{secrets.DOCKER_USER}}
           password: ${{secrets.DOCKER_PASSWORD}}
 
-      - name: Build and push radian_4.3.2 for amd64
+      - name: Build and push radian_4.3.2
         uses: docker/build-push-action@v5
         with:
           context: .
           file: images/radian_4.3.2/Dockerfile
           push: true
-          platforms: linux/amd64
+          platforms: linux/amd64,linux/arm64
           tags: mattocci/radian:4.3.2
 
-      - name: Build and push radian-verse_4.3.2 for amd64
+      - name: Build and push radian-verse_4.3.2
         uses: docker/build-push-action@v5
         with:
           context: .
           file: images/radian-verse_4.3.2/Dockerfile
           push: true
-          platforms: linux/amd64
+          platforms: linux/amd64,linux/arm64
           tags: mattocci/radian-verse:4.3.2
 
-      - name: Build and push cmdstan-verse_4.3.2 for amd64
+      - name: Build and push cmdstan-verse_4.3.2
         uses: docker/build-push-action@v5
         with:
           context: .
           file: images/cmdstan-verse_4.3.2/Dockerfile
           push: true
-          platforms: linux/amd64
+          platforms: linux/amd64,linux/arm64
           tags: mattocci/cmdstan-verse:4.3.2
 
-      - name: Build and push cmdstan-verse-zsh_4.3.2 for amd64
+      - name: Build and push cmdstan-verse-zsh_4.3.2
         uses: docker/build-push-action@v5
         with:
           context: .
           file: images/cmdstan-verse-zsh_4.3.2/Dockerfile
           push: true
-          platforms: linux/amd64
+          platforms: linux/amd64,linux/arm64
           tags: mattocci/cmdstan-verse-zsh:4.3.2
 

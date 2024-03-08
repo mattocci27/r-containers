@@ -48,13 +48,13 @@ jobs:
           password: ${{ '{{' }}secrets.DOCKER_PASSWORD{{ '}}' }}
 
 {% for config in data.configs %}
-      - name: Build and push {{ config.imageTag }} for {{ platform }}
+      - name: Build and push {{ config.imageTag }}
         uses: docker/build-push-action@v5
         with:
           context: .
           file: images/{{ config.imageTag }}/Dockerfile
           push: true
-          platforms: linux/{{ platform }}
+          platforms: linux/amd64,linux/arm64
           tags: {{ data.owner }}/{{ config.imageName }}:{{ config.imageVer }}
 
 {% endfor %}
