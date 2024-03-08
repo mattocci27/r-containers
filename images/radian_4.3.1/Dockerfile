@@ -1,5 +1,5 @@
 # NOTE: THIS DOCKERFILE IS GENERATED VIA "update.py"
-FROM rocker/rstudio:4.3.2
+FROM rocker/rstudio:4.3.1
 
 
 ENV DEBIAN_FRONTEND noninteractive
@@ -52,7 +52,8 @@ WORKDIR /home/rstudio
 RUN R -e 'renv::init(project = "/home/rstudio/vscode-R")'
 
 WORKDIR /home/rstudio/vscode-R
-RUN R -e 'renv::install(c("languageserver", "nx10/httpgd", "devtools"))'
+RUN R -e 'renv::install(c("languageserver", "httpgd@1.3.1", "devtools"))'
+
 
 USER root
 WORKDIR /
