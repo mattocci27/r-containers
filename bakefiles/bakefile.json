@@ -1,6 +1,6 @@
  {
   "target": {
-    "radian_4.3.2": {
+    "radian": {
       "context": ".",
       "dockerfile": "images/radian_4.3.2/Dockerfile",
       "tags": ["mattocci/radian:4.3.2"],
@@ -13,7 +13,7 @@
       ],
       "output": ["type=registry,push=true"]
     },
-    "radian-verse_4.3.2": {
+    "radian-verse": {
       "context": ".",
       "dockerfile": "images/radian-verse_4.3.2/Dockerfile",
       "tags": ["mattocci/radian-verse:4.3.2"],
@@ -26,7 +26,7 @@
       ],
       "output": ["type=registry,push=true"]
     },
-    "cmdstan-verse_4.3.2": {
+    "cmdstan-verse": {
       "context": ".",
       "dockerfile": "images/cmdstan-verse_4.3.2/Dockerfile",
       "tags": ["mattocci/cmdstan-verse:4.3.2"],
@@ -39,7 +39,7 @@
       ],
       "output": ["type=registry,push=true"]
     },
-    "cmdstan-verse-zsh_4.3.2": {
+    "cmdstan-verse-zsh": {
       "context": ".",
       "dockerfile": "images/cmdstan-verse-zsh_4.3.2/Dockerfile",
       "tags": ["mattocci/cmdstan-verse-zsh:4.3.2"],
