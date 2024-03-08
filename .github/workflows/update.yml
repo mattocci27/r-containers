@@ -48,4 +48,4 @@ jobs:
 
       - name: Build and push Docker images
         run: |
-          docker buildx bake -f bakefile.json --load
+          docker buildx bake -f bakefiles/bakefile.json --load
