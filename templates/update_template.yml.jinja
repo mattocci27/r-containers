@@ -6,7 +6,6 @@ on:
   push:
     paths:
       - 'images/**'
-      - 'bakefiles/**'
       - '**.yml'
   workflow_dispatch:
 
@@ -26,15 +25,15 @@ jobs:
         uses: actions/cache@v3
         with:
           path: ~/.cache/pypoetry/virtualenvs
-          key: ${{runner.os}}-poetry-${{hashFiles('**/poetry.lock')}}
+          key: ${{ '{{' }}runner.os{{ '}}' }}-poetry-${{ '{{' }}hashFiles('**/poetry.lock'){{ '}}' }}
           restore-keys: |
-            ${{runner.os}}-poetry-
+            ${{ '{{' }}runner.os{{ '}}' }}-poetry-
 
       - run: |
           poetry --version
           poetry install
           poetry run python scripts/update.py
-          poetry run python scripts/generate_bake.py
+          poetry run python scripts/generate_yml.py
 
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v3
@@ -45,12 +44,17 @@ jobs:
       - name: Login to Docker Hub
         uses: docker/login-action@v3
         with:
-          username: ${{secrets.DOCKER_USER}}
-          password: ${{secrets.DOCKER_PASSWORD}}
+          username: ${{ '{{' }}secrets.DOCKER_USER{{ '}}' }}
+          password: ${{ '{{' }}secrets.DOCKER_PASSWORD{{ '}}' }}
 
-      - name: Build and push Docker images
-        run: |
-          docker buildx bake -f bakefiles/bakefile.json --push radian
-          docker buildx bake -f bakefiles/bakefile.json --push radian-verse
-          docker buildx bake -f bakefiles/bakefile.json --push cmdstan-verse
-          docker buildx bake -f bakefiles/bakefile.json --push cmdstan-verse-zsh
+{% for config in data.configs %}
+      - name: Build and push {{ config.imageTag }}
+        uses: docker/build-push-action@v5
+        with:
+          context: .
+          file: images/{{ config.imageTag }}/Dockerfile
+          push: true
+          platforms: linux/amd64,linux/arm64
+          tags: {{ data.owner }}/{{ config.imageName }}:{{ config.imageVer }}
+
+{% endfor %}

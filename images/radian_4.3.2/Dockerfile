@@ -10,6 +10,14 @@ RUN apt-get update -q -y \
     libglpk-dev \
     libxml2-dev \
     libzmq3-dev \
+    libfontconfig1-dev \
+    libharfbuzz-dev \
+    libfribidi-dev \
+    libfreetype6-dev \
+    libpng-dev \
+    libtiff5-dev \
+    libjpeg-dev \
+    libgit2-dev \
     libxt6 \
     python3-dev \
     python3-pip \

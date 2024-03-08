@@ -1,10 +1,5 @@
 version: '3'
 services:
-  tinytex_4.3.2:
-    image: mattocci/tinytex:4.3.2
-    build:
-      context: .
-      dockerfile: images/tinytex_4.3.2/Dockerfile
   radian_4.3.2:
     image: mattocci/radian:4.3.2
     build:
