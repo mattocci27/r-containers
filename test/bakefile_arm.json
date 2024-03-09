@@ -1,0 +1,14 @@
+{
+  "target": {
+    "default": {
+      "depends": ["test"]
+    },
+    "test": {
+      "context": ".",
+      "dockerfile": "test/Dockerfile",
+      "tags": ["mattocci/test:neofetch-arm64"],
+      "platforms": ["linux/arm64"],
+      "output": ["type=registry,push=true"]
+    }
+  }
+}

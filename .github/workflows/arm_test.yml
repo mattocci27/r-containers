@@ -5,8 +5,7 @@ on:
     - cron: '0 0 * * 1'
   push:
     paths:
-      - 'images/**'
-      - 'bakefiles/**'
+      - 'test/**'
   workflow_dispatch:
 
 jobs:
@@ -49,7 +48,11 @@ jobs:
 
       - name: Build and push Docker images
         run: |
-          docker buildx bake -f bakefiles/bakefile.json --push radian
-          docker buildx bake -f bakefiles/bakefile.json --push radian-verse
-          docker buildx bake -f bakefiles/bakefile.json --push cmdstan-verse
-          docker buildx bake -f bakefiles/bakefile.json --push cmdstan-verse-zsh
+          docker buildx bake -f test/bakefile_amd.json --push test
+
+      - name: Create and Push Multi-Architecture Manifest
+        run: |
+          docker manifest create mattocci/test:neofech \
+            --amend mattocci/test:neofetch-amd64 \
+            --amend mattocci/test:neofetch-arm64
+          docker manifest push mattocci/test:neofetch-test

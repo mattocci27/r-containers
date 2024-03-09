@@ -1,0 +1,14 @@
+{
+  "target": {
+    "default": {
+      "depends": ["test"]
+    },
+    "test": {
+      "context": ".",
+      "dockerfile": "test/Dockerfile",
+      "tags": ["mattocci/test:neofetch-amd64"],
+      "platforms": ["linux/amd64"],
+      "output": ["type=registry,push=true"]
+    }
+  }
+}
