@@ -13,5 +13,8 @@ docker buildx create --name mybuilder --use
 docker buildx inspect --bootstrap
 
 # Build and push the images
-docker buildx bake -f test/bakefile_amd.json --load test
-docker buildx bake -f test/bakefile_amd.json --push test
+docker buildx bake -f test/bakefile_arm.json --load test
+# docker buildx bake -f test/bakefile_arm.json --push test
+
+docker push mattocci/test:neofetch-arm64
+docker manifest inspect mattocci/test:neofetch-arm64

@@ -49,10 +49,12 @@ jobs:
       - name: Build and push Docker images
         run: |
           docker buildx bake -f test/bakefile_amd.json --load test
-          docker buildx bake -f test/bakefile_amd.json --push test
+          docker push mattocci/test:neofetch-amd64
 
       - name: Create and Push Multi-Architecture Manifest
         run: |
+          docker manifest inspect mattocci/test:neofetch-amd64
+
           docker manifest create mattocci/test:neofech \
             --amend mattocci/test:neofetch-amd64 \
             --amend mattocci/test:neofetch-arm64
