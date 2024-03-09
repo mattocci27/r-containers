@@ -18,3 +18,4 @@ docker buildx bake -f test/bakefile_arm.json --load test
 
 docker push mattocci/test:neofetch-arm64
 docker manifest inspect mattocci/test:neofetch-arm64
+#
