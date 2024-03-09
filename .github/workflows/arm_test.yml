@@ -58,4 +58,4 @@ jobs:
           docker manifest create mattocci/test:neofech \
             --amend mattocci/test:neofetch-amd64 \
             --amend mattocci/test:neofetch-arm64
-          docker manifest push mattocci/test:neofetch-test
+          docker manifest push mattocci/test:neofetch
