@@ -54,6 +54,7 @@ jobs:
       - name: Create and Push Multi-Architecture Manifest
         run: |
           docker manifest inspect mattocci/test:neofetch-amd64
+          docler pull mattocci/test:neofetch-amd64
 
           docker manifest create mattocci/test:neofech \
             --amend mattocci/test:neofetch-amd64 \
