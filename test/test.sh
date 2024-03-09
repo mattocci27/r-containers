@@ -13,4 +13,5 @@ docker buildx create --name mybuilder --use
 docker buildx inspect --bootstrap
 
 # Build and push the images
+docker buildx bake -f test/bakefile_amd.json --load test
 docker buildx bake -f test/bakefile_amd.json --push test

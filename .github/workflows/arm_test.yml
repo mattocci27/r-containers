@@ -48,6 +48,7 @@ jobs:
 
       - name: Build and push Docker images
         run: |
+          docker buildx bake -f test/bakefile_amd.json --load test
           docker buildx bake -f test/bakefile_amd.json --push test
 
       - name: Create and Push Multi-Architecture Manifest
