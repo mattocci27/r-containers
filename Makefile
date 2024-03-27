@@ -1,5 +1,5 @@
 .PHONY: all
-LATEST_TAG = 4.3.2
+LATEST_TAG = 4.3.3
 
 all: update update_yml compose push_docker
 
