@@ -26,7 +26,7 @@ RUN install2.r -n -2 --skipinstalled --error \
 
 USER rstudio
 
-RUN R -e "tinytex::install_tinytex()"
+RUN wget -qO- "https://yihui.org/gh/tinytex/tools/install-unx.sh" | sh
 
 ENV PATH="/home/rstudio/bin/:$PATH"
 
