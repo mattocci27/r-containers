@@ -47,21 +47,7 @@ RUN install2.r -n -2 --skipinstalled --error \
 
 USER rstudio
 
-# Determine architecture and install TinyTeX accordingly
-RUN arch=$(uname -m) && \
-    if [ "$arch" = "x86_64" ]; then \
-        wget --no-check-certificate -qO /tmp/install-tinytex.sh "https://yihui.org/gh/tinytex/tools/install-unx.sh" && \
-        chmod +x /tmp/install-tinytex.sh && \
-        /tmp/install-tinytex.sh; \
-    elif [ "$arch" = "aarch64" ]; then \
-        wget --no-check-certificate -qO /tmp/install-tl.tar.gz http://mirrors.ctan.org/systems/texlive/tlnet/install-tl-unx.tar.gz && \
-        mkdir /tmp/install-tl && \
-        tar -xzf /tmp/install-tl.tar.gz -C /tmp/install-tl --strip-components=1 && \
-        /tmp/install-tl/install-tl --profile=/tmp/install-tl/texlive.profile; \
-    else \
-        echo "Unsupported architecture"; \
-        exit 1; \
-    fi
+RUN wget --no-check-certificate -qO- "https://yihui.org/gh/tinytex/tools/install-unx.sh" | sh
 
 ENV PATH="/home/rstudio/bin/:$PATH"
 
