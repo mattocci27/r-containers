@@ -1,5 +1,5 @@
 # NOTE: THIS DOCKERFILE IS GENERATED VIA "update.py"
-FROM rocker/rstudio:4.3.3
+FROM rocker/rstudio:4.3.2
 
 
 ENV DEBIAN_FRONTEND noninteractive
@@ -21,6 +21,7 @@ RUN apt-get update -q -y \
     libxt6 \
     python3-dev \
     python3-pip \
+    cmake \
   && apt-get autoremove -y \
   && apt-get clean all
 
