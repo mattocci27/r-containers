@@ -137,7 +137,8 @@ RUN  wget -N --no-check-certificate -q -O install_quarto.sh \
 {% endif %}
 
 {% if updateLatex %}
-RUN tlmgr update --self
+RUN tlmgr option repository http://ctan.math.utah.edu/ctan/tex-archive/systems/texlive/tlnet && \
+    tlmgr update --self --all
 {% endif %}
 
 {% if crossrefVer %}
