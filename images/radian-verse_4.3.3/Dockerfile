@@ -1,5 +1,5 @@
 # NOTE: THIS DOCKERFILE IS GENERATED VIA "update.py"
-FROM mattocci/radian:4.4.0
+FROM mattocci/radian:4.3.3
 
 
 ENV DEBIAN_FRONTEND noninteractive
@@ -103,7 +103,7 @@ RUN R -e "tinytex::tlmgr_install( \
 USER root
 
 
-ENV QUARTO_VERSION=1.5.54
+ENV QUARTO_VERSION=1.4.550
 
 RUN  wget -N --no-check-certificate -q -O install_quarto.sh \
   "https://raw.githubusercontent.com/rocker-org/rocker-versioned2/master/scripts/install_quarto.sh" \
