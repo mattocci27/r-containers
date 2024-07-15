@@ -1,22 +1,22 @@
 version: '3'
 services:
-  radian_4.3.3:
-    image: mattocci/radian:4.3.3
+  radian_4.4.0:
+    image: mattocci/radian:4.4.0
     build:
       context: .
-      dockerfile: images/radian_4.3.3/Dockerfile
-  radian-verse_4.3.3:
-    image: mattocci/radian-verse:4.3.3
+      dockerfile: images/radian_4.4.0/Dockerfile
+  radian-verse_4.4.0:
+    image: mattocci/radian-verse:4.4.0
     build:
       context: .
-      dockerfile: images/radian-verse_4.3.3/Dockerfile
-  cmdstan-verse_4.3.3:
-    image: mattocci/cmdstan-verse:4.3.3
+      dockerfile: images/radian-verse_4.4.0/Dockerfile
+  cmdstan-verse_4.4.0:
+    image: mattocci/cmdstan-verse:4.4.0
     build:
       context: .
-      dockerfile: images/cmdstan-verse_4.3.3/Dockerfile
-  cmdstan-verse-zsh_4.3.3:
-    image: mattocci/cmdstan-verse-zsh:4.3.3
+      dockerfile: images/cmdstan-verse_4.4.0/Dockerfile
+  cmdstan-verse-zsh_4.4.0:
+    image: mattocci/cmdstan-verse-zsh:4.4.0
     build:
       context: .
-      dockerfile: images/cmdstan-verse-zsh_4.3.3/Dockerfile
+      dockerfile: images/cmdstan-verse-zsh_4.4.0/Dockerfile
