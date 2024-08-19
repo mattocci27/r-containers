@@ -53,7 +53,7 @@ WORKDIR /home/rstudio
 RUN R -e 'renv::init(project = "/home/rstudio/vscode-R")'
 
 WORKDIR /home/rstudio/vscode-R
-RUN R -e 'renv::install(c("languageserver", "nx10/httpgd", "devtools", "yaml"))'
+RUN R -e 'renv::install(c("languageserver", "httpgd", "devtools", "yaml"))'
 
 USER root
 WORKDIR /

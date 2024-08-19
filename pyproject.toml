@@ -6,9 +6,9 @@ authors = ["Masatoshi Katabuchi <mattocci27@gmail.com>"]
 
 [tool.poetry.dependencies]
 python = "^3.8"
-Jinja2 = "^3.1.3"
 "ruamel.yaml" = "^0.17.16"
 pyyaml = "^6.0"
+jinja2 = "^3.1.4"
 
 [tool.poetry.dev-dependencies]
 
