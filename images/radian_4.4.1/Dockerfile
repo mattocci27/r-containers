@@ -22,6 +22,7 @@ RUN apt-get update -q -y \
     python3-dev \
     python3-pip \
     cmake \
+    libcurl4-openssl-dev \
   && apt-get autoremove -y \
   && apt-get clean all
 
