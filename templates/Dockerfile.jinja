@@ -5,7 +5,7 @@ FROM {{ baseImage }}
 LABEL {{ label | join('\ ') }}
 {% endif %}
 
-ENV DEBIAN_FRONTEND noninteractive
+ENV DEBIAN_FRONTEND=noninteractive
 
 {% if systemPackages %}
 RUN apt-get update -q -y \

@@ -2,7 +2,7 @@
 FROM mattocci/radian:4.4.1
 
 
-ENV DEBIAN_FRONTEND noninteractive
+ENV DEBIAN_FRONTEND=noninteractive
 
 
 

@@ -2,7 +2,7 @@
 FROM rocker/rstudio:4.4.1
 
 
-ENV DEBIAN_FRONTEND noninteractive
+ENV DEBIAN_FRONTEND=noninteractive
 
 RUN apt-get update -q -y \
   && apt-get install --no-install-recommends --fix-missing -y \
