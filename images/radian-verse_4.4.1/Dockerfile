@@ -12,6 +12,7 @@ RUN apt-get update -qq \
       xz-utils \
       curl \
       wget \
+      perl-doc \
       libxt6 \
       texinfo \
       ghostscript \
@@ -47,6 +48,13 @@ RUN R -e "tinytex::tlmgr_install( \
     'fancyhdr', \
     'float', \
     'footnotebackref', \
+    'fontspec', \
+    'unicode-math', \
+    'upquote', \
+    'microtype', \
+    'lmodern', \
+    'xurl', \
+    'microtype', \
     'fvextra', \
     'geometry', \
     'gettitlestring', \
