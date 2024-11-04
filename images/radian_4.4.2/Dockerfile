@@ -1,5 +1,5 @@
 # NOTE: THIS DOCKERFILE IS GENERATED VIA "update.py"
-FROM rocker/rstudio:4.4.1
+FROM rocker/rstudio:4.4.2
 
 
 ENV DEBIAN_FRONTEND=noninteractive
@@ -23,6 +23,8 @@ RUN apt-get update -q -y \
     python3-pip \
     cmake \
     libcurl4-openssl-dev \
+    imagemagick \
+    ghostscript \
   && apt-get autoremove -y \
   && apt-get clean all
 
