@@ -33,9 +33,9 @@ RUN apt-get update -q -y \
 
 
 
-USER rstudio
-RUN pip3 install --no-cache-dir setuptools==58.2.0 radian
-USER root
+RUN python3 -m venv /opt/venv
+ENV PATH="/opt/venv/bin:$PATH"
+RUN pip install --no-cache-dir setuptools==58.2.0 radian
 
 
 
