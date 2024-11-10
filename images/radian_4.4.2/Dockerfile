@@ -33,8 +33,9 @@ RUN apt-get update -q -y \
 
 
 
-RUN pip3 install setuptools==58.2.0 \
-  && pip3 install -U radian
+USER rstudio
+RUN pip3 install --no-cache-dir setuptools==58.2.0 radian
+USER root
 
 
 
