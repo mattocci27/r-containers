@@ -20,6 +20,7 @@ RUN apt-get update -q -y \
     libgit2-dev \
     libxt6 \
     python3-dev \
+    python3-venv \
     python3-pip \
     cmake \
     libcurl4-openssl-dev \
