@@ -31,6 +31,9 @@ RUN wget --no-check-certificate -qO- "https://yihui.org/gh/tinytex/tools/install
 
 ENV PATH="/home/rstudio/bin/:$PATH"
 
+# Initialize tlmgr in user mode (creates a user-specific tree for packages)
+RUN tlmgr init-usertree
+
 RUN R -e "tinytex::tlmgr_install( \
   c('ae', \
     'amsmath', \
@@ -120,6 +123,7 @@ RUN  wget -N --no-check-certificate -q -O install_quarto.sh \
   && rm install_quarto.sh
 
 
+USER rstudio
 RUN tlmgr option repository http://ctan.math.utah.edu/ctan/tex-archive/systems/texlive/tlnet && \
     tlmgr update --self --all
 

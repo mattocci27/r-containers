@@ -2,8 +2,9 @@
   "owner": "mattocci",
   "configs": [
     {
-      "baseImage": "rocker/rstudio:4.4.2",
+      "baseImage": "rocker/r-ver:4.4.2",
       "imageTag": "radian_4.4.2",
+      "useradd": "add",
       "imageName": "radian",
       "radian": "install",
       "vscodeRenv": "install",
@@ -51,6 +52,13 @@
       "imageName": "cmdstan-verse",
       "cmdstanVer": "2.35.0",
       "cmdstan": "install",
+      "imageVer": "4.4.2"
+    },
+    {
+      "baseImage": "mattocci/radian-verse:4.4.2",
+      "imageTag": "radian-verse-zsh_4.4.2",
+      "imageName": "radian-verse-zsh",
+      "zsh": "install",
       "imageVer": "4.4.2"
     },
     {

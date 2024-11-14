@@ -1,5 +1,5 @@
 # NOTE: THIS DOCKERFILE IS GENERATED VIA "update.py"
-FROM rocker/rstudio:4.4.2
+FROM rocker/r-ver:4.4.2
 
 
 ENV DEBIAN_FRONTEND=noninteractive
@@ -29,6 +29,16 @@ RUN apt-get update -q -y \
   && apt-get autoremove -y \
   && apt-get clean all
 
+ENV USER_NAME=rstudio
+
+RUN apt-get update -q -y \
+  && apt-get install -y sudo \
+  && useradd -m rstudio -u 1000 \
+  && mkdir -p /home/rstudio \
+  && chown -R rstudio /home/rstudio \
+  && usermod -a -G staff rstudio \
+  && usermod -aG sudo rstudio \
+  && echo "rstudio ALL=(ALL) NOPASSWD:/usr/bin/apt-get" >> /etc/sudoers
 
 
 
