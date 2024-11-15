@@ -52,19 +52,15 @@ RUN apt-get update && \
     apt-get install -y eza \
     && rm -rf /var/lib/apt/lists/*
 
+# Change the default shell for rstudio to zsh
+RUN usermod -s /usr/bin/zsh rstudio
+
 # Install Rust applications using Cargo, installed via apt
 USER rstudio
-RUN cargo install zoxide --locked --version 0.9.2 \
-  && cargo install dutree
-
-USER root
-
-RUN sed -i 's|/home/rstudio:/bin/bash|/home/rstudio:/usr/bin/zsh|' /etc/passwd
-
-USER rstudio
+RUN cargo install zoxide dutree
 
 # Change shell to Zsh for Docker RUN commands
-SHELL ["/bin/zsh", "-c"]
+SHELL ["/usr/bin/zsh", "-c"]
 
 # Install Zinit
 RUN print -P "%F{33} Installing Zinit…%f" && \
