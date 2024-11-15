@@ -6,6 +6,7 @@ LABEL {{ label | join('\ ') }}
 {% endif %}
 
 ENV DEBIAN_FRONTEND=noninteractive
+USER root
 
 {% if systemPackages %}
 RUN apt-get update -q -y \

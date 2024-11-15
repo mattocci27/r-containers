@@ -3,6 +3,7 @@ FROM rocker/r-ver:4.4.2
 
 
 ENV DEBIAN_FRONTEND=noninteractive
+USER root
 
 RUN apt-get update -q -y \
   && apt-get install --no-install-recommends --fix-missing -y \

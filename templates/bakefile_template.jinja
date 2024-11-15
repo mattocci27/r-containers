@@ -12,7 +12,7 @@
       "context": ".",
       "dockerfile": "images/{{ config.imageTag }}/Dockerfile",
       "tags": ["{{ images.owner }}/{{ config.imageName }}:{{ config.imageVer }}"],
-      "platforms": ["linux/amd64", "linux/arm64"],
+      "platforms": ["linux/amd64"],
       "cache-from": ["docker.io/{{ images.owner }}/{{ config.imageName }}:{{ config.imageVer }}"],
       "cache-to": ["type=inline"],
       "output": ["type=registry,push=true"]

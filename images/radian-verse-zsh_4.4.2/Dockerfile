@@ -3,6 +3,7 @@ FROM mattocci/radian-verse:4.4.2
 
 
 ENV DEBIAN_FRONTEND=noninteractive
+USER root
 
 
 
