@@ -12,7 +12,7 @@ on:
 
 jobs:
   build:
-    runs-on: arm
+    runs-on: [arm, ubuntu-22.04]
     steps:
       - uses: actions/checkout@v4
 
