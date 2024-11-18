@@ -3,21 +3,32 @@
     "default": {
       "depends": [
         {% for config in images.configs %}
-        "{{ config.imageName }}"{% if not loop.last %},{% endif %}
+        "{{ config.imageName }}",
+        "{{ config.imageName }}-arm64"
+        {% if not loop.last %},{% endif %}
         {% endfor %}
       ]
     },
     {% for config in images.configs %}
+
     "{{ config.imageName }}": {
       "context": ".",
       "dockerfile": "images/{{ config.imageTag }}/Dockerfile",
       "tags": ["{{ images.owner }}/{{ config.imageName }}:{{ config.imageVer }}"],
-      "platforms": ["linux/amd64", "linux/arm64"],
+      "platforms": ["linux/amd64"],
       "cache-from": ["docker.io/{{ images.owner }}/{{ config.imageName }}:{{ config.imageVer }}"],
       "cache-to": ["type=inline"],
       "output": ["type=registry,push=true"]
+    },
+    "{{ config.imageName }}-arm64": {
+      "context": ".",
+      "dockerfile": "images/{{ config.imageTag }}/Dockerfile",
+      "tags": ["{{ images.owner }}/{{ config.imageName }}:{{ config.imageVer }}-arm64"],
+      "platforms": ["linux/arm64"],
+      "cache-from": ["docker.io/{{ images.owner }}/{{ config.imageName }}:{{ config.imageVer }}-arm64"],
+      "cache-to": ["type=inline"],
+      "output": ["type=registry,push=true"]
     }{% if not loop.last %},{% endif %}
-
     {% endfor %}
   }
 }
