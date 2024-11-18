@@ -10,11 +10,6 @@ services:
     build:
       context: .
       dockerfile: images/radian-verse_4.4.2/Dockerfile
-  cmdstan-verse_4.4.2:
-    image: mattocci/cmdstan-verse:4.4.2
-    build:
-      context: .
-      dockerfile: images/cmdstan-verse_4.4.2/Dockerfile
   radian-verse-zsh_4.4.2:
     image: mattocci/radian-verse-zsh:4.4.2
     build:

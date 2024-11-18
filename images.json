@@ -48,24 +48,17 @@
     },
     {
       "baseImage": "mattocci/radian-verse:4.4.2",
-      "imageTag": "cmdstan-verse_4.4.2",
-      "imageName": "cmdstan-verse",
-      "cmdstanVer": "2.35.0",
-      "cmdstan": "install",
-      "imageVer": "4.4.2"
-    },
-    {
-      "baseImage": "mattocci/radian-verse:4.4.2",
       "imageTag": "radian-verse-zsh_4.4.2",
       "imageName": "radian-verse-zsh",
       "zsh": "install",
       "imageVer": "4.4.2"
     },
     {
-      "baseImage": "mattocci/cmdstan-verse:4.4.2",
+      "baseImage": "mattocci/radian-verse-zsh:4.4.2",
       "imageTag": "cmdstan-verse-zsh_4.4.2",
       "imageName": "cmdstan-verse-zsh",
-      "zsh": "install",
+      "cmdstanVer": "2.35.0",
+      "cmdstan": "install",
       "imageVer": "4.4.2"
     }
   ]
