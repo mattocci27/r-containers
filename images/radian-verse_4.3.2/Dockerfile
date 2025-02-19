@@ -90,6 +90,7 @@ RUN R -e "tinytex::tlmgr_install( \
     'threeparttable', \
     'threeparttablex', \
     'titling', \
+    'titlesec', \
     'trimspaces', \
     'ulem', \
     'uniquecounter', \
@@ -103,7 +104,7 @@ RUN R -e "tinytex::tlmgr_install( \
 USER root
 
 
-ENV QUARTO_VERSION=1.4.550
+ENV QUARTO_VERSION=1.6.40
 
 RUN  wget -N --no-check-certificate -q -O install_quarto.sh \
   "https://raw.githubusercontent.com/rocker-org/rocker-versioned2/master/scripts/install_quarto.sh" \
