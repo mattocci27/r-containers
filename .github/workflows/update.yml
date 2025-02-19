@@ -20,7 +20,7 @@ jobs:
         with:
           python-version: 3.8
 
-      - uses: Gr1N/setup-poetry@v9
+      - uses: python-poetry/poetry-action@v2
 
       - name: Cache Poetry virtualenv
         uses: actions/cache@v3
@@ -54,3 +54,4 @@ jobs:
           docker buildx bake -f bakefiles/bakefile.json --push radian-verse
           docker buildx bake -f bakefiles/bakefile.json --push cmdstan-verse
           docker buildx bake -f bakefiles/bakefile.json --push cmdstan-verse-zsh
+
