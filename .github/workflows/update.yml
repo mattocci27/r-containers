@@ -20,7 +20,8 @@ jobs:
         with:
           python-version: 3.8
 
-      - uses: python-poetry/poetry-action@v2
+      - uses: abatilo/actions-poetry@v4
+
 
       - name: Cache Poetry virtualenv
         uses: actions/cache@v3
