@@ -1,3 +1,4 @@
+Can you make this workflow more efficient and/or cleaner?
 name: Multibuild
 
 on:
@@ -37,3 +38,36 @@ jobs:
             mattocci/radian:4.4.2_arm64
 
           docker manifest push mattocci/radian:4.4.2
+
+          docker pull mattocci/radian_verse:4.4.2_amd64
+          docker pull mattocci/radian_verse:4.4.2_arm64
+
+          radian_verse_amd64_digest=$(docker manifest inspect mattocci/radian_verse:4.4.2_amd64 | jq -r '.manifests[] | select(.platform.architecture=="amd64") | .digest')
+
+          docker manifest create mattocci/radian_verse:4.4.2 \
+            "mattocci/radian_verse@${radian_verse_amd64_digest}" \
+            mattocci/radian_verse:4.4.2_arm64
+
+          docker manifest push mattocci/cmdstan_verse:4.4.2
+
+          docker pull mattocci/cmdstan:4.4.2_amd64
+          docker pull mattocci/cmdstan:4.4.2_arm64
+
+          cmdstan_amd64_digest=$(docker manifest inspect mattocci/cmdstan:4.4.2_amd64 | jq -r '.manifests[] | select(.platform.architecture=="amd64") | .digest')
+
+          docker manifest create mattocci/cmdstan:4.4.2 \
+            "mattocci/cmdstan@${cmdstan_amd64_digest}" \
+            mattocci/cmdstan:4.4.2_arm64
+
+          docker manifest push mattocci/cmdstan:4.4.2
+
+          docker pull mattocci/cmdstan_verse_zsh:4.4.2_amd64
+          docker pull mattocci/cmdstan_verse_zsh:4.4.2_arm64
+
+          cmdstan_verse_zsh_amd64_digest=$(docker manifest inspect mattocci/cmdstan_verse_zsh:4.4.2_amd64 | jq -r '.manifests[] | select(.platform.architecture=="amd64") | .digest')
+
+          docker manifest create mattocci/cmdstan_verse_zsh:4.4.2 \
+            "mattocci/cmdstan_verse_zsh@${cmdstan_verse_zsh_amd64_digest}" \
+            mattocci/cmdstan_verse_zsh:4.4.2_arm64
+
+          docker manifest push mattocci/cmdstan_verse_zsh:4.4.2
