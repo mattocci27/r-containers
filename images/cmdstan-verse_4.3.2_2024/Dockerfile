@@ -5,6 +5,7 @@ FROM mattocci/radian-verse:4.3.2_2024
 ENV DEBIAN_FRONTEND=noninteractive
 
 # Debug output to confirm TARGETPLATFORM (optional)
+ARG TARGETPLATFORM
 RUN echo "TARGETPLATFORM: ${TARGETPLATFORM}"
 
 # Patch libc-bin post-installation script for ARM builds
