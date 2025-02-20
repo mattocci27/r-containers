@@ -6,7 +6,10 @@ LABEL {{ label | join('\ ') }}
 {% endif %}
 
 ENV DEBIAN_FRONTEND=noninteractive
-USER root
+
+# Debug output to confirm TARGETPLATFORM (optional)
+ARG TARGETPLATFORM
+RUN echo "TARGETPLATFORM: ${TARGETPLATFORM}"
 
 {% if systemPackages %}
 RUN apt-get update -q -y \
@@ -127,6 +130,7 @@ RUN R -e "tinytex::tlmgr_install( \
     'threeparttable', \
     'threeparttablex', \
     'titling', \
+    'titlesec', \
     'trimspaces', \
     'ulem', \
     'uniquecounter', \
@@ -168,10 +172,7 @@ RUN /rocker_scripts/install_crossref.sh
 {% endif %}
 
 {% if radian %}
-RUN python3 -m venv /opt/venv
-ENV PATH="/opt/venv/bin:$PATH"
-RUN pip install --no-cache-dir setuptools==58.2.0 radian
-RUN echo 'options(repos = c(CRAN = "https://packagemanager.posit.co/cran/__linux__/jammy/latest"))' >> /usr/local/lib/R/etc/Rprofile.site
+RUN pipx install radian
 {% endif %}
 
 {% if bio %}
@@ -248,7 +249,7 @@ WORKDIR /home/rstudio
 RUN R -e 'renv::init(project = "/home/rstudio/vscode-R")'
 
 WORKDIR /home/rstudio/vscode-R
-RUN R -e 'renv::install(c("languageserver", "httpgd", "devtools", "yaml"))'
+RUN R -e 'renv::install(c("languageserver", "nx10/unigd", "nx10/httpgd", "devtools", "yaml"))'
 
 USER root
 WORKDIR /
@@ -268,6 +269,7 @@ RUN apt-get update && apt-get install -y \
   tree \
   ripgrep \
   neofetch \
+  eza \
   stow \
   cargo \
   fd-find \

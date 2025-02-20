@@ -1,9 +1,12 @@
 # NOTE: THIS DOCKERFILE IS GENERATED VIA "update.py"
-FROM mattocci/radian-verse:4.4.2
+FROM mattocci/cmdstan-verse:4.4.2_amd64
 
 
 ENV DEBIAN_FRONTEND=noninteractive
-USER root
+
+# Debug output to confirm TARGETPLATFORM (optional)
+ARG TARGETPLATFORM
+RUN echo "TARGETPLATFORM: ${TARGETPLATFORM}"
 
 
 
@@ -33,34 +36,26 @@ RUN apt-get update && apt-get install -y \
   tree \
   ripgrep \
   neofetch \
+  eza \
   stow \
   cargo \
   fd-find \
   openssh-client \
   && rm -rf /var/lib/apt/lists/*
 
-# Install eza
-RUN apt-get update && \
-    apt-get install -y gpg wget && \
-    mkdir -p /etc/apt/keyrings && \
-    wget -qO- https://raw.githubusercontent.com/eza-community/eza/main/deb.asc | \
-    gpg --dearmor -o /etc/apt/keyrings/gierens.gpg && \
-    echo "deb [signed-by=/etc/apt/keyrings/gierens.gpg] http://deb.gierens.de stable main" | \
-    tee /etc/apt/sources.list.d/gierens.list && \
-    chmod 644 /etc/apt/keyrings/gierens.gpg /etc/apt/sources.list.d/gierens.list && \
-    apt-get update && \
-    apt-get install -y eza \
-    && rm -rf /var/lib/apt/lists/*
-
-# Change the default shell for rstudio to zsh
-RUN usermod -s /usr/bin/zsh rstudio
-
 # Install Rust applications using Cargo, installed via apt
 USER rstudio
-RUN cargo install zoxide dutree
+RUN cargo install zoxide --locked --version 0.9.2 \
+  && cargo install dutree
+
+USER root
+
+RUN sed -i 's|/home/rstudio:/bin/bash|/home/rstudio:/usr/bin/zsh|' /etc/passwd
+
+USER rstudio
 
 # Change shell to Zsh for Docker RUN commands
-SHELL ["/usr/bin/zsh", "-c"]
+SHELL ["/bin/zsh", "-c"]
 
 # Install Zinit
 RUN print -P "%F{33} Installing Zinit…%f" && \

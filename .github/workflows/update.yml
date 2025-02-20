@@ -1,14 +1,14 @@
 name: Build and push
 
-# on:
-#   schedule:
-#     - cron: '0 0 * * 1'
-#   push:
-#     paths:
-#       - 'images/**'
-#       - 'bakefiles/**'
-#       - '**.yml'
-#   workflow_dispatch:
+on:
+  schedule:
+    - cron: '0 0 * * 1'
+  push:
+    paths:
+      - 'images/**'
+      - 'bakefiles/**'
+      - 'update.yml'
+  workflow_dispatch:
 
 # jobs:
 #   build:
@@ -20,7 +20,8 @@ name: Build and push
 #         with:
 #           python-version: 3.12.7
 
-#       - uses: Gr1N/setup-poetry@v9
+      - uses: abatilo/actions-poetry@v4
+
 
 #       - name: Cache Poetry virtualenv
 #         uses: actions/cache@v3
@@ -30,11 +31,11 @@ name: Build and push
 #           restore-keys: |
 #             ${{runner.os}}-poetry-
 
-#       - run: |
-#           poetry --version
-#           poetry install
-#           poetry run python scripts/update.py
-#           poetry run python scripts/generate_bake.py
+      - run: |
+          poetry --version
+          poetry install --no-root
+          poetry run python scripts/update.py
+          poetry run python scripts/generate_bake.py
 
 #       - name: Set up QEMU
 #         uses: docker/setup-qemu-action@v3
@@ -50,10 +51,10 @@ name: Build and push
 #           username: ${{secrets.DOCKER_USER}}
 #           password: ${{secrets.DOCKER_PASSWORD}}
 
-#       - name: Build and push Docker images
-#         run: |
-#           docker buildx bake -f bakefiles/bakefile.json --push radian
-#           docker buildx bake -f bakefiles/bakefile.json --push radian-verse
-#           docker buildx bake -f bakefiles/bakefile.json --push radian-verse-zsh
-#           docker buildx bake -f bakefiles/bakefile.json --push cmdstan-verse
-#           docker buildx bake -f bakefiles/bakefile.json --push cmdstan-verse-zsh
+      - name: Build and push Docker images
+        run: |
+          docker buildx bake -f bakefiles/bakefile_amd.json --push radian
+          docker buildx bake -f bakefiles/bakefile_amd.json --push radian-verse
+          docker buildx bake -f bakefiles/bakefile_amd.json --push cmdstan-verse
+          docker buildx bake -f bakefiles/bakefile_amd.json --push cmdstan-verse-zsh
+

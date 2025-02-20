@@ -1,9 +1,12 @@
 # NOTE: THIS DOCKERFILE IS GENERATED VIA "update.py"
-FROM mattocci/radian-verse-zsh:4.4.2
+FROM mattocci/radian-verse:4.4.2_amd64
 
 
 ENV DEBIAN_FRONTEND=noninteractive
-USER root
+
+# Debug output to confirm TARGETPLATFORM (optional)
+ARG TARGETPLATFORM
+RUN echo "TARGETPLATFORM: ${TARGETPLATFORM}"
 
 
 
@@ -17,7 +20,7 @@ USER root
 
 
 
-ENV CMDSTAN_VERSION=2.35.0
+ENV CMDSTAN_VERSION=2.34.1
 
 RUN R -e 'install.packages("cmdstanr", repos = c("https://mc-stan.org/r-packages/", getOption("repos")))'
 

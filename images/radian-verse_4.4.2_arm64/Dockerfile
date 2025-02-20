@@ -1,9 +1,12 @@
 # NOTE: THIS DOCKERFILE IS GENERATED VIA "update.py"
-FROM mattocci/radian:4.4.2
+FROM mattocci/radian:4.4.2_arm64
 
 
 ENV DEBIAN_FRONTEND=noninteractive
-USER root
+
+# Debug output to confirm TARGETPLATFORM (optional)
+ARG TARGETPLATFORM
+RUN echo "TARGETPLATFORM: ${TARGETPLATFORM}"
 
 
 
@@ -13,7 +16,6 @@ RUN apt-get update -qq \
       xz-utils \
       curl \
       wget \
-      perl-doc \
       libxt6 \
       texinfo \
       ghostscript \
@@ -32,9 +34,6 @@ RUN wget --no-check-certificate -qO- "https://yihui.org/gh/tinytex/tools/install
 
 ENV PATH="/home/rstudio/bin/:$PATH"
 
-# Initialize tlmgr in user mode (creates a user-specific tree for packages)
-RUN tlmgr init-usertree
-
 RUN R -e "tinytex::tlmgr_install( \
   c('ae', \
     'amsmath', \
@@ -52,13 +51,6 @@ RUN R -e "tinytex::tlmgr_install( \
     'fancyhdr', \
     'float', \
     'footnotebackref', \
-    'fontspec', \
-    'unicode-math', \
-    'upquote', \
-    'microtype', \
-    'lmodern', \
-    'xurl', \
-    'microtype', \
     'fvextra', \
     'geometry', \
     'gettitlestring', \
@@ -102,6 +94,7 @@ RUN R -e "tinytex::tlmgr_install( \
     'threeparttable', \
     'threeparttablex', \
     'titling', \
+    'titlesec', \
     'trimspaces', \
     'ulem', \
     'uniquecounter', \
@@ -115,7 +108,7 @@ RUN R -e "tinytex::tlmgr_install( \
 USER root
 
 
-ENV QUARTO_VERSION=1.5.57
+ENV QUARTO_VERSION=1.6.40
 
 RUN  wget -N --no-check-certificate -q -O install_quarto.sh \
   "https://raw.githubusercontent.com/rocker-org/rocker-versioned2/master/scripts/install_quarto.sh" \
@@ -124,7 +117,6 @@ RUN  wget -N --no-check-certificate -q -O install_quarto.sh \
   && rm install_quarto.sh
 
 
-USER rstudio
 RUN tlmgr option repository http://ctan.math.utah.edu/ctan/tex-archive/systems/texlive/tlnet && \
     tlmgr update --self --all
 
