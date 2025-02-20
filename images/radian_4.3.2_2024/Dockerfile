@@ -2,10 +2,11 @@
 FROM rocker/rstudio:4.3.2
 
 
-ENV DEBIAN_FRONTEND noninteractive
+ENV DEBIAN_FRONTEND=noninteractive
 
 # If running under QEMU emulation, disable the libc-bin post-install script
-RUN if [ -f /usr/bin/qemu-aarch64-static ]; then \
+# RUN if [ -f /usr/bin/qemu-aarch64-static ]; then \
+RUN if [ "$TARGETPLATFORM" = "linux/arm64" ]; then \
       echo '#!/bin/sh\nexit 0' > /var/lib/dpkg/info/libc-bin.postinst && \
       chmod +x /var/lib/dpkg/info/libc-bin.postinst; \
     fi
