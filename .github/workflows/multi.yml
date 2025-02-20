@@ -29,7 +29,7 @@ jobs:
         run: |
           set -e
           # List of image base names to process
-          images=("radian" "radian-verse" "cmdstan" "cmdstan-verse-zsh")
+          images=("radian" "radian-verse" "cmdstan-verse" "cmdstan-verse-zsh")
           for image in "${images[@]}"; do
             echo "Processing image: $image"
 
