@@ -36,11 +36,11 @@ RUN apt-get update && apt-get install -y \
   tree \
   ripgrep \
   neofetch \
-  eza \
   stow \
   cargo \
   fd-find \
   openssh-client \
+  && ( apt-get install -y eza || apt-get install -y exa ) \
   && rm -rf /var/lib/apt/lists/*
 
 # Install eza
