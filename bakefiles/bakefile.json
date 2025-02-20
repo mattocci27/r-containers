@@ -6,37 +6,37 @@
     },
     "radian": {
       "context": ".",
-      "dockerfile": "images/radian_4.3.2/Dockerfile",
-      "tags": ["mattocci/radian:4.3.2"],
+      "dockerfile": "images/radian_4.3.2_2024/Dockerfile",
+      "tags": ["mattocci/radian:4.3.2_2024"],
       "platforms": ["linux/amd64", "linux/arm64"],
-      "cache-from": ["docker.io/mattocci/radian:4.3.2"],
+      "cache-from": ["docker.io/mattocci/radian:4.3.2_2024"],
       "cache-to": ["type=inline"],
       "output": ["type=registry,push=true"]
     },
     "radian-verse": {
       "context": ".",
-      "dockerfile": "images/radian-verse_4.3.2/Dockerfile",
-      "tags": ["mattocci/radian-verse:4.3.2"],
+      "dockerfile": "images/radian-verse_4.3.2_2024/Dockerfile",
+      "tags": ["mattocci/radian-verse:4.3.2_2024"],
       "platforms": ["linux/amd64", "linux/arm64"],
-      "cache-from": ["docker.io/mattocci/radian-verse:4.3.2"],
+      "cache-from": ["docker.io/mattocci/radian-verse:4.3.2_2024"],
       "cache-to": ["type=inline"],
       "output": ["type=registry,push=true"]
     },
     "cmdstan-verse": {
       "context": ".",
-      "dockerfile": "images/cmdstan-verse_4.3.2/Dockerfile",
-      "tags": ["mattocci/cmdstan-verse:4.3.2"],
+      "dockerfile": "images/cmdstan-verse_4.3.2_2024/Dockerfile",
+      "tags": ["mattocci/cmdstan-verse:4.3.2_2024"],
       "platforms": ["linux/amd64", "linux/arm64"],
-      "cache-from": ["docker.io/mattocci/cmdstan-verse:4.3.2"],
+      "cache-from": ["docker.io/mattocci/cmdstan-verse:4.3.2_2024"],
       "cache-to": ["type=inline"],
       "output": ["type=registry,push=true"]
     },
     "cmdstan-verse-zsh": {
       "context": ".",
-      "dockerfile": "images/cmdstan-verse-zsh_4.3.2/Dockerfile",
-      "tags": ["mattocci/cmdstan-verse-zsh:4.3.2"],
+      "dockerfile": "images/cmdstan-verse-zsh_4.3.2_2024/Dockerfile",
+      "tags": ["mattocci/cmdstan-verse-zsh:4.3.2_2024"],
       "platforms": ["linux/amd64", "linux/arm64"],
-      "cache-from": ["docker.io/mattocci/cmdstan-verse-zsh:4.3.2"],
+      "cache-from": ["docker.io/mattocci/cmdstan-verse-zsh:4.3.2_2024"],
       "cache-to": ["type=inline"],
       "output": ["type=registry,push=true"]
     }
