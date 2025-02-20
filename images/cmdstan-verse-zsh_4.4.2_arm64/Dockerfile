@@ -36,7 +36,7 @@ RUN apt-get update && apt-get install -y \
   tree \
   ripgrep \
   neofetch \
-  exa \
+  eza \
   stow \
   cargo \
   fd-find \
