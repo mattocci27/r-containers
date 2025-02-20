@@ -27,12 +27,13 @@ jobs:
 
       - name: Build and push Docker images
         run: |
-
           docker pull mattocci/radian:4.4.2_amd64
           docker pull mattocci/radian:4.4.2_arm64
 
+          radian_amd64_digest=$(docker manifest inspect mattocci/radian:4.4.2_amd64 | jq -r '.manifests[] | select(.platform.architecture=="amd64") | .digest')
+
           docker manifest create mattocci/radian:4.4.2 \
-            mattocci/radian:4.4.2_amd64 \
+            "mattocci/radian@${radian_amd64_digest}" \
             mattocci/radian:4.4.2_arm64
 
           docker manifest push mattocci/radian:4.4.2
