@@ -27,46 +27,29 @@ jobs:
 
       - name: Build and push Docker images
         run: |
-          docker pull mattocci/radian:4.4.2_amd64
-          docker pull mattocci/radian:4.4.2_arm64
+          set -e
+          # List of image base names to process
+          images=("radian" "radian-verse" "cmdstan" "cmdstan-verse-zsh")
+          for image in "${images[@]}"; do
+            echo "Processing image: $image"
 
-          radian_amd64_digest=$(docker manifest inspect mattocci/radian:4.4.2_amd64 | jq -r '.manifests[] | select(.platform.architecture=="amd64") | .digest')
+            # Pull single-arch images for AMD64 and ARM64
+            docker pull mattocci/${image}:4.4.2_amd64
+            docker pull mattocci/${image}:4.4.2_arm64
 
-          docker manifest create mattocci/radian:4.4.2 \
-            "mattocci/radian@${radian_amd64_digest}" \
-            mattocci/radian:4.4.2_arm64
+            # Dynamically extract the AMD64 digest using jq
+            amd64_digest=$(docker manifest inspect mattocci/${image}:4.4.2_amd64 | \
+              jq -r '.manifests[] | select(.platform.architecture=="amd64") | .digest')
+            echo "AMD64 digest for $image: ${amd64_digest}"
 
-          docker manifest push mattocci/radian:4.4.2
+            # Remove any existing manifest list (ignore errors)
+            docker manifest rm mattocci/${image}:4.4.2 || true
 
-          docker pull mattocci/radian_verse:4.4.2_amd64
-          docker pull mattocci/radian_verse:4.4.2_arm64
+            # Create the multi-arch manifest list
+            docker manifest create mattocci/${image}:4.4.2 \
+              "mattocci/${image}@${amd64_digest}" \
+              mattocci/${image}:4.4.2_arm64
 
-          radian_verse_amd64_digest=$(docker manifest inspect mattocci/radian_verse:4.4.2_amd64 | jq -r '.manifests[] | select(.platform.architecture=="amd64") | .digest')
-
-          docker manifest create mattocci/radian_verse:4.4.2 \
-            "mattocci/radian_verse@${radian_verse_amd64_digest}" \
-            mattocci/radian_verse:4.4.2_arm64
-
-          docker manifest push mattocci/cmdstan_verse:4.4.2
-
-          docker pull mattocci/cmdstan:4.4.2_amd64
-          docker pull mattocci/cmdstan:4.4.2_arm64
-
-          cmdstan_amd64_digest=$(docker manifest inspect mattocci/cmdstan:4.4.2_amd64 | jq -r '.manifests[] | select(.platform.architecture=="amd64") | .digest')
-
-          docker manifest create mattocci/cmdstan:4.4.2 \
-            "mattocci/cmdstan@${cmdstan_amd64_digest}" \
-            mattocci/cmdstan:4.4.2_arm64
-
-          docker manifest push mattocci/cmdstan:4.4.2
-
-          docker pull mattocci/cmdstan_verse_zsh:4.4.2_amd64
-          docker pull mattocci/cmdstan_verse_zsh:4.4.2_arm64
-
-          cmdstan_verse_zsh_amd64_digest=$(docker manifest inspect mattocci/cmdstan_verse_zsh:4.4.2_amd64 | jq -r '.manifests[] | select(.platform.architecture=="amd64") | .digest')
-
-          docker manifest create mattocci/cmdstan_verse_zsh:4.4.2 \
-            "mattocci/cmdstan_verse_zsh@${cmdstan_verse_zsh_amd64_digest}" \
-            mattocci/cmdstan_verse_zsh:4.4.2_arm64
-
-          docker manifest push mattocci/cmdstan_verse_zsh:4.4.2
+            # Push the manifest list
+            docker manifest push mattocci/${image}:4.4.2
+          done
