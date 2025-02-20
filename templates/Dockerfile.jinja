@@ -7,6 +7,12 @@ LABEL {{ label | join('\ ') }}
 
 ENV DEBIAN_FRONTEND noninteractive
 
+# If running under QEMU emulation, disable the libc-bin post-install script
+RUN if [ -f /usr/bin/qemu-aarch64-static ]; then \
+      echo '#!/bin/sh\nexit 0' > /var/lib/dpkg/info/libc-bin.postinst && \
+      chmod +x /var/lib/dpkg/info/libc-bin.postinst; \
+    fi
+
 {% if systemPackages %}
 RUN apt-get update -q -y \
   && apt-get install --no-install-recommends --fix-missing -y \
