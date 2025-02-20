@@ -51,8 +51,8 @@ jobs:
 
       - name: Build and push Docker images
         run: |
-          docker buildx bake -f bakefiles/bakefile.json --push radian
-          docker buildx bake -f bakefiles/bakefile.json --push radian-verse
-          docker buildx bake -f bakefiles/bakefile.json --push cmdstan-verse
-          docker buildx bake -f bakefiles/bakefile.json --push cmdstan-verse-zsh
+          docker buildx bake -f bakefiles/bakefile_amd.json --push radian
+          docker buildx bake -f bakefiles/bakefile_amd.json --push radian-verse
+          docker buildx bake -f bakefiles/bakefile_amd.json --push cmdstan-verse
+          docker buildx bake -f bakefiles/bakefile_amd.json --push cmdstan-verse-zsh
 

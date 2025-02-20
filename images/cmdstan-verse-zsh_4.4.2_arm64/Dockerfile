@@ -1,5 +1,5 @@
 # NOTE: THIS DOCKERFILE IS GENERATED VIA "update.py"
-FROM mattocci/cmdstan-verse:4.3.2_2024
+FROM mattocci/cmdstan-verse:4.4.2_arm64
 
 
 ENV DEBIAN_FRONTEND=noninteractive
@@ -7,12 +7,6 @@ ENV DEBIAN_FRONTEND=noninteractive
 # Debug output to confirm TARGETPLATFORM (optional)
 ARG TARGETPLATFORM
 RUN echo "TARGETPLATFORM: ${TARGETPLATFORM}"
-
-# Patch libc-bin post-installation script for ARM builds
-RUN if [ "${TARGETPLATFORM}" = "linux/arm64" ]; then \
-      echo '#!/bin/sh\nexit 0' > /var/lib/dpkg/info/libc-bin.postinst && \
-      chmod +x /var/lib/dpkg/info/libc-bin.postinst; \
-    fi
 
 
 

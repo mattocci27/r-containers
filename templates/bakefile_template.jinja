@@ -2,22 +2,21 @@
   "target": {
     "default": {
       "depends": [
-        {% for config in images.configs %}
-        "{{ config.imageName }}"{% if not loop.last %},{% endif %}
-        {% endfor %}
+        {%- for config in images.configs if ("_" + arch + "64") in config.imageVer -%}
+        "{{ config.imageName }}"{% if not loop.last %}, {% endif %}
+        {%- endfor %}
       ]
-    },
-    {% for config in images.configs %}
-    "{{ config.imageName }}": {
+    }
+    {%- for config in images.configs if ("_" + arch + "64") in config.imageVer %}
+    , "{{ config.imageName }}": {
       "context": ".",
       "dockerfile": "images/{{ config.imageTag }}/Dockerfile",
       "tags": ["{{ images.owner }}/{{ config.imageName }}:{{ config.imageVer }}"],
-      "platforms": ["linux/amd64", "linux/arm64"],
+      "platforms": ["linux/{{ 'amd64' if arch == 'amd' else 'arm64' }}"],
       "cache-from": ["docker.io/{{ images.owner }}/{{ config.imageName }}:{{ config.imageVer }}"],
       "cache-to": ["type=inline"],
       "output": ["type=registry,push=true"]
-    }{% if not loop.last %},{% endif %}
-
-    {% endfor %}
+    }
+    {%- endfor %}
   }
 }

@@ -1,5 +1,5 @@
 # NOTE: THIS DOCKERFILE IS GENERATED VIA "update.py"
-FROM rocker/rstudio:4.3.2
+FROM rocker/rstudio:4.4.2
 
 
 ENV DEBIAN_FRONTEND=noninteractive
@@ -8,15 +8,10 @@ ENV DEBIAN_FRONTEND=noninteractive
 ARG TARGETPLATFORM
 RUN echo "TARGETPLATFORM: ${TARGETPLATFORM}"
 
-# Patch libc-bin post-installation script for ARM builds
-RUN if [ "${TARGETPLATFORM}" = "linux/arm64" ]; then \
-      echo '#!/bin/sh\nexit 0' > /var/lib/dpkg/info/libc-bin.postinst && \
-      chmod +x /var/lib/dpkg/info/libc-bin.postinst; \
-    fi
-
 RUN apt-get update -q -y \
   && apt-get install --no-install-recommends --fix-missing -y \
     libcairo2-dev \
+    libcurl4-openssl-dev \
     libglpk-dev \
     libxml2-dev \
     libzmq3-dev \
@@ -31,6 +26,7 @@ RUN apt-get update -q -y \
     libxt6 \
     python3-dev \
     python3-pip \
+    pipx \
     cmake \
   && apt-get autoremove -y \
   && apt-get clean all
@@ -40,8 +36,7 @@ RUN apt-get update -q -y \
 
 
 
-RUN pip3 install setuptools==58.2.0 \
-  && pip3 install -U radian
+RUN pipx install radian
 
 
 
@@ -63,7 +58,7 @@ WORKDIR /home/rstudio
 RUN R -e 'renv::init(project = "/home/rstudio/vscode-R")'
 
 WORKDIR /home/rstudio/vscode-R
-RUN R -e 'renv::install(c("languageserver", "nx10/httpgd", "devtools", "yaml"))'
+RUN R -e 'renv::install(c("languageserver", "nx10/unigd", "nx10/httpgd", "devtools", "yaml"))'
 
 USER root
 WORKDIR /
