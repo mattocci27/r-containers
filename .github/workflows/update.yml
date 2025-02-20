@@ -7,7 +7,7 @@ on:
     paths:
       - 'images/**'
       - 'bakefiles/**'
-      - '**.yml'
+      - 'update.yml'
   workflow_dispatch:
 
 jobs:
