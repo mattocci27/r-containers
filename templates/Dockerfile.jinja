@@ -172,6 +172,7 @@ RUN /rocker_scripts/install_crossref.sh
 
 {% if radian %}
 RUN sudo -H -u rstudio pipx install radian
+ENV PATH="/home/rstudio/.local/bin:${PATH}"
 {% endif %}
 
 {% if bio %}
