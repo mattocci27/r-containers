@@ -36,7 +36,7 @@ RUN apt-get update -q -y \
 
 
 
-RUN pipx install radian
+RUN sudo -H -u rstudio pipx install radian
 
 
 
