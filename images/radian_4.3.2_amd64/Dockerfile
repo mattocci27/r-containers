@@ -37,6 +37,7 @@ RUN apt-get update -q -y \
 
 
 RUN sudo -H -u rstudio pipx install radian
+ENV PATH="/home/rstudio/.local/bin:${PATH}"
 
 
 
