@@ -2,12 +2,12 @@
   "owner": "mattocci",
   "configs": [
     {
-      "baseImage": "rocker/rstudio:4.4.2",
-      "imageTag": "radian_4.4.2_arm64",
+      "baseImage": "rocker/rstudio:4.4.3",
+      "imageTag": "radian_4.4.3_arm64",
       "imageName": "radian",
       "radian": "install",
       "vscodeRenv": "install",
-      "imageVer": "4.4.2_arm64",
+      "imageVer": "4.4.3_arm64",
       "systemPackages": [
         "libcairo2-dev",
         "libcurl4-openssl-dev",
@@ -34,37 +34,37 @@
       ]
     },
     {
-      "baseImage": "mattocci/radian:4.4.2_arm64",
-      "imageTag": "radian-verse_4.4.2_arm64",
+      "baseImage": "mattocci/radian:4.4.3_arm64",
+      "imageTag": "radian-verse_4.4.3_arm64",
       "imageName": "radian-verse",
       "updateLatex": "update",
       "tinytex": "install",
       "quarto": "install",
       "quartoVer": "1.6.40",
-      "imageVer": "4.4.2_arm64"
+      "imageVer": "4.4.3_arm64"
     },
     {
-      "baseImage": "mattocci/radian-verse:4.4.2_arm64",
-      "imageTag": "cmdstan-verse_4.4.2_arm64",
+      "baseImage": "mattocci/radian-verse:4.4.3_arm64",
+      "imageTag": "cmdstan-verse_4.4.3_arm64",
       "imageName": "cmdstan-verse",
       "cmdstanVer": "2.34.1",
       "cmdstan": "install",
-      "imageVer": "4.4.2_arm64"
+      "imageVer": "4.4.3_arm64"
     },
     {
-      "baseImage": "mattocci/cmdstan-verse:4.4.2_arm64",
-      "imageTag": "cmdstan-verse-zsh_4.4.2_arm64",
+      "baseImage": "mattocci/cmdstan-verse:4.4.3_arm64",
+      "imageTag": "cmdstan-verse-zsh_4.4.3_arm64",
       "imageName": "cmdstan-verse-zsh",
       "zsh": "install",
-      "imageVer": "4.4.2_arm64"
+      "imageVer": "4.4.3_arm64"
     },
     {
-      "baseImage": "rocker/rstudio:4.4.2",
-      "imageTag": "radian_4.4.2_amd64",
+      "baseImage": "rocker/rstudio:4.4.3",
+      "imageTag": "radian_4.4.3_amd64",
       "imageName": "radian",
       "radian": "install",
       "vscodeRenv": "install",
-      "imageVer": "4.4.2_amd64",
+      "imageVer": "4.4.3_amd64",
       "systemPackages": [
         "libcairo2-dev",
         "libcurl4-openssl-dev",
@@ -91,29 +91,29 @@
       ]
     },
     {
-      "baseImage": "mattocci/radian:4.4.2_amd64",
-      "imageTag": "radian-verse_4.4.2_amd64",
+      "baseImage": "mattocci/radian:4.4.3_amd64",
+      "imageTag": "radian-verse_4.4.3_amd64",
       "imageName": "radian-verse",
       "updateLatex": "update",
       "tinytex": "install",
       "quarto": "install",
-      "quartoVer": "1.6.40",
-      "imageVer": "4.4.2_amd64"
+      "quartoVer": "1.6.43",
+      "imageVer": "4.4.3_amd64"
     },
     {
-      "baseImage": "mattocci/radian-verse:4.4.2_amd64",
-      "imageTag": "cmdstan-verse_4.4.2_amd64",
+      "baseImage": "mattocci/radian-verse:4.4.3_amd64",
+      "imageTag": "cmdstan-verse_4.4.3_amd64",
       "imageName": "cmdstan-verse",
-      "cmdstanVer": "2.34.1",
+      "cmdstanVer": "2.36.0",
       "cmdstan": "install",
-      "imageVer": "4.4.2_amd64"
+      "imageVer": "4.4.3_amd64"
     },
     {
-      "baseImage": "mattocci/cmdstan-verse:4.4.2_amd64",
-      "imageTag": "cmdstan-verse-zsh_4.4.2_amd64",
+      "baseImage": "mattocci/cmdstan-verse:4.4.3_amd64",
+      "imageTag": "cmdstan-verse-zsh_4.4.3_amd64",
       "imageName": "cmdstan-verse-zsh",
       "zsh": "install",
-      "imageVer": "4.4.2_amd64"
+      "imageVer": "4.4.3_amd64"
     }
   ]
 }

@@ -1,5 +1,5 @@
 # NOTE: THIS DOCKERFILE IS GENERATED VIA "update.py"
-FROM rocker/rstudio:4.4.2
+FROM rocker/rstudio:4.4.3
 
 
 ENV DEBIAN_FRONTEND=noninteractive

@@ -1,5 +1,5 @@
 # NOTE: THIS DOCKERFILE IS GENERATED VIA "update.py"
-FROM mattocci/radian-verse:4.4.2_arm64
+FROM mattocci/radian-verse:4.4.3_amd64
 
 
 ENV DEBIAN_FRONTEND=noninteractive
@@ -20,7 +20,7 @@ RUN echo "TARGETPLATFORM: ${TARGETPLATFORM}"
 
 
 
-ENV CMDSTAN_VERSION=2.34.1
+ENV CMDSTAN_VERSION=2.36.0
 
 RUN R -e 'install.packages("cmdstanr", repos = c("https://mc-stan.org/r-packages/", getOption("repos")))'
 

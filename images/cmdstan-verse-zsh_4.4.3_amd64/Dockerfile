@@ -1,5 +1,5 @@
 # NOTE: THIS DOCKERFILE IS GENERATED VIA "update.py"
-FROM mattocci/cmdstan-verse:4.4.2_arm64
+FROM mattocci/cmdstan-verse:4.4.3_amd64
 
 
 ENV DEBIAN_FRONTEND=noninteractive
