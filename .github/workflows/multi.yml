@@ -34,8 +34,8 @@ jobs:
             echo "Processing image: $image"
 
             # Pull single-arch images for AMD64 and ARM64
-            docker pull mattocci/${image}:4.4.3_amd64
-            docker pull mattocci/${image}:4.4.3_arm64
+            docker pull --platform linux/amd64 mattocci/${image}:4.4.3_amd64
+            docker pull --platform linux/arm64 mattocci/${image}:4.4.3_arm64
 
             # Dynamically extract the AMD64 digest using jq
             amd64_digest=$(docker manifest inspect mattocci/${image}:4.4.3_amd64 | \
