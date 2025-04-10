@@ -36,16 +36,16 @@ jobs:
             docker pull --platform linux/amd64 mattocci/${image}:4.4.3_amd64
             docker pull --platform linux/arm64 mattocci/${image}:4.4.3_arm64
 
-            # Extract digests for both architectures using Buildx imagetools
-            amd64_digest=$(docker buildx imagetools inspect mattocci/${image}:4.4.3_amd64 | \
+            # Extract digests for both architectures using --format for valid JSON output
+            amd64_digest=$(docker buildx imagetools inspect --format '{{json .}}' mattocci/${image}:4.4.3_amd64 | \
               jq -r '.manifests[] | select(.platform.architecture=="amd64") | .digest')
-            arm64_digest=$(docker buildx imagetools inspect mattocci/${image}:4.4.3_arm64 | \
+            arm64_digest=$(docker buildx imagetools inspect --format '{{json .}}' mattocci/${image}:4.4.3_arm64 | \
               jq -r '.manifests[] | select(.platform.architecture=="arm64") | .digest')
 
             echo "AMD64 digest for $image: ${amd64_digest}"
             echo "ARM64 digest for $image: ${arm64_digest}"
 
-            # Remove any existing manifest list (ignore errors if not exists)
+            # Remove any existing manifest list (ignore errors)
             docker manifest rm mattocci/${image}:4.4.3 || true
 
             # Create the multi-arch manifest list using the extracted digests
