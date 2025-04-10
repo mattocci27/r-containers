@@ -34,22 +34,22 @@ jobs:
             echo "Processing image: $image"
 
             # Pull single-arch images for AMD64 and ARM64
-            docker pull mattocci/${image}:4.3.3_amd64
-            docker pull mattocci/${image}:4.3.3_arm64
+            docker pull mattocci/${image}:4.4.3_amd64
+            docker pull mattocci/${image}:4.4.3_arm64
 
             # Dynamically extract the AMD64 digest using jq
-            amd64_digest=$(docker manifest inspect mattocci/${image}:4.3.3_amd64 | \
+            amd64_digest=$(docker manifest inspect mattocci/${image}:4.4.3_amd64 | \
               jq -r '.manifests[] | select(.platform.architecture=="amd64") | .digest')
             echo "AMD64 digest for $image: ${amd64_digest}"
 
             # Remove any existing manifest list (ignore errors)
-            docker manifest rm mattocci/${image}:4.3.3 || true
+            docker manifest rm mattocci/${image}:4.4.3 || true
 
             # Create the multi-arch manifest list
-            docker manifest create mattocci/${image}:4.3.3 \
+            docker manifest create mattocci/${image}:4.4.3 \
               "mattocci/${image}@${amd64_digest}" \
-              mattocci/${image}:4.3.3_arm64
+              mattocci/${image}:4.4.3_arm64
 
             # Push the manifest list
-            docker manifest push mattocci/${image}:4.3.3
+            docker manifest push mattocci/${image}:4.4.3
           done
