@@ -1,5 +1,5 @@
 # NOTE: THIS DOCKERFILE IS GENERATED VIA "update.py"
-FROM mattocci/radian-verse:4.4.3_amd64
+FROM mattocci/radian-verse:4.5.0_amd64
 
 
 ENV DEBIAN_FRONTEND=noninteractive

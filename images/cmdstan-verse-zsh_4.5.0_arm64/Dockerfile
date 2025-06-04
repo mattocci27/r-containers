@@ -1,5 +1,5 @@
 # NOTE: THIS DOCKERFILE IS GENERATED VIA "update.py"
-FROM mattocci/cmdstan-verse:4.4.3_arm64
+FROM mattocci/cmdstan-verse:4.5.0_arm64
 
 
 ENV DEBIAN_FRONTEND=noninteractive
@@ -38,29 +38,17 @@ RUN apt-get update && apt-get install -y \
   neofetch \
   eza \
   stow \
-  cargo \
   fd-find \
   openssh-client \
   && rm -rf /var/lib/apt/lists/*
-
-# Install eza
-RUN apt-get update && \
-    apt-get install -y gpg wget && \
-    mkdir -p /etc/apt/keyrings && \
-    wget -qO- https://raw.githubusercontent.com/eza-community/eza/main/deb.asc | \
-    gpg --dearmor -o /etc/apt/keyrings/gierens.gpg && \
-    echo "deb [signed-by=/etc/apt/keyrings/gierens.gpg] http://deb.gierens.de stable main" | \
-    tee /etc/apt/sources.list.d/gierens.list && \
-    chmod 644 /etc/apt/keyrings/gierens.gpg /etc/apt/sources.list.d/gierens.list && \
-    apt-get update && \
-    apt-get install -y eza \
-    && rm -rf /var/lib/apt/lists/*
 
 # Change the default shell for rstudio to zsh
 RUN usermod -s /usr/bin/zsh rstudio
 
 # Install Rust applications using Cargo, installed via apt
 USER rstudio
+RUN curl https://sh.rustup.rs -sSf | sh -s -- -y
+ENV PATH="home/rstudio/.cargo/bin:${PATH}"
 RUN cargo install zoxide dutree
 
 # Change shell to Zsh for Docker RUN commands
