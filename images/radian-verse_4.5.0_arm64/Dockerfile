@@ -8,6 +8,34 @@ ENV DEBIAN_FRONTEND=noninteractive
 ARG TARGETPLATFORM
 RUN echo "TARGETPLATFORM: ${TARGETPLATFORM}"
 
+RUN apt-get update -q -y \
+  && apt-get install --no-install-recommends --fix-missing -y \
+    libudunits2-dev \
+    gdal-bin \
+    lbzip2 \
+    libfftw3-dev \
+    libgdal-dev \
+    libgeos-dev \
+    libgsl0-dev \
+    libgl1-mesa-dev \
+    libglu1-mesa-dev \
+    libhdf4-alt-dev \
+    libhdf5-dev \
+    libjq-dev \
+    libpq-dev \
+    libproj-dev \
+    libprotobuf-dev \
+    libnetcdf-dev \
+    libsqlite3-dev \
+    libssl-dev \
+    netcdf-bin \
+    postgis \
+    protobuf-compiler \
+    sqlite3 \
+    tk-dev \
+    unixodbc-dev \
+  && apt-get autoremove -y \
+  && apt-get clean all
 
 
 RUN apt-get update -qq \
