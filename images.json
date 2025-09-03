@@ -43,6 +43,7 @@
       "quartoVer": "1.7.31",
       "imageVer": "4.5.1_arm64",
       "systemPackages": [
+        "libnode-dev",
         "libudunits2-dev",
         "gdal-bin",
         "lbzip2",
@@ -141,6 +142,7 @@
       "quartoVer": "1.7.32",
       "imageVer": "4.5.1_amd64",
       "systemPackages": [
+        "libnode-dev",
         "libudunits2-dev",
         "gdal-bin",
         "lbzip2",

@@ -10,6 +10,7 @@ RUN echo "TARGETPLATFORM: ${TARGETPLATFORM}"
 
 RUN apt-get update -q -y \
   && apt-get install --no-install-recommends --fix-missing -y \
+    libnode-dev \
     libudunits2-dev \
     gdal-bin \
     lbzip2 \
