@@ -34,7 +34,7 @@ jobs:
           set -e
           latest_tag=4.5.1
           # List of image base names to process
-          images=("radian" "radian-verse" "cmdstan-verse" "cmdstan-verse-zsh")
+          images=("radian" "radian-verse" "radian-claude" "cmdstan-verse" "cmdstan-zsh" "cmdstan-claude")
           for image in "${images[@]}"; do
             echo "Processing image: $image"
 
