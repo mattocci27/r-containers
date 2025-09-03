@@ -1,5 +1,5 @@
 # NOTE: THIS DOCKERFILE IS GENERATED VIA "update.py"
-FROM mattocci/cmdstan-verse:4.5.1_amd64
+FROM mattocci/cmdstan-verse:4.5.1_arm64
 
 
 ENV DEBIAN_FRONTEND=noninteractive
@@ -84,4 +84,5 @@ RUN source /home/rstudio/.local/share/zinit/zinit.git/zinit.zsh && \
     zinit light jeffreytse/zsh-vi-mode
 
 RUN git clone https://github.com/sindresorhus/pure.git /home/rstudio/.local/share/zinit/plugins/sindresorhus---pure
+
 

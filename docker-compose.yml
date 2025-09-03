@@ -10,16 +10,26 @@ services:
     build:
       context: .
       dockerfile: images/radian-verse_4.5.1_arm64/Dockerfile
+  radian-claude_4.5.1_arm64:
+    image: mattocci/radian-claude:4.5.1_arm64
+    build:
+      context: .
+      dockerfile: images/radian-claude_4.5.1_arm64/Dockerfile
   cmdstan-verse_4.5.1_arm64:
     image: mattocci/cmdstan-verse:4.5.1_arm64
     build:
       context: .
       dockerfile: images/cmdstan-verse_4.5.1_arm64/Dockerfile
-  cmdstan-verse-zsh_4.5.1_arm64:
-    image: mattocci/cmdstan-verse-zsh:4.5.1_arm64
+  cmdstan-zsh_4.5.1_arm64:
+    image: mattocci/cmdstan-zsh:4.5.1_arm64
     build:
       context: .
-      dockerfile: images/cmdstan-verse-zsh_4.5.1_arm64/Dockerfile
+      dockerfile: images/cmdstan-zsh_4.5.1_arm64/Dockerfile
+  cmdstan-claude_4.5.1_arm64:
+    image: mattocci/cmdstan-claude:4.5.1_arm64
+    build:
+      context: .
+      dockerfile: images/cmdstan-claude_4.5.1_arm64/Dockerfile
   radian_4.5.1_amd64:
     image: mattocci/radian:4.5.1_amd64
     build:
@@ -30,13 +40,23 @@ services:
     build:
       context: .
       dockerfile: images/radian-verse_4.5.1_amd64/Dockerfile
+  radian-claude_4.5.1_amd64:
+    image: mattocci/radian-claude:4.5.1_amd64
+    build:
+      context: .
+      dockerfile: images/radian-claude_4.5.1_amd64/Dockerfile
   cmdstan-verse_4.5.1_amd64:
     image: mattocci/cmdstan-verse:4.5.1_amd64
     build:
       context: .
       dockerfile: images/cmdstan-verse_4.5.1_amd64/Dockerfile
-  cmdstan-verse-zsh_4.5.1_amd64:
-    image: mattocci/cmdstan-verse-zsh:4.5.1_amd64
+  cmdstan-zsh_4.5.1_amd64:
+    image: mattocci/cmdstan-zsh:4.5.1_amd64
     build:
       context: .
-      dockerfile: images/cmdstan-verse-zsh_4.5.1_amd64/Dockerfile
+      dockerfile: images/cmdstan-zsh_4.5.1_amd64/Dockerfile
+  cmdstan-claude_4.5.1_amd64:
+    image: mattocci/cmdstan-claude:4.5.1_amd64
+    build:
+      context: .
+      dockerfile: images/cmdstan-claude_4.5.1_amd64/Dockerfile

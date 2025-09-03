@@ -1,5 +1,5 @@
 # NOTE: THIS DOCKERFILE IS GENERATED VIA "update.py"
-FROM mattocci/cmdstan-verse:4.5.1_arm64
+FROM mattocci/radian-verse:4.5.1_amd64
 
 
 ENV DEBIAN_FRONTEND=noninteractive
@@ -85,3 +85,5 @@ RUN source /home/rstudio/.local/share/zinit/zinit.git/zinit.zsh && \
 
 RUN git clone https://github.com/sindresorhus/pure.git /home/rstudio/.local/share/zinit/plugins/sindresorhus---pure
 
+
+RUN curl -fsSL https://claude.ai/install.sh | bash
