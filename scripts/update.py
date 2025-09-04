@@ -36,9 +36,5 @@ def main():
             }
         }
 
-    docker_compose_config = {'version': '3', 'services': imgs}
-    with open("docker-compose.yml", "w") as wf:
-        yaml.dump(docker_compose_config, wf)
-
 if __name__ == '__main__':
     main()
