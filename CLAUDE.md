@@ -57,3 +57,21 @@ Each image type is built for both ARM64 and AMD64 architectures.
 4. Test images before pushing with `make push_docker`
 
 **Important**: Never manually edit files in `images/` directory - they are auto-generated and will be overwritten.
+
+
+```
+# install a newer Python if needed (pyenv example)
+pyenv install 3.12.5
+pyenv shell 3.12.5   # or give full path below
+
+# tell Poetry to use it for this project
+poetry env use $(pyenv which python)
+
+# update pyproject’s Python constraint
+# in pyproject.toml:
+# [tool.poetry.dependencies]
+# python = ">=3.9,<4.0"    # or ">=3.10,<4.0" / ">=3.12,<4.0"
+
+poetry install
+poetry add requests
+```
