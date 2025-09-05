@@ -36,8 +36,10 @@ RUN apt-get update -q -y \
 
 
 
-RUN sudo -H -u rstudio pipx install radian
-ENV PATH="/home/rstudio/.local/bin:${PATH}"
+RUN python3 -m venv /opt/venv
+RUN /opt/venv/bin/pip install --no-cache-dir --upgrade pip \
+    && /opt/venv/bin/pip install radian
+ENV PATH="/opt/venv/bin:$PATH"
 
 
 
