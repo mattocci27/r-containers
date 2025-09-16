@@ -53,7 +53,7 @@ jobs:
         run: |
           docker buildx bake -f bakefiles/bakefile_amd.json --push radian
           docker buildx bake -f bakefiles/bakefile_amd.json --push radian-verse
-          docker buildx bake -f bakefiles/bakefile_amd.json --push radian-claude
+          docker buildx bake -f bakefiles/bakefile_amd.json --push radian-ai
           docker buildx bake -f bakefiles/bakefile_amd.json --push cmdstan-verse
           docker buildx bake -f bakefiles/bakefile_amd.json --push cmdstan-zsh
-          docker buildx bake -f bakefiles/bakefile_amd.json --push cmdstan-claude
+          docker buildx bake -f bakefiles/bakefile_amd.json --push cmdstan-ai

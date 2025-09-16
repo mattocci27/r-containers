@@ -2,18 +2,18 @@
   "target": {
     "default": {
       "depends": [
-        {%- for config in images.configs if ("_" + arch + "64") in config.imageVer -%}
-        "{{ config.imageName }}"{% if not loop.last %}, {% endif %}
+        {%- for c in configs if c.arch == arch_platform -%}
+        "{{ c.imageName }}"{% if not loop.last %}, {% endif %}
         {%- endfor %}
       ]
     }
-    {%- for config in images.configs if ("_" + arch + "64") in config.imageVer %}
-    , "{{ config.imageName }}": {
+    {%- for c in configs if c.arch == arch_platform %}
+    , "{{ c.imageName }}": {
       "context": ".",
-      "dockerfile": "images/{{ config.imageTag }}/Dockerfile",
-      "tags": ["{{ images.owner }}/{{ config.imageName }}:{{ config.imageVer }}"],
-      "platforms": ["linux/{{ 'amd64' if arch == 'amd' else 'arm64' }}"],
-      "cache-from": ["docker.io/{{ images.owner }}/{{ config.imageName }}:{{ config.imageVer }}"],
+      "dockerfile": "images/{{ c.imageTag }}/Dockerfile",
+      "tags": ["{{ owner }}/{{ c.imageName }}:{{ c.imageVer }}"],
+      "platforms": ["linux/{{ arch_platform }}"],
+      "cache-from": ["docker.io/{{ owner }}/{{ c.imageName }}:{{ c.imageVer }}"],
       "cache-to": ["type=inline"],
       "output": ["type=registry,push=true"]
     }

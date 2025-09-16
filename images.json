@@ -1,12 +1,13 @@
 {
   "owner": "mattocci",
-  "configs": [
+  "version": "4.5.1",
+  "arches": ["amd64", "arm64"],
+  "images": [
     {
-      "baseImage": "rocker/rstudio:4.5.1",
-      "imageTag": "radian_4.5.1_arm64",
-      "imageName": "radian",
-      "radian": "install",
-      "imageVer": "4.5.1_arm64",
+      "name": "radian",
+      "baseImage": "rocker/rstudio:{version}",
+      "radian": true,
+      "vscodeRenv": true,
       "systemPackages": [
         "libcairo2-dev",
         "libcurl4-openssl-dev",
@@ -34,21 +35,15 @@
         "devtools",
         "yaml",
         "languageserver"
-      ],
-      "installGithub": [
-        "nx10/unigd",
-        "nx10/httpgd"
       ]
     },
     {
-      "baseImage": "mattocci/radian:4.5.1_arm64",
-      "imageTag": "radian-verse_4.5.1_arm64",
-      "imageName": "radian-verse",
-      "updateLatex": "update",
-      "tinytex": "install",
-      "quarto": "install",
-      "quartoVer": "1.8.24",
-      "imageVer": "4.5.1_arm64",
+      "name": "radian-verse",
+      "baseImage": "mattocci/radian:{version}_{arch}",
+      "tinytex": true,
+      "quarto": true,
+      "updateLatex": true,
+      "quartoVer": {"amd64": "1.7.32", "arm64": "1.7.31"},
       "systemPackages": [
         "libnode-dev",
         "libudunits2-dev",
@@ -78,146 +73,30 @@
       ]
     },
     {
-      "baseImage": "mattocci/radian-verse:4.5.1_arm64",
-      "imageTag": "radian-ai_4.5.1_arm64",
-      "imageName": "radian-ai",
-      "zsh": "install",
-      "ai": "install",
-      "imageVer": "4.5.1_arm64"
+      "name": "radian-ai",
+      "baseImage": "mattocci/radian-verse:{version}_{arch}",
+      "zsh": true,
+      "ai": true
     },
     {
-      "baseImage": "mattocci/radian-verse:4.5.1_arm64",
-      "imageTag": "cmdstan-verse_4.5.1_arm64",
-      "imageName": "cmdstan-verse",
+      "name": "cmdstan-verse",
+      "baseImage": "mattocci/radian-verse:{version}_{arch}",
+      "cmdstan": true,
       "cmdstanVer": "2.36.0",
-      "cmdstan": "install",
-      "imageVer": "4.5.1_arm64",
       "systemPackages": [
         "build-essential"
       ]
     },
     {
-      "baseImage": "mattocci/cmdstan-verse:4.5.1_arm64",
-      "imageTag": "cmdstan-zsh_4.5.1_arm64",
-      "imageName": "cmdstan-zsh",
-      "zsh": "install",
-      "imageVer": "4.5.1_arm64"
+      "name": "cmdstan-zsh",
+      "baseImage": "mattocci/cmdstan-verse:{version}_{arch}",
+      "zsh": true
     },
     {
-      "baseImage": "mattocci/cmdstan-zsh:4.5.1_arm64",
-      "imageTag": "cmdstan-ai_4.5.1_arm64",
-      "imageName": "cmdstan-ai",
-      "ai": "install",
-      "imageVer": "4.5.1_arm64"
-    },
-    {
-      "baseImage": "rocker/rstudio:4.5.1",
-      "imageTag": "radian_4.5.1_amd64",
-      "imageName": "radian",
-      "radian": "install",
-      "imageVer": "4.5.1_amd64",
-      "systemPackages": [
-        "libcairo2-dev",
-        "libcurl4-openssl-dev",
-        "libglpk-dev",
-        "libxml2-dev",
-        "libzmq3-dev",
-        "libfontconfig1-dev",
-        "libharfbuzz-dev",
-        "libfribidi-dev",
-        "libfreetype6-dev",
-        "libpng-dev",
-        "libtiff5-dev",
-        "libjpeg-dev",
-        "libgit2-dev",
-        "libxt6",
-        "python3-venv",
-        "python3-dev",
-        "python3-pip",
-        "pipx",
-        "cmake"
-      ],
-      "installCRAN": [
-        "remotes",
-        "renv",
-        "devtools",
-        "yaml",
-        "languageserver"
-      ],
-      "installGithub": [
-        "nx10/unigd",
-        "nx10/httpgd"
-      ]
-    },
-    {
-      "baseImage": "mattocci/radian:4.5.1_amd64",
-      "imageTag": "radian-verse_4.5.1_amd64",
-      "imageName": "radian-verse",
-      "updateLatex": "update",
-      "tinytex": "install",
-      "quarto": "install",
-      "quartoVer": "1.8.24",
-      "imageVer": "4.5.1_amd64",
-      "systemPackages": [
-        "libnode-dev",
-        "libudunits2-dev",
-        "gdal-bin",
-        "lbzip2",
-        "libfftw3-dev",
-        "libgdal-dev",
-        "libgeos-dev",
-        "libgsl0-dev",
-        "libgl1-mesa-dev",
-        "libglu1-mesa-dev",
-        "libhdf4-alt-dev",
-        "libhdf5-dev",
-        "libjq-dev",
-        "libpq-dev",
-        "libproj-dev",
-        "libprotobuf-dev",
-        "libnetcdf-dev",
-        "libsqlite3-dev",
-        "libssl-dev",
-        "netcdf-bin",
-        "postgis",
-        "protobuf-compiler",
-        "sqlite3",
-        "tk-dev",
-        "unixodbc-dev"
-      ]
-    },
-    {
-      "baseImage": "mattocci/radian-verse:4.5.1_amd64",
-      "imageTag": "radian-ai_4.5.1_amd64",
-      "imageName": "radian-ai",
-      "zsh": "install",
-      "ai": "install",
-      "imageVer": "4.5.1_amd64"
-    },
-    {
-      "baseImage": "mattocci/radian-verse:4.5.1_amd64",
-      "imageTag": "cmdstan-verse_4.5.1_amd64",
-      "imageName": "cmdstan-verse",
-      "cmdstanVer": "2.36.0",
-      "cmdstan": "install",
-      "imageVer": "4.5.1_amd64",
-      "systemPackages": [
-        "build-essential"
-      ]
-    },
-    {
-      "baseImage": "mattocci/cmdstan-verse:4.5.1_amd64",
-      "imageTag": "cmdstan-zsh_4.5.1_amd64",
-      "imageName": "cmdstan-zsh",
-      "zsh": "install",
-      "imageVer": "4.5.1_amd64"
-    },
-    {
-      "baseImage": "mattocci/cmdstan-zsh:4.5.1_amd64",
-      "imageTag": "cmdstan-ai_4.5.1_amd64",
-      "imageName": "cmdstan-ai",
-      "ai": "install",
-      "imageVer": "4.5.1_amd64"
+      "name": "cmdstan-ai",
+      "baseImage": "mattocci/cmdstan-zsh:{version}_{arch}",
+      "ai": true
     }
   ]
 }
+

@@ -24,12 +24,14 @@ RUN apt-get update -q -y \
     libjpeg-dev \
     libgit2-dev \
     libxt6 \
+    python3-venv \
     python3-dev \
     python3-pip \
     pipx \
     cmake \
   && apt-get autoremove -y \
-  && apt-get clean all
+  && apt-get clean \
+  && rm -rf /var/lib/apt/lists/*
 
 
 
@@ -47,23 +49,12 @@ ENV PATH="/opt/venv/bin:$PATH"
 RUN install2.r -n -2 --skipinstalled --error \
     remotes \
     renv \
+    devtools \
+    yaml \
+    languageserver \
   && rm -rf /tmp/downloaded_packages
 
 
 
-
-# vscode-R
-USER rstudio
-RUN mkdir -p /home/rstudio/vscode-R
-
-WORKDIR /home/rstudio
-
-RUN R -e 'renv::init(project = "/home/rstudio/vscode-R")'
-
-WORKDIR /home/rstudio/vscode-R
-RUN R -e 'renv::install(c("languageserver", "nx10/unigd", "nx10/httpgd", "devtools", "yaml"))'
-
-USER root
-WORKDIR /
 
 

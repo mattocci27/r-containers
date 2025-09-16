@@ -22,7 +22,6 @@ RUN echo "TARGETPLATFORM: ${TARGETPLATFORM}"
 
 
 
-
 # Install dependencies and tools including Cargo and Rust
 RUN apt-get update && apt-get install -y \
   curl \
@@ -48,7 +47,7 @@ RUN usermod -s /usr/bin/zsh rstudio
 # Install Rust applications using Cargo, installed via apt
 USER rstudio
 RUN curl https://sh.rustup.rs -sSf | sh -s -- -y
-ENV PATH="home/rstudio/.cargo/bin:${PATH}"
+ENV PATH="/home/rstudio/.cargo/bin:${PATH}"
 RUN cargo install zoxide dutree
 
 # Change shell to Zsh for Docker RUN commands
@@ -86,4 +85,16 @@ RUN source /home/rstudio/.local/share/zinit/zinit.git/zinit.zsh && \
 RUN git clone https://github.com/sindresorhus/pure.git /home/rstudio/.local/share/zinit/plugins/sindresorhus---pure
 
 
+USER rstudio
+
 RUN curl -fsSL https://claude.ai/install.sh | bash
+
+USER root
+
+RUN curl -fsSL https://deb.nodesource.com/setup_22.x | bash - \
+ && apt-get update \
+ && apt-get install -y nodejs
+
+RUN npm install -g @openai/codex
+
+USER rstudio

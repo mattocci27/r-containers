@@ -36,7 +36,8 @@ RUN apt-get update -q -y \
     tk-dev \
     unixodbc-dev \
   && apt-get autoremove -y \
-  && apt-get clean all
+  && apt-get clean \
+  && rm -rf /var/lib/apt/lists/*
 
 
 RUN apt-get update -qq \
@@ -51,7 +52,8 @@ RUN apt-get update -qq \
       ghostscript \
       latexdiff \
     && apt-get autoremove -y \
-    && apt-get autoclean -y
+    && apt-get clean \
+    && rm -rf /var/lib/apt/lists/*
 
 RUN echo "PATH=${PATH}" >> ${R_HOME}/etc/Renviron
 
@@ -60,7 +62,7 @@ RUN install2.r -n -2 --skipinstalled --error \
 
 USER rstudio
 
-RUN wget --no-check-certificate -qO- "https://yihui.org/gh/tinytex/tools/install-unx.sh" | sh
+RUN wget -qO- "https://yihui.org/gh/tinytex/tools/install-unx.sh" | sh
 
 ENV PATH="/home/rstudio/bin/:$PATH"
 
@@ -90,7 +92,6 @@ RUN R -e "tinytex::tlmgr_install( \
     'microtype', \
     'lmodern', \
     'xurl', \
-    'microtype', \
     'fvextra', \
     'geometry', \
     'gettitlestring', \
@@ -138,7 +139,6 @@ RUN R -e "tinytex::tlmgr_install( \
     'trimspaces', \
     'ulem', \
     'uniquecounter', \
-    'upquote', \
     'varwidth', \
     'wrapfig', \
     'xcolor', \
@@ -150,16 +150,17 @@ USER root
 
 ENV QUARTO_VERSION=1.7.32
 
-RUN  wget -N --no-check-certificate -q -O install_quarto.sh \
+RUN  wget -N -q -O install_quarto.sh \
   "https://raw.githubusercontent.com/rocker-org/rocker-versioned2/master/scripts/install_quarto.sh" \
   && chmod +x install_quarto.sh \
   && bash install_quarto.sh \
   && rm install_quarto.sh
 
 
+USER rstudio
 RUN tlmgr option repository http://ctan.math.utah.edu/ctan/tex-archive/systems/texlive/tlnet && \
     tlmgr update --self --all
-
+USER root
 
 
 

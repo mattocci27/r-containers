@@ -1,7 +1,7 @@
 {
   "target": {
     "default": {
-      "depends": ["radian", "radian-verse", "radian-claude", "cmdstan-verse", "cmdstan-zsh", "cmdstan-claude"      ]
+      "depends": ["radian", "radian-verse", "radian-ai", "cmdstan-verse", "cmdstan-zsh", "cmdstan-ai"      ]
     }    , "radian": {
       "context": ".",
       "dockerfile": "images/radian_4.5.1_arm64/Dockerfile",
@@ -18,12 +18,12 @@
       "cache-from": ["docker.io/mattocci/radian-verse:4.5.1_arm64"],
       "cache-to": ["type=inline"],
       "output": ["type=registry,push=true"]
-    }    , "radian-claude": {
+    }    , "radian-ai": {
       "context": ".",
-      "dockerfile": "images/radian-claude_4.5.1_arm64/Dockerfile",
-      "tags": ["mattocci/radian-claude:4.5.1_arm64"],
+      "dockerfile": "images/radian-ai_4.5.1_arm64/Dockerfile",
+      "tags": ["mattocci/radian-ai:4.5.1_arm64"],
       "platforms": ["linux/arm64"],
-      "cache-from": ["docker.io/mattocci/radian-claude:4.5.1_arm64"],
+      "cache-from": ["docker.io/mattocci/radian-ai:4.5.1_arm64"],
       "cache-to": ["type=inline"],
       "output": ["type=registry,push=true"]
     }    , "cmdstan-verse": {
@@ -42,12 +42,12 @@
       "cache-from": ["docker.io/mattocci/cmdstan-zsh:4.5.1_arm64"],
       "cache-to": ["type=inline"],
       "output": ["type=registry,push=true"]
-    }    , "cmdstan-claude": {
+    }    , "cmdstan-ai": {
       "context": ".",
-      "dockerfile": "images/cmdstan-claude_4.5.1_arm64/Dockerfile",
-      "tags": ["mattocci/cmdstan-claude:4.5.1_arm64"],
+      "dockerfile": "images/cmdstan-ai_4.5.1_arm64/Dockerfile",
+      "tags": ["mattocci/cmdstan-ai:4.5.1_arm64"],
       "platforms": ["linux/arm64"],
-      "cache-from": ["docker.io/mattocci/cmdstan-claude:4.5.1_arm64"],
+      "cache-from": ["docker.io/mattocci/cmdstan-ai:4.5.1_arm64"],
       "cache-to": ["type=inline"],
       "output": ["type=registry,push=true"]
     }  }
