@@ -1,5 +1,6 @@
 # NOTE: THIS DOCKERFILE IS GENERATED VIA "update.py"
 FROM rocker/rstudio:4.5.1
+USER root
 
 
 ENV DEBIAN_FRONTEND=noninteractive
@@ -45,7 +46,6 @@ ENV PATH="/opt/venv/bin:$PATH"
 
 
 
-
 RUN install2.r -n -2 --skipinstalled --error \
     remotes \
     renv \
@@ -54,7 +54,13 @@ RUN install2.r -n -2 --skipinstalled --error \
     languageserver \
   && rm -rf /tmp/downloaded_packages
 
+RUN installGithub.r --update FALSE \
+    nx10/unigd \
+    nx10/httpgd \
+  && rm -rf /tmp/downloaded_packages
 
 
 
 
+
+USER rstudio

@@ -1,5 +1,6 @@
 # NOTE: THIS DOCKERFILE IS GENERATED VIA "update.py"
 FROM mattocci/radian:4.5.1_amd64
+USER root
 
 
 ENV DEBIAN_FRONTEND=noninteractive
@@ -160,7 +161,6 @@ RUN  wget -N -q -O install_quarto.sh \
 USER rstudio
 RUN tlmgr option repository http://ctan.math.utah.edu/ctan/tex-archive/systems/texlive/tlnet && \
     tlmgr update --self --all
-USER root
 
 
 
@@ -172,3 +172,4 @@ USER root
 
 
 
+USER rstudio

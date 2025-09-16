@@ -1,5 +1,6 @@
 # {{ note }}
 FROM {{ baseImage }}
+USER root
 
 {% if label %}
 LABEL {% for item in label -%}
@@ -164,7 +165,6 @@ RUN  wget -N -q -O install_quarto.sh \
 USER rstudio
 RUN tlmgr option repository http://ctan.math.utah.edu/ctan/tex-archive/systems/texlive/tlnet && \
     tlmgr update --self --all
-USER root
 {% endif %}
 
 {% if crossrefVer %}
@@ -192,18 +192,18 @@ RUN Rscript -e "install.packages('BiocManager')" \
 RUN Rscript -e "install.packages('Rcpp')"
 {% endif %}
 
-{% if installGithub %}
-RUN installGithub.r --update FALSE \
-    {% for github in installGithub %}
-    {{ github }} \
-    {% endfor %}
-  && rm -rf /tmp/downloaded_packages
-{% endif %}
-
 {% if installCRAN %}
 RUN install2.r -n -2 --skipinstalled --error \
     {% for cran in installCRAN %}
     {{ cran }} \
+    {% endfor %}
+  && rm -rf /tmp/downloaded_packages
+{% endif %}
+
+{% if installGithub %}
+RUN installGithub.r --update FALSE \
+    {% for github in installGithub %}
+    {{ github }} \
     {% endfor %}
   && rm -rf /tmp/downloaded_packages
 {% endif %}
@@ -296,13 +296,6 @@ RUN source /home/rstudio/.local/share/zinit/zinit.git/zinit.zsh && \
 
 # Source Zinit script and perform any additional setup
 RUN source /home/rstudio/.local/share/zinit/zinit.git/zinit.zsh && \
-    zinit load zdharma-continuum/zinit-annex-as-monitor && \
-    zinit load zdharma-continuum/zinit-annex-bin-gem-node && \
-    zinit load zdharma-continuum/zinit-annex-patch-dl && \
-    zinit load zdharma-continuum/zinit-annex-rust
-
-# Source Zinit script and perform any additional setup
-RUN source /home/rstudio/.local/share/zinit/zinit.git/zinit.zsh && \
     zinit light zsh-users/zsh-autosuggestions && \
     zinit light zdharma-continuum/fast-syntax-highlighting && \
     zinit light zsh-users/zsh-completions
@@ -311,7 +304,9 @@ RUN source /home/rstudio/.local/share/zinit/zinit.git/zinit.zsh && \
     zinit ice depth=1 && \
     zinit light jeffreytse/zsh-vi-mode
 
-RUN git clone https://github.com/sindresorhus/pure.git /home/rstudio/.local/share/zinit/plugins/sindresorhus---pure
+RUN [[ -d "/home/rstudio/.local/share/zinit/plugins/sindresorhus---pure" ]] \
+    || git clone https://github.com/sindresorhus/pure.git \
+      /home/rstudio/.local/share/zinit/plugins/sindresorhus---pure
 
 {% endif %}
 
@@ -328,5 +323,5 @@ RUN curl -fsSL https://deb.nodesource.com/setup_22.x | bash - \
 
 RUN npm install -g @openai/codex
 
-USER rstudio
 {% endif %}
+USER rstudio

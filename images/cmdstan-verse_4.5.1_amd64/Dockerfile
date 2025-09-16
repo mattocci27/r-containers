@@ -1,5 +1,6 @@
 # NOTE: THIS DOCKERFILE IS GENERATED VIA "update.py"
 FROM mattocci/radian-verse:4.5.1_amd64
+USER root
 
 
 ENV DEBIAN_FRONTEND=noninteractive
@@ -38,3 +39,4 @@ ENV CMDSTAN_PATH=/opt/cmdstan/cmdstan-${CMDSTAN_VERSION}
 
 
 
+USER rstudio

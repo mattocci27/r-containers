@@ -35,6 +35,10 @@
         "devtools",
         "yaml",
         "languageserver"
+      ],
+      "installGithub": [
+        "nx10/unigd",
+        "nx10/httpgd"
       ]
     },
     {
@@ -43,7 +47,7 @@
       "tinytex": true,
       "quarto": true,
       "updateLatex": true,
-      "quartoVer": {"amd64": "1.7.32", "arm64": "1.7.31"},
+      "quartoVer": {"amd64": "1.7.32", "arm64": "1.7.32"},
       "systemPackages": [
         "libnode-dev",
         "libudunits2-dev",
@@ -73,9 +77,13 @@
       ]
     },
     {
-      "name": "radian-ai",
+      "name": "radian-zsh",
       "baseImage": "mattocci/radian-verse:{version}_{arch}",
-      "zsh": true,
+      "zsh": true
+    },
+    {
+      "name": "radian-ai",
+      "baseImage": "mattocci/radian-zsh:{version}_{arch}",
       "ai": true
     },
     {
@@ -89,8 +97,12 @@
     },
     {
       "name": "cmdstan-zsh",
-      "baseImage": "mattocci/cmdstan-verse:{version}_{arch}",
-      "zsh": true
+      "baseImage": "mattocci/radian-zsh:{version}_{arch}",
+      "cmdstan": true,
+      "cmdstanVer": "2.36.0",
+      "systemPackages": [
+        "build-essential"
+      ]
     },
     {
       "name": "cmdstan-ai",
@@ -99,4 +111,3 @@
     }
   ]
 }
-

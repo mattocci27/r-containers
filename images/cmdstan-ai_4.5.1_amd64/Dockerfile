@@ -1,5 +1,6 @@
 # NOTE: THIS DOCKERFILE IS GENERATED VIA "update.py"
 FROM mattocci/cmdstan-zsh:4.5.1_amd64
+USER root
 
 
 ENV DEBIAN_FRONTEND=noninteractive

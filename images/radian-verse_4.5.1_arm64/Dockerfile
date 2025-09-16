@@ -1,5 +1,6 @@
 # NOTE: THIS DOCKERFILE IS GENERATED VIA "update.py"
 FROM mattocci/radian:4.5.1_arm64
+USER root
 
 
 ENV DEBIAN_FRONTEND=noninteractive
@@ -148,7 +149,7 @@ RUN R -e "tinytex::tlmgr_install( \
 USER root
 
 
-ENV QUARTO_VERSION=1.7.31
+ENV QUARTO_VERSION=1.7.32
 
 RUN  wget -N -q -O install_quarto.sh \
   "https://raw.githubusercontent.com/rocker-org/rocker-versioned2/master/scripts/install_quarto.sh" \
@@ -160,7 +161,6 @@ RUN  wget -N -q -O install_quarto.sh \
 USER rstudio
 RUN tlmgr option repository http://ctan.math.utah.edu/ctan/tex-archive/systems/texlive/tlnet && \
     tlmgr update --self --all
-USER root
 
 
 
@@ -172,3 +172,4 @@ USER root
 
 
 
+USER rstudio
