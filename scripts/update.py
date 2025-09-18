@@ -53,7 +53,7 @@ def main():
                 'systemPackages', 'installCRAN', 'installGithub',
                 'tinytex', 'quarto', 'quartoVer', 'updateLatex',
                 'ai', 'zsh', 'cmdstan', 'cmdstanVer', 'bio', 'Rcpp',
-                'radian', 'vscodeRenv', 'gpu', 'font', 'crossrefVer', 'pandocVer'
+                'radian', 'vscodeRenv', 'gpu', 'font', 'crossrefVer', 'pandocVer', 'nvmVer'
             ]
             for key in passthrough_keys:
                 if key in image:

@@ -84,7 +84,8 @@
     {
       "name": "radian-ai",
       "baseImage": "mattocci/radian-zsh:{version}_{arch}",
-      "ai": true
+      "ai": true,
+      "nvmVer": "0.40.3"
     },
     {
       "name": "cmdstan-verse",
@@ -107,7 +108,8 @@
     {
       "name": "cmdstan-ai",
       "baseImage": "mattocci/cmdstan-zsh:{version}_{arch}",
-      "ai": true
+      "ai": true,
+      "nvmVer": "0.40.3"
     }
   ]
 }

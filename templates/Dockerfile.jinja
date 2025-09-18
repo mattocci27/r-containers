@@ -313,15 +313,16 @@ RUN [[ -d "/home/rstudio/.local/share/zinit/plugins/sindresorhus---pure" ]] \
 {% if ai %}
 USER rstudio
 
-RUN curl -fsSL https://claude.ai/install.sh | bash
+RUN curl -fsSL https://claude.ai/install.sh | bash \
+  && echo 'export PATH="$HOME/.local/bin:$PATH"' >> /home/rstudio/.bashrc
 
-USER root
-
-RUN curl -fsSL https://deb.nodesource.com/setup_22.x | bash - \
- && apt-get update \
- && apt-get install -y nodejs
-
-RUN npm install -g @openai/codex
+ENV NVM_VERSION={{nvmVer}}
+ENV NVM_DIR=/home/rstudio/.nvm
+RUN curl -fsSL https://raw.githubusercontent.com/nvm-sh/nvm/v${NVM_VERSION}/install.sh | bash \
+ && . "$NVM_DIR/nvm.sh" \
+ && nvm install 22 \
+ && nvm use 22 \
+ && npm install -g @openai/codex
 
 {% endif %}
 USER rstudio
