@@ -89,7 +89,7 @@ jobs:
           for image in ${IMAGES}; do
             echo "Processing ${image}"
             docker pull mattocci/${image}:${LATEST_TAG}_amd64
-            docker pull mattocci/${image}:${LATEST_TAG}_arm64
+            docker pull --platform linux/arm64 mattocci/${image}:${LATEST_TAG}_arm64
             amd64_digest=$(docker manifest inspect mattocci/${image}:${LATEST_TAG}_amd64 | \
               jq -r '.manifests[] | select(.platform.architecture=="amd64") | .digest')
             if [ -z "${amd64_digest}" ] || [ "${amd64_digest}" = "null" ]; then
