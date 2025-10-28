@@ -62,7 +62,10 @@ jobs:
 
       - name: Build and push ${{ matrix.arch }} images
         run: |
-          docker buildx bake -f ${{ matrix.bakefile }} --push
+          for image in ${IMAGES}; do
+            echo "Building ${image} for ${{ matrix.arch }}"
+            docker buildx bake -f ${{ matrix.bakefile }} --push ${image}
+          done
 
   publish-manifests:
     name: Publish multi-arch manifests
