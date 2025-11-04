@@ -1,6 +1,6 @@
 {
   "owner": "mattocci",
-  "version": "4.5.1",
+  "version": "4.5.2",
   "arches": ["amd64", "arm64"],
   "images": [
     {
@@ -91,7 +91,7 @@
       "name": "cmdstan-verse",
       "baseImage": "mattocci/radian-verse:{version}_{arch}",
       "cmdstan": true,
-      "cmdstanVer": "2.36.0",
+      "cmdstanVer": "2.37.0",
       "systemPackages": [
         "build-essential"
       ]
@@ -100,7 +100,7 @@
       "name": "cmdstan-zsh",
       "baseImage": "mattocci/radian-zsh:{version}_{arch}",
       "cmdstan": true,
-      "cmdstanVer": "2.36.0",
+      "cmdstanVer": "2.37.0",
       "systemPackages": [
         "build-essential"
       ]
