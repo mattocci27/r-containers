@@ -52,8 +52,7 @@ ENV PATH="/home/rstudio/.cargo/bin:${PATH}"
 RUN cargo install zoxide dutree
 
 # Install Zinit
-RUN /usr/bin/zsh <<'EOF'
-set -e
+RUN /usr/bin/zsh -c 'set -e
 print -P "%F{33} Installing Zinit...%f"
 mkdir -p "/home/rstudio/.local/share/zinit"
 chmod g-rwX "/home/rstudio/.local/share/zinit"
@@ -62,42 +61,33 @@ if git clone https://github.com/zdharma-continuum/zinit "/home/rstudio/.local/sh
 else
   print -P "%F{160}The clone has failed.%f"
   exit 1
-fi
-EOF
+fi'
 
-RUN /usr/bin/zsh <<'EOF'
-set -e
+RUN /usr/bin/zsh -c 'set -e
 source /home/rstudio/.local/share/zinit/zinit.git/zinit.zsh
 zinit load zdharma-continuum/zinit-annex-as-monitor
 zinit load zdharma-continuum/zinit-annex-bin-gem-node
 zinit load zdharma-continuum/zinit-annex-patch-dl
-zinit load zdharma-continuum/zinit-annex-rust
-EOF
+zinit load zdharma-continuum/zinit-annex-rust'
 
 # Source Zinit script and perform any additional setup
-RUN /usr/bin/zsh <<'EOF'
-set -e
+RUN /usr/bin/zsh -c 'set -e
 source /home/rstudio/.local/share/zinit/zinit.git/zinit.zsh
 zinit light zsh-users/zsh-autosuggestions
 zinit light zdharma-continuum/fast-syntax-highlighting
-zinit light zsh-users/zsh-completions
-EOF
+zinit light zsh-users/zsh-completions'
 
-RUN /usr/bin/zsh <<'EOF'
-set -e
+RUN /usr/bin/zsh -c 'set -e
 source /home/rstudio/.local/share/zinit/zinit.git/zinit.zsh
 zinit ice depth=1
-zinit light jeffreytse/zsh-vi-mode
-EOF
+zinit light jeffreytse/zsh-vi-mode'
 
-RUN /usr/bin/zsh <<'EOF'
-set -e
+RUN /usr/bin/zsh -c 'set -e
 if [[ -d "/home/rstudio/.local/share/zinit/plugins/sindresorhus---pure" ]]; then
   exit 0
 fi
 git clone https://github.com/sindresorhus/pure.git \
-  /home/rstudio/.local/share/zinit/plugins/sindresorhus---pure
-EOF
+  /home/rstudio/.local/share/zinit/plugins/sindresorhus---pure'
 
 
 USER rstudio
