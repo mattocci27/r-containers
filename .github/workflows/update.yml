@@ -70,71 +70,68 @@ jobs:
           BAKEFILE: ${{ matrix.bakefile }}
         run: |
           set -euo pipefail
-          podman build --file Dockerfile --tag mattocci/test --format docker
-          podman push mattocci/test
+          for image in ${IMAGES}; do
+            echo "Building ${image} for ${{ matrix.arch }}"
+            dockerfile=$(jq -r ".target[\"${image}\"].dockerfile" "${BAKEFILE}")
+            tag=$(jq -r ".target[\"${image}\"].tags[0]" "${BAKEFILE}")
+            if [ -z "${dockerfile}" ] || [ "${dockerfile}" = "null" ]; then
+              echo "Unable to determine Dockerfile for ${image}"
+              exit 1
+            fi
+            if [ -z "${tag}" ] || [ "${tag}" = "null" ]; then
+              echo "Unable to determine tag for ${image}"
+              exit 1
+            fi
+            podman build --file "${dockerfile}" --tag "${tag}" . --format docker
+            podman push "${tag}"
+          done
 
-  #         for image in ${IMAGES}; do
-  #           echo "Building ${image} for ${{ matrix.arch }}"
-  #           dockerfile=$(jq -r ".target[\"${image}\"].dockerfile" "${BAKEFILE}")
-  #           tag=$(jq -r ".target[\"${image}\"].tags[0]" "${BAKEFILE}")
-  #           if [ -z "${dockerfile}" ] || [ "${dockerfile}" = "null" ]; then
-  #             echo "Unable to determine Dockerfile for ${image}"
-  #             exit 1
-  #           fi
-  #           if [ -z "${tag}" ] || [ "${tag}" = "null" ]; then
-  #             echo "Unable to determine tag for ${image}"
-  #             exit 1
-  #           fi
-  #           podman build --file "${dockerfile}" --tag "${tag}" .
-  #           podman push "${tag}"
-  #         done
+  publish-manifests:
+    name: Publish multi-arch manifests
+    runs-on: ubuntu-latest
+    needs: build-single-arch
+    steps:
+      - name: Install Podman
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y podman
 
-  # publish-manifests:
-  #   name: Publish multi-arch manifests
-  #   runs-on: ubuntu-latest
-  #   needs: build-single-arch
-  #   steps:
-  #     - name: Install Podman
-  #       run: |
-  #         sudo apt-get update
-  #         sudo apt-get install -y podman
+      - name: Login to Docker Hub
+        env:
+          REGISTRY_USER: ${{ secrets.DOCKER_USER }}
+          REGISTRY_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
+        run: |
+          echo "${REGISTRY_PASSWORD}" | podman login --username "${REGISTRY_USER}" --password-stdin docker.io
 
-  #     - name: Login to Docker Hub
-  #       env:
-  #         REGISTRY_USER: ${{ secrets.DOCKER_USER }}
-  #         REGISTRY_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
-  #       run: |
-  #         echo "${REGISTRY_PASSWORD}" | podman login --username "${REGISTRY_USER}" --password-stdin docker.io
-
-  #     - name: Create and push manifest lists
-  #       run: |
-  #         set -euo pipefail
-  #         for image in ${IMAGES}; do
-  #           echo "Processing ${image}"
-  #           podman pull docker://mattocci/${image}:${LATEST_TAG}_amd64
-  #           podman pull docker://mattocci/${image}:${LATEST_TAG}_arm64
-  #           amd64_digest=$(podman manifest inspect docker://mattocci/${image}:${LATEST_TAG}_amd64 | \
-  #             jq -r '.manifests[] | select(.platform.architecture=="amd64") | .digest')
-  #           if [ -z "${amd64_digest}" ] || [ "${amd64_digest}" = "null" ]; then
-  #             echo "Unable to determine AMD64 digest for ${image}"
-  #             exit 1
-  #           fi
-  #           echo "AMD64 digest for ${image}: ${amd64_digest}"
-  #           arm64_digest=$(podman manifest inspect docker://mattocci/${image}:${LATEST_TAG}_arm64 | \
-  #             jq -r '.manifests[] | select(.platform.architecture=="arm64") | .digest')
-  #           if [ -z "${arm64_digest}" ] || [ "${arm64_digest}" = "null" ]; then
-  #             echo "Unable to determine ARM64 digest for ${image}"
-  #             exit 1
-  #           fi
-  #           echo "ARM64 digest for ${image}: ${arm64_digest}"
-  #           podman manifest rm mattocci/${image}:${LATEST_TAG} || true
-  #           podman manifest create mattocci/${image}:${LATEST_TAG}
-  #           podman manifest add mattocci/${image}:${LATEST_TAG} "docker://mattocci/${image}@${amd64_digest}"
-  #           podman manifest add mattocci/${image}:${LATEST_TAG} "docker://mattocci/${image}@${arm64_digest}"
-  #           podman manifest push --all mattocci/${image}:${LATEST_TAG} "docker://mattocci/${image}:${LATEST_TAG}"
-  #           podman manifest rm mattocci/${image}:latest || true
-  #           podman manifest create mattocci/${image}:latest
-  #           podman manifest add mattocci/${image}:latest "docker://mattocci/${image}@${amd64_digest}"
-  #           podman manifest add mattocci/${image}:latest "docker://mattocci/${image}@${arm64_digest}"
-  #           podman manifest push --all mattocci/${image}:latest "docker://mattocci/${image}:latest"
-  #         done
+      - name: Create and push manifest lists
+        run: |
+          set -euo pipefail
+          for image in ${IMAGES}; do
+            echo "Processing ${image}"
+            podman pull docker://mattocci/${image}:${LATEST_TAG}_amd64
+            podman pull docker://mattocci/${image}:${LATEST_TAG}_arm64
+            amd64_digest=$(podman manifest inspect docker://mattocci/${image}:${LATEST_TAG}_amd64 | \
+              jq -r '.manifests[] | select(.platform.architecture=="amd64") | .digest')
+            if [ -z "${amd64_digest}" ] || [ "${amd64_digest}" = "null" ]; then
+              echo "Unable to determine AMD64 digest for ${image}"
+              exit 1
+            fi
+            echo "AMD64 digest for ${image}: ${amd64_digest}"
+            arm64_digest=$(podman manifest inspect docker://mattocci/${image}:${LATEST_TAG}_arm64 | \
+              jq -r '.manifests[] | select(.platform.architecture=="arm64") | .digest')
+            if [ -z "${arm64_digest}" ] || [ "${arm64_digest}" = "null" ]; then
+              echo "Unable to determine ARM64 digest for ${image}"
+              exit 1
+            fi
+            echo "ARM64 digest for ${image}: ${arm64_digest}"
+            podman manifest rm mattocci/${image}:${LATEST_TAG} || true
+            podman manifest create mattocci/${image}:${LATEST_TAG}
+            podman manifest add mattocci/${image}:${LATEST_TAG} "docker://mattocci/${image}@${amd64_digest}"
+            podman manifest add mattocci/${image}:${LATEST_TAG} "docker://mattocci/${image}@${arm64_digest}"
+            podman manifest push --all mattocci/${image}:${LATEST_TAG} "docker://mattocci/${image}:${LATEST_TAG}"
+            podman manifest rm mattocci/${image}:latest || true
+            podman manifest create mattocci/${image}:latest
+            podman manifest add mattocci/${image}:latest "docker://mattocci/${image}@${amd64_digest}"
+            podman manifest add mattocci/${image}:latest "docker://mattocci/${image}@${arm64_digest}"
+            podman manifest push --all mattocci/${image}:latest "docker://mattocci/${image}:latest"
+          done
