@@ -70,7 +70,7 @@ jobs:
           BAKEFILE: ${{ matrix.bakefile }}
         run: |
           set -euo pipefail
-          podman build --file Dockerfile --tag mattocci/test
+          podman build --file Dockerfile --tag mattocci/test --format docker
           podman push mattocci/test
 
   #         for image in ${IMAGES}; do
