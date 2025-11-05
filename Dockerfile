@@ -6,6 +6,7 @@ RUN apt-get update && apt-get install -y \
   curl \
   zsh \
   wget \
+  git \
   && rm -rf /var/lib/apt/lists/*
 
 # Change shell to Zsh for Docker RUN commands
