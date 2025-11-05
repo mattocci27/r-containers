@@ -11,7 +11,7 @@ on:
   workflow_dispatch:
 
 env:
-  LATEST_TAG: 4.5.1
+  LATEST_TAG: 4.5.2
   IMAGES: radian radian-verse radian-zsh radian-ai cmdstan-verse cmdstan-zsh cmdstan-ai
 
 jobs:
