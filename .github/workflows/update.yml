@@ -38,10 +38,10 @@ jobs:
         with:
           poetry-version: '2.2.1'
 
-      - name: Install Podman
+      - name: Install Podman and Skopeo
         run: |
           sudo apt-get update
-          sudo apt-get install -y podman
+          sudo apt-get install -y podman skopeo
 
       - name: Cache Poetry virtualenv
         uses: actions/cache@v3
@@ -91,10 +91,10 @@ jobs:
     runs-on: ubuntu-latest
     needs: build-single-arch
     steps:
-      - name: Install Podman
+      - name: Install Podman and Skopeo
         run: |
           sudo apt-get update
-          sudo apt-get install -y podman
+          sudo apt-get install -y podman skopeo
 
       - name: Login to Docker Hub
         env:
@@ -110,15 +110,13 @@ jobs:
             echo "Processing ${image}"
             amd64_image="docker.io/mattocci/${image}:${LATEST_TAG}_amd64"
             arm64_image="docker.io/mattocci/${image}:${LATEST_TAG}_arm64"
-            podman pull --arch amd64 "docker://${amd64_image}"
-            podman pull --arch arm64 "docker://${arm64_image}"
-            amd64_digest=$(podman image inspect --format '{{.Digest}}' "${amd64_image}")
+            amd64_digest=$(skopeo inspect --override-arch amd64 --override-os linux --format '{{.Digest}}' "docker://${amd64_image}")
             if [ -z "${amd64_digest}" ] || [ "${amd64_digest}" = "<no value>" ]; then
               echo "Unable to determine AMD64 digest for ${image}"
               exit 1
             fi
             echo "AMD64 digest for ${image}: ${amd64_digest}"
-            arm64_digest=$(podman image inspect --format '{{.Digest}}' "${arm64_image}")
+            arm64_digest=$(skopeo inspect --override-arch arm64 --override-os linux --format '{{.Digest}}' "docker://${arm64_image}")
             if [ -z "${arm64_digest}" ] || [ "${arm64_digest}" = "<no value>" ]; then
               echo "Unable to determine ARM64 digest for ${image}"
               exit 1
@@ -126,12 +124,12 @@ jobs:
             echo "ARM64 digest for ${image}: ${arm64_digest}"
             podman manifest rm mattocci/${image}:${LATEST_TAG} || true
             podman manifest create mattocci/${image}:${LATEST_TAG}
-            podman manifest add mattocci/${image}:${LATEST_TAG} "${amd64_image}"
-            podman manifest add mattocci/${image}:${LATEST_TAG} "${arm64_image}"
+            podman manifest add --os linux --arch amd64 mattocci/${image}:${LATEST_TAG} "docker://mattocci/${image}@${amd64_digest}"
+            podman manifest add --os linux --arch arm64 mattocci/${image}:${LATEST_TAG} "docker://mattocci/${image}@${arm64_digest}"
             podman manifest push --all mattocci/${image}:${LATEST_TAG} "docker://mattocci/${image}:${LATEST_TAG}"
             podman manifest rm mattocci/${image}:latest || true
             podman manifest create mattocci/${image}:latest
-            podman manifest add mattocci/${image}:latest "${amd64_image}"
-            podman manifest add mattocci/${image}:latest "${arm64_image}"
+            podman manifest add --os linux --arch amd64 mattocci/${image}:latest "docker://mattocci/${image}@${amd64_digest}"
+            podman manifest add --os linux --arch arm64 mattocci/${image}:latest "docker://mattocci/${image}@${arm64_digest}"
             podman manifest push --all mattocci/${image}:latest "docker://mattocci/${image}:latest"
           done
