@@ -82,12 +82,6 @@
       "zsh": true
     },
     {
-      "name": "radian-ai",
-      "baseImage": "mattocci/radian-zsh:{version}_{arch}",
-      "ai": true,
-      "nvmVer": "0.40.3"
-    },
-    {
       "name": "cmdstan-verse",
       "baseImage": "mattocci/radian-verse:{version}_{arch}",
       "cmdstan": true,
@@ -104,12 +98,6 @@
       "systemPackages": [
         "build-essential"
       ]
-    },
-    {
-      "name": "cmdstan-ai",
-      "baseImage": "mattocci/cmdstan-zsh:{version}_{arch}",
-      "ai": true,
-      "nvmVer": "0.40.3"
     }
   ]
 }

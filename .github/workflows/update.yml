@@ -12,7 +12,7 @@ on:
 
 env:
   LATEST_TAG: 4.5.3
-  IMAGES: radian radian-verse radian-zsh radian-ai cmdstan-verse cmdstan-zsh cmdstan-ai
+  IMAGES: radian radian-verse radian-zsh cmdstan-verse cmdstan-zsh
 
 jobs:
   build-single-arch:

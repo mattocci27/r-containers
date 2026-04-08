@@ -311,19 +311,4 @@ RUN [[ -d "/home/rstudio/.local/share/zinit/plugins/sindresorhus---pure" ]] \
 
 {% endif %}
 
-{% if ai %}
-USER rstudio
-
-RUN curl -fsSL https://claude.ai/install.sh | bash \
-  && echo 'export PATH="$HOME/.local/bin:$PATH"' >> /home/rstudio/.bashrc
-
-ENV NVM_VERSION={{nvmVer}}
-ENV NVM_DIR=/home/rstudio/.nvm
-RUN curl -fsSL https://raw.githubusercontent.com/nvm-sh/nvm/v${NVM_VERSION}/install.sh | bash \
- && . "$NVM_DIR/nvm.sh" \
- && nvm install 22 \
- && nvm use 22 \
- && npm install -g @openai/codex
-
-{% endif %}
 USER rstudio
