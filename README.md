@@ -16,9 +16,7 @@ These Docker images are optimized for use with the [reproducible R project templ
 ### Enhanced Images with Additional Tools
 | Docker Image                                                                                       | Description                                                                                                      |
 |----------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------|
-| [radian-ai](https://hub.docker.com/repository/docker/mattocci/radian-ai)                           | Extends radian-verse with Zsh shell and AI tooling (e.g., [Claude Code](https://claude.ai/code)) for AI-assisted development. |
 | [cmdstan-zsh](https://hub.docker.com/repository/docker/mattocci/cmdstan-zsh)                       | Adds Zsh shell to the [cmdstan-verse](https://hub.docker.com/r/mattocci/cmdstan-verse) image.                  |
-| [cmdstan-ai](https://hub.docker.com/repository/docker/mattocci/cmdstan-ai)                         | Complete R data science stack with CmdStanR, Zsh, and AI tooling (e.g., [Claude Code](https://claude.ai/code)). |
 
 ### Legacy Images
 | Docker Image                                                                                       | Description                                                                                                      |
