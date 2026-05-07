@@ -1,9 +1,12 @@
 # NOTE: THIS DOCKERFILE IS GENERATED VIA "update.py"
-FROM rocker/rstudio:4.6.0
+ARG BASE_IMAGE=rocker/rstudio:4.6.0
+FROM ${BASE_IMAGE}
 USER root
 
 
 ENV DEBIAN_FRONTEND=noninteractive
+ENV CRAN_REPO=https://packagemanager.posit.co/cran/2026-04-15
+ENV CTAN_REPO=https://texlive.info/tlnet-archive/2026/04/15/tlnet
 
 # Debug output to confirm TARGETPLATFORM (optional)
 ARG TARGETPLATFORM
@@ -41,23 +44,22 @@ RUN apt-get update -q -y \
 
 RUN python3 -m venv /opt/venv
 RUN /opt/venv/bin/pip install --no-cache-dir --upgrade pip \
-    && /opt/venv/bin/pip install radian
+    && /opt/venv/bin/pip install radian==0.6.15
 ENV PATH="/opt/venv/bin:$PATH"
 
 
 
 RUN install2.r -n -2 --skipinstalled --error \
+    -r "${CRAN_REPO}" \
     remotes \
     renv \
     devtools \
     yaml \
     languageserver \
+    unigd \
+    httpgd \
   && rm -rf /tmp/downloaded_packages
 
-RUN installGithub.r --update FALSE \
-    nx10/unigd \
-    nx10/httpgd \
-  && rm -rf /tmp/downloaded_packages
 
 
 

@@ -1,12 +1,15 @@
 {
   "owner": "mattocci",
   "version": "4.6.0",
+  "cranRepo": "https://packagemanager.posit.co/cran/2026-04-15",
+  "ctanRepo": "https://texlive.info/tlnet-archive/2026/04/15/tlnet",
   "arches": ["amd64", "arm64"],
   "images": [
     {
       "name": "radian",
       "baseImage": "rocker/rstudio:{version}",
       "radian": true,
+      "radianVer": "0.6.15",
       "vscodeRenv": true,
       "systemPackages": [
         "libcairo2-dev",
@@ -34,11 +37,9 @@
         "renv",
         "devtools",
         "yaml",
-        "languageserver"
-      ],
-      "installGithub": [
-        "nx10/unigd",
-        "nx10/httpgd"
+        "languageserver",
+        "unigd",
+        "httpgd"
       ]
     },
     {
@@ -86,6 +87,7 @@
       "baseImage": "mattocci/radian-verse:{version}_{arch}",
       "cmdstan": true,
       "cmdstanVer": "2.38.0",
+      "cmdstanrRef": "v0.9.0",
       "systemPackages": [
         "build-essential"
       ]
@@ -95,6 +97,7 @@
       "baseImage": "mattocci/radian-zsh:{version}_{arch}",
       "cmdstan": true,
       "cmdstanVer": "2.38.0",
+      "cmdstanrRef": "v0.9.0",
       "systemPackages": [
         "build-essential"
       ]

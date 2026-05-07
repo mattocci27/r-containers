@@ -1,9 +1,12 @@
 # NOTE: THIS DOCKERFILE IS GENERATED VIA "update.py"
-FROM mattocci/radian-verse:4.6.0_amd64
+ARG BASE_IMAGE=mattocci/radian-verse:4.6.0_amd64
+FROM ${BASE_IMAGE}
 USER root
 
 
 ENV DEBIAN_FRONTEND=noninteractive
+ENV CRAN_REPO=https://packagemanager.posit.co/cran/2026-04-15
+ENV CTAN_REPO=https://texlive.info/tlnet-archive/2026/04/15/tlnet
 
 # Debug output to confirm TARGETPLATFORM (optional)
 ARG TARGETPLATFORM
@@ -28,8 +31,9 @@ RUN apt-get update -q -y \
 
 
 ENV CMDSTAN_VERSION=2.38.0
+ENV CMDSTANR_REF=v0.9.0
 
-RUN R -e 'install.packages("cmdstanr", repos = c("https://mc-stan.org/r-packages/", getOption("repos")))'
+RUN R -e "remotes::install_github('stan-dev/cmdstanr@${CMDSTANR_REF}', upgrade = 'never')"
 
 RUN mkdir -p  /opt/cmdstan \
  && Rscript -e "cmdstanr::install_cmdstan(dir = '/opt/cmdstan', release_url = 'https://github.com/stan-dev/cmdstan/releases/download/v${CMDSTAN_VERSION}/cmdstan-${CMDSTAN_VERSION}.tar.gz', cores = 2, timeout = 3600)"

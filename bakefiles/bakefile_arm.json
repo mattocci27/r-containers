@@ -1,46 +1,137 @@
 {
-  "target": {
+  "group": {
     "default": {
-      "depends": ["radian", "radian-verse", "radian-zsh", "cmdstan-verse", "cmdstan-zsh"      ]
-    }    , "radian": {
+      "targets": [
+        "radian",
+        "radian-verse",
+        "radian-zsh",
+        "cmdstan-verse",
+        "cmdstan-zsh"
+      ]
+    }
+  },
+  "target": {
+    "radian": {
       "context": ".",
       "dockerfile": "images/radian_4.6.0_arm64/Dockerfile",
-      "tags": ["mattocci/radian:4.6.0_arm64"],
-      "platforms": ["linux/arm64"],
-      "cache-from": ["docker.io/mattocci/radian:4.6.0_arm64"],
-      "cache-to": ["type=inline"],
-      "output": ["type=registry,push=true"]
-    }    , "radian-verse": {
+      "tags": [
+        "mattocci/radian:4.6.0_arm64"
+      ],
+      "args": {
+        "BASE_IMAGE": "rocker/rstudio:4.6.0"
+      },
+      "platforms": [
+        "linux/arm64"
+      ],
+      "cache-from": [
+        "docker.io/mattocci/radian:4.6.0_arm64"
+      ],
+      "cache-to": [
+        "type=inline"
+      ],
+      "output": [
+        "type=registry,push=true"
+      ]
+    },
+    "radian-verse": {
       "context": ".",
       "dockerfile": "images/radian-verse_4.6.0_arm64/Dockerfile",
-      "tags": ["mattocci/radian-verse:4.6.0_arm64"],
-      "platforms": ["linux/arm64"],
-      "cache-from": ["docker.io/mattocci/radian-verse:4.6.0_arm64"],
-      "cache-to": ["type=inline"],
-      "output": ["type=registry,push=true"]
-    }    , "radian-zsh": {
+      "tags": [
+        "mattocci/radian-verse:4.6.0_arm64"
+      ],
+      "args": {
+        "BASE_IMAGE": "mattocci/radian:4.6.0_arm64"
+      },
+      "platforms": [
+        "linux/arm64"
+      ],
+      "contexts": {
+        "mattocci/radian:4.6.0_arm64": "target:radian"
+      },
+      "cache-from": [
+        "docker.io/mattocci/radian-verse:4.6.0_arm64"
+      ],
+      "cache-to": [
+        "type=inline"
+      ],
+      "output": [
+        "type=registry,push=true"
+      ]
+    },
+    "radian-zsh": {
       "context": ".",
       "dockerfile": "images/radian-zsh_4.6.0_arm64/Dockerfile",
-      "tags": ["mattocci/radian-zsh:4.6.0_arm64"],
-      "platforms": ["linux/arm64"],
-      "cache-from": ["docker.io/mattocci/radian-zsh:4.6.0_arm64"],
-      "cache-to": ["type=inline"],
-      "output": ["type=registry,push=true"]
-    }    , "cmdstan-verse": {
+      "tags": [
+        "mattocci/radian-zsh:4.6.0_arm64"
+      ],
+      "args": {
+        "BASE_IMAGE": "mattocci/radian-verse:4.6.0_arm64"
+      },
+      "platforms": [
+        "linux/arm64"
+      ],
+      "contexts": {
+        "mattocci/radian-verse:4.6.0_arm64": "target:radian-verse"
+      },
+      "cache-from": [
+        "docker.io/mattocci/radian-zsh:4.6.0_arm64"
+      ],
+      "cache-to": [
+        "type=inline"
+      ],
+      "output": [
+        "type=registry,push=true"
+      ]
+    },
+    "cmdstan-verse": {
       "context": ".",
       "dockerfile": "images/cmdstan-verse_4.6.0_arm64/Dockerfile",
-      "tags": ["mattocci/cmdstan-verse:4.6.0_arm64"],
-      "platforms": ["linux/arm64"],
-      "cache-from": ["docker.io/mattocci/cmdstan-verse:4.6.0_arm64"],
-      "cache-to": ["type=inline"],
-      "output": ["type=registry,push=true"]
-    }    , "cmdstan-zsh": {
+      "tags": [
+        "mattocci/cmdstan-verse:4.6.0_arm64"
+      ],
+      "args": {
+        "BASE_IMAGE": "mattocci/radian-verse:4.6.0_arm64"
+      },
+      "platforms": [
+        "linux/arm64"
+      ],
+      "contexts": {
+        "mattocci/radian-verse:4.6.0_arm64": "target:radian-verse"
+      },
+      "cache-from": [
+        "docker.io/mattocci/cmdstan-verse:4.6.0_arm64"
+      ],
+      "cache-to": [
+        "type=inline"
+      ],
+      "output": [
+        "type=registry,push=true"
+      ]
+    },
+    "cmdstan-zsh": {
       "context": ".",
       "dockerfile": "images/cmdstan-zsh_4.6.0_arm64/Dockerfile",
-      "tags": ["mattocci/cmdstan-zsh:4.6.0_arm64"],
-      "platforms": ["linux/arm64"],
-      "cache-from": ["docker.io/mattocci/cmdstan-zsh:4.6.0_arm64"],
-      "cache-to": ["type=inline"],
-      "output": ["type=registry,push=true"]
-    }  }
+      "tags": [
+        "mattocci/cmdstan-zsh:4.6.0_arm64"
+      ],
+      "args": {
+        "BASE_IMAGE": "mattocci/radian-zsh:4.6.0_arm64"
+      },
+      "platforms": [
+        "linux/arm64"
+      ],
+      "contexts": {
+        "mattocci/radian-zsh:4.6.0_arm64": "target:radian-zsh"
+      },
+      "cache-from": [
+        "docker.io/mattocci/cmdstan-zsh:4.6.0_arm64"
+      ],
+      "cache-to": [
+        "type=inline"
+      ],
+      "output": [
+        "type=registry,push=true"
+      ]
+    }
+  }
 }

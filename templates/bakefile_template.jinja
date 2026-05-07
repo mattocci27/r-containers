@@ -1,22 +1,32 @@
 {
-  "target": {
+  "group": {
     "default": {
-      "depends": [
+      "targets": [
         {%- for c in configs if c.arch == arch_platform -%}
         "{{ c.imageName }}"{% if not loop.last %}, {% endif %}
         {%- endfor %}
       ]
     }
+  },
+  "target": {
     {%- for c in configs if c.arch == arch_platform %}
-    , "{{ c.imageName }}": {
+    "{{ c.imageName }}": {
       "context": ".",
       "dockerfile": "images/{{ c.imageTag }}/Dockerfile",
       "tags": ["{{ owner }}/{{ c.imageName }}:{{ c.imageVer }}"],
+      "args": {
+        "BASE_IMAGE": "{{ c.baseImage }}"
+      },
       "platforms": ["linux/{{ arch_platform }}"],
+      {% if c.baseTarget -%}
+      "contexts": {
+        "{{ c.baseImage }}": "target:{{ c.baseTarget }}"
+      },
+      {% endif -%}
       "cache-from": ["docker.io/{{ owner }}/{{ c.imageName }}:{{ c.imageVer }}"],
       "cache-to": ["type=inline"],
       "output": ["type=registry,push=true"]
-    }
+    }{% if not loop.last %},{% endif %}
     {%- endfor %}
   }
 }

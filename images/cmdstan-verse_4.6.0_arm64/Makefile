@@ -1,2 +1,2 @@
 latest: Dockerfile
-	docker build -t mattocci/cmdstan-verse:4.6.0_arm64 .
+	docker build --build-arg BASE_IMAGE=mattocci/radian-verse:4.6.0_arm64 -t mattocci/cmdstan-verse:4.6.0_arm64 .

@@ -1,2 +1,2 @@
 latest: Dockerfile
-	docker build -t mattocci/radian-verse:4.6.0_amd64 .
+	docker build --build-arg BASE_IMAGE=mattocci/radian:4.6.0_amd64 -t mattocci/radian-verse:4.6.0_amd64 .

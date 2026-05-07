@@ -1,9 +1,12 @@
 # NOTE: THIS DOCKERFILE IS GENERATED VIA "update.py"
-FROM mattocci/radian:4.6.0_arm64
+ARG BASE_IMAGE=mattocci/radian:4.6.0_arm64
+FROM ${BASE_IMAGE}
 USER root
 
 
 ENV DEBIAN_FRONTEND=noninteractive
+ENV CRAN_REPO=https://packagemanager.posit.co/cran/2026-04-15
+ENV CTAN_REPO=https://texlive.info/tlnet-archive/2026/04/15/tlnet
 
 # Debug output to confirm TARGETPLATFORM (optional)
 ARG TARGETPLATFORM
@@ -59,11 +62,12 @@ RUN apt-get update -qq \
 RUN echo "PATH=${PATH}" >> ${R_HOME}/etc/Renviron
 
 RUN install2.r -n -2 --skipinstalled --error \
+   -r "${CRAN_REPO}" \
    tinytex
 
 USER rstudio
 
-RUN export CTAN_REPO=https://ctan.math.illinois.edu/systems/texlive/tlnet \
+RUN export CTAN_REPO="${CTAN_REPO}" \
   && wget -qO- "https://yihui.org/gh/tinytex/tools/install-unx.sh" | sh
 
 ENV PATH="/home/rstudio/bin/:$PATH"
@@ -152,15 +156,22 @@ USER root
 
 ENV QUARTO_VERSION=1.9.37
 
-RUN  wget -N -q -O install_quarto.sh \
-  "https://raw.githubusercontent.com/rocker-org/rocker-versioned2/master/scripts/install_quarto.sh" \
-  && chmod +x install_quarto.sh \
-  && bash install_quarto.sh \
-  && rm install_quarto.sh
+RUN quarto_arch="$(dpkg --print-architecture)" \
+  && case "${quarto_arch}" in \
+    amd64|arm64) ;; \
+    *) echo "Unsupported Quarto architecture: ${quarto_arch}" >&2; exit 1 ;; \
+  esac \
+  && wget -q -O quarto.deb \
+    "https://github.com/quarto-dev/quarto-cli/releases/download/v${QUARTO_VERSION}/quarto-${QUARTO_VERSION}-linux-${quarto_arch}.deb" \
+  && apt-get update -q -y \
+  && apt-get install --no-install-recommends -y ./quarto.deb \
+  && rm quarto.deb \
+  && apt-get clean \
+  && rm -rf /var/lib/apt/lists/*
 
 
 USER rstudio
-RUN tlmgr option repository http://ctan.math.utah.edu/ctan/tex-archive/systems/texlive/tlnet && \
+RUN tlmgr option repository "${CTAN_REPO}" && \
     tlmgr update --self --all
 
 

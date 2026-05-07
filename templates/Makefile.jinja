@@ -1,2 +1,2 @@
 latest: Dockerfile
-	docker build -t {{ owner }}/{{ imageName }}:{{ imageVer}} .
+	docker build --build-arg BASE_IMAGE={{ baseImage }} -t {{ owner }}/{{ imageName }}:{{ imageVer}} .

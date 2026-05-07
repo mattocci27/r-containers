@@ -1,9 +1,12 @@
 # NOTE: THIS DOCKERFILE IS GENERATED VIA "update.py"
-FROM mattocci/radian-verse:4.6.0_amd64
+ARG BASE_IMAGE=mattocci/radian-verse:4.6.0_amd64
+FROM ${BASE_IMAGE}
 USER root
 
 
 ENV DEBIAN_FRONTEND=noninteractive
+ENV CRAN_REPO=https://packagemanager.posit.co/cran/2026-04-15
+ENV CTAN_REPO=https://texlive.info/tlnet-archive/2026/04/15/tlnet
 
 # Debug output to confirm TARGETPLATFORM (optional)
 ARG TARGETPLATFORM

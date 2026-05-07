@@ -1,5 +1,6 @@
 # {{ note }}
-FROM {{ baseImage }}
+ARG BASE_IMAGE={{ baseImage }}
+FROM ${BASE_IMAGE}
 USER root
 
 {% if label %}
@@ -10,6 +11,8 @@ LABEL {% for item in label -%}
 {% endif %}
 
 ENV DEBIAN_FRONTEND=noninteractive
+ENV CRAN_REPO={{ cranRepo }}
+ENV CTAN_REPO={{ ctanRepo }}
 
 # Debug output to confirm TARGETPLATFORM (optional)
 ARG TARGETPLATFORM
@@ -59,11 +62,12 @@ RUN apt-get update -qq \
 RUN echo "PATH=${PATH}" >> ${R_HOME}/etc/Renviron
 
 RUN install2.r -n -2 --skipinstalled --error \
+   -r "${CRAN_REPO}" \
    tinytex
 
 USER rstudio
 
-RUN export CTAN_REPO=https://ctan.math.illinois.edu/systems/texlive/tlnet \
+RUN export CTAN_REPO="${CTAN_REPO}" \
   && wget -qO- "https://yihui.org/gh/tinytex/tools/install-unx.sh" | sh
 
 ENV PATH="/home/rstudio/bin/:$PATH"
@@ -154,17 +158,24 @@ USER root
 {% if quarto %}
 ENV QUARTO_VERSION={{quartoVer}}
 
-RUN  wget -N -q -O install_quarto.sh \
-  "https://raw.githubusercontent.com/rocker-org/rocker-versioned2/master/scripts/install_quarto.sh" \
-  && chmod +x install_quarto.sh \
-  && bash install_quarto.sh \
-  && rm install_quarto.sh
+RUN quarto_arch="$(dpkg --print-architecture)" \
+  && case "${quarto_arch}" in \
+    amd64|arm64) ;; \
+    *) echo "Unsupported Quarto architecture: ${quarto_arch}" >&2; exit 1 ;; \
+  esac \
+  && wget -q -O quarto.deb \
+    "https://github.com/quarto-dev/quarto-cli/releases/download/v${QUARTO_VERSION}/quarto-${QUARTO_VERSION}-linux-${quarto_arch}.deb" \
+  && apt-get update -q -y \
+  && apt-get install --no-install-recommends -y ./quarto.deb \
+  && rm quarto.deb \
+  && apt-get clean \
+  && rm -rf /var/lib/apt/lists/*
 
 {% endif %}
 
 {% if updateLatex %}
 USER rstudio
-RUN tlmgr option repository http://ctan.math.utah.edu/ctan/tex-archive/systems/texlive/tlnet && \
+RUN tlmgr option repository "${CTAN_REPO}" && \
     tlmgr update --self --all
 {% endif %}
 
@@ -180,7 +191,7 @@ RUN /rocker_scripts/install_crossref.sh
 {% if radian %}
 RUN python3 -m venv /opt/venv
 RUN /opt/venv/bin/pip install --no-cache-dir --upgrade pip \
-    && /opt/venv/bin/pip install radian
+    && /opt/venv/bin/pip install radian=={{ radianVer }}
 ENV PATH="/opt/venv/bin:$PATH"
 {% endif %}
 
@@ -195,6 +206,7 @@ RUN Rscript -e "install.packages('Rcpp')"
 
 {% if installCRAN %}
 RUN install2.r -n -2 --skipinstalled --error \
+    -r "${CRAN_REPO}" \
     {% for cran in installCRAN %}
     {{ cran }} \
     {% endfor %}
@@ -226,8 +238,9 @@ RUN mkdir -p /etc/OpenCL/vendors && \
 
 {% if cmdstan %}
 ENV CMDSTAN_VERSION={{cmdstanVer}}
+ENV CMDSTANR_REF={{cmdstanrRef}}
 
-RUN R -e 'install.packages("cmdstanr", repos = c("https://mc-stan.org/r-packages/", getOption("repos")))'
+RUN R -e "remotes::install_github('stan-dev/cmdstanr@${CMDSTANR_REF}', upgrade = 'never')"
 
 RUN mkdir -p  /opt/cmdstan \
  && Rscript -e "cmdstanr::install_cmdstan(dir = '/opt/cmdstan', release_url = 'https://github.com/stan-dev/cmdstan/releases/download/v${CMDSTAN_VERSION}/cmdstan-${CMDSTAN_VERSION}.tar.gz', cores = 2, timeout = 3600)"

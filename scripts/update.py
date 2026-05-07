@@ -21,6 +21,8 @@ def main():
 
     owner = cfg['owner']
     version = cfg['version']
+    cran_repo = cfg.get('cranRepo', 'https://cloud.r-project.org')
+    ctan_repo = cfg.get('ctanRepo', 'https://ctan.math.illinois.edu/systems/texlive/tlnet')
     arches = cfg.get('arches', ['amd64', 'arm64'])
     images = cfg['images']
 
@@ -36,6 +38,8 @@ def main():
                 'imageName': name,
                 'imageVer': f"{version}_{arch}",
                 'imageTag': f"{name}_{version}_{arch}",
+                'cranRepo': cran_repo,
+                'ctanRepo': ctan_repo,
             }
 
             # Render base image string with placeholders
@@ -53,7 +57,8 @@ def main():
                 'systemPackages', 'installCRAN', 'installGithub',
                 'tinytex', 'quarto', 'quartoVer', 'updateLatex',
                 'zsh', 'cmdstan', 'cmdstanVer', 'bio', 'Rcpp',
-                'radian', 'vscodeRenv', 'gpu', 'font', 'crossrefVer', 'pandocVer'
+                'radian', 'radianVer', 'cmdstanrRef', 'vscodeRenv',
+                'gpu', 'font', 'crossrefVer', 'pandocVer'
             ]
             for key in passthrough_keys:
                 if key in image:
