@@ -23,7 +23,6 @@
         "{{ c.baseImage }}": "target:{{ c.baseTarget }}"
       },
       {% endif -%}
-      "cache-from": ["docker.io/{{ owner }}/{{ c.imageName }}:{{ c.imageVer }}"],
       "cache-to": ["type=inline"],
       "output": ["type=registry,push=true"]
     }{% if not loop.last %},{% endif %}

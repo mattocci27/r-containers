@@ -1,7 +1,8 @@
 {
   "owner": "mattocci",
   "version": "4.6.0",
-  "cranRepo": "https://packagemanager.posit.co/cran/2026-04-15",
+  "cranRepo": "https://packagemanager.posit.co/cran/__linux__/noble/2026-04-15",
+  "rcppRepo": "https://rcppcore.r-universe.dev",
   "ctanRepo": "https://texlive.info/tlnet-archive/2026/04/15/tlnet",
   "arches": ["amd64", "arm64"],
   "images": [
@@ -15,8 +16,11 @@
         "libcairo2-dev",
         "libcurl4-openssl-dev",
         "libglpk-dev",
+        "libssl-dev",
         "libxml2-dev",
         "libzmq3-dev",
+        "pkg-config",
+        "zlib1g-dev",
         "libfontconfig1-dev",
         "libharfbuzz-dev",
         "libfribidi-dev",

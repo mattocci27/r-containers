@@ -22,6 +22,7 @@ def main():
     owner = cfg['owner']
     version = cfg['version']
     cran_repo = cfg.get('cranRepo', 'https://cloud.r-project.org')
+    rcpp_repo = cfg.get('rcppRepo', 'https://rcppcore.r-universe.dev')
     ctan_repo = cfg.get('ctanRepo', 'https://ctan.math.illinois.edu/systems/texlive/tlnet')
     arches = cfg.get('arches', ['amd64', 'arm64'])
     images = cfg['images']
@@ -39,6 +40,7 @@ def main():
                 'imageVer': f"{version}_{arch}",
                 'imageTag': f"{name}_{version}_{arch}",
                 'cranRepo': cran_repo,
+                'rcppRepo': rcpp_repo,
                 'ctanRepo': ctan_repo,
             }
 

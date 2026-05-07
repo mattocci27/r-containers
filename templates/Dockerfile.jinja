@@ -12,6 +12,7 @@ LABEL {% for item in label -%}
 
 ENV DEBIAN_FRONTEND=noninteractive
 ENV CRAN_REPO={{ cranRepo }}
+ENV RCPP_REPO={{ rcppRepo }}
 ENV CTAN_REPO={{ ctanRepo }}
 
 # Debug output to confirm TARGETPLATFORM (optional)
@@ -62,6 +63,7 @@ RUN apt-get update -qq \
 RUN echo "PATH=${PATH}" >> ${R_HOME}/etc/Renviron
 
 RUN install2.r -n -2 --skipinstalled --error \
+   -r "${RCPP_REPO}" \
    -r "${CRAN_REPO}" \
    tinytex
 
@@ -206,6 +208,7 @@ RUN Rscript -e "install.packages('Rcpp')"
 
 {% if installCRAN %}
 RUN install2.r -n -2 --skipinstalled --error \
+    -r "${RCPP_REPO}" \
     -r "${CRAN_REPO}" \
     {% for cran in installCRAN %}
     {{ cran }} \

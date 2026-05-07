@@ -23,9 +23,6 @@
       "platforms": [
         "linux/amd64"
       ],
-      "cache-from": [
-        "docker.io/mattocci/radian:4.6.0_amd64"
-      ],
       "cache-to": [
         "type=inline"
       ],
@@ -48,9 +45,6 @@
       "contexts": {
         "mattocci/radian:4.6.0_amd64": "target:radian"
       },
-      "cache-from": [
-        "docker.io/mattocci/radian-verse:4.6.0_amd64"
-      ],
       "cache-to": [
         "type=inline"
       ],
@@ -73,9 +67,6 @@
       "contexts": {
         "mattocci/radian-verse:4.6.0_amd64": "target:radian-verse"
       },
-      "cache-from": [
-        "docker.io/mattocci/radian-zsh:4.6.0_amd64"
-      ],
       "cache-to": [
         "type=inline"
       ],
@@ -98,9 +89,6 @@
       "contexts": {
         "mattocci/radian-verse:4.6.0_amd64": "target:radian-verse"
       },
-      "cache-from": [
-        "docker.io/mattocci/cmdstan-verse:4.6.0_amd64"
-      ],
       "cache-to": [
         "type=inline"
       ],
@@ -123,9 +111,6 @@
       "contexts": {
         "mattocci/radian-zsh:4.6.0_amd64": "target:radian-zsh"
       },
-      "cache-from": [
-        "docker.io/mattocci/cmdstan-zsh:4.6.0_amd64"
-      ],
       "cache-to": [
         "type=inline"
       ],

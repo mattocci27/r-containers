@@ -5,7 +5,8 @@ USER root
 
 
 ENV DEBIAN_FRONTEND=noninteractive
-ENV CRAN_REPO=https://packagemanager.posit.co/cran/2026-04-15
+ENV CRAN_REPO=https://packagemanager.posit.co/cran/__linux__/noble/2026-04-15
+ENV RCPP_REPO=https://rcppcore.r-universe.dev
 ENV CTAN_REPO=https://texlive.info/tlnet-archive/2026/04/15/tlnet
 
 # Debug output to confirm TARGETPLATFORM (optional)
