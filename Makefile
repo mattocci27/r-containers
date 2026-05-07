@@ -1,7 +1,7 @@
 .PHONY: all
 LATEST_TAG = 4.5.3
 
-all: update update_bake update_yml compose push_docker
+all: update update_bake compose push_docker
 
 .PHONY: update
 update: scripts/update.py images.json templates/Dockerfile.jinja

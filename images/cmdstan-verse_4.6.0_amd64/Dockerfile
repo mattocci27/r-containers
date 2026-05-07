@@ -1,5 +1,5 @@
 # NOTE: THIS DOCKERFILE IS GENERATED VIA "update.py"
-FROM mattocci/radian-zsh:4.5.3_amd64
+FROM mattocci/radian-verse:4.6.0_amd64
 USER root
 
 

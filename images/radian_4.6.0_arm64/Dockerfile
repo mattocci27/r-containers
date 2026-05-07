@@ -1,5 +1,5 @@
 # NOTE: THIS DOCKERFILE IS GENERATED VIA "update.py"
-FROM rocker/rstudio:4.5.3
+FROM rocker/rstudio:4.6.0
 USER root
 
 
