@@ -1,5 +1,5 @@
 .PHONY: all
-LATEST_TAG = 4.5.3
+LATEST_TAG = 4.5.2
 
 all: update update_bake compose push_docker
 

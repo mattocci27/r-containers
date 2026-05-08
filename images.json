@@ -1,6 +1,6 @@
 {
   "owner": "mattocci",
-  "version": "4.6.0",
+  "version": "4.5.2",
   "cranRepo": "https://packagemanager.posit.co/cran/__linux__/noble/2026-04-15",
   "rcppRepo": "https://rcppcore.r-universe.dev",
   "ctanRepo": "https://texlive.info/tlnet-archive/2026/04/15/tlnet",
