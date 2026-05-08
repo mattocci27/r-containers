@@ -1,5 +1,5 @@
 # NOTE: THIS DOCKERFILE IS GENERATED VIA "update.py"
-ARG BASE_IMAGE=rocker/rstudio:4.6.0
+ARG BASE_IMAGE=rocker/rstudio:4.5.3
 FROM ${BASE_IMAGE}
 USER root
 

@@ -1,5 +1,5 @@
 # NOTE: THIS DOCKERFILE IS GENERATED VIA "update.py"
-ARG BASE_IMAGE=mattocci/radian-verse:4.6.0_amd64
+ARG BASE_IMAGE=mattocci/radian-verse:4.5.3_arm64
 FROM ${BASE_IMAGE}
 USER root
 
