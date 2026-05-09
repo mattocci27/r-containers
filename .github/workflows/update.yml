@@ -9,7 +9,7 @@ on:
   workflow_dispatch:
 
 env:
-  LATEST_TAG: 4.6.0
+  LATEST_TAG: 4.5.3
   IMAGES: radian radian-verse radian-zsh cmdstan-verse cmdstan-zsh
 
 jobs:
