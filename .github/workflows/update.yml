@@ -1,5 +1,3 @@
-name: Build and Push Docker Images
-
 on:
   schedule:
     - cron: '0 0 * * 1'
@@ -73,6 +71,9 @@ jobs:
     name: Publish multi-arch manifests
     runs-on: ubuntu-latest
     needs: build-single-arch
+    permissions:
+      contents: read
+      packages: write
     steps:
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
@@ -82,6 +83,13 @@ jobs:
         with:
           username: ${{ secrets.DOCKER_USER }}
           password: ${{ secrets.DOCKER_PASSWORD }}
+
+      - name: Login to GitHub Container Registry
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.repository_owner }}
+          password: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Create and push manifest lists
         run: |
@@ -114,4 +122,13 @@ jobs:
               "mattocci/${image}@${amd64_digest}" \
               "mattocci/${image}@${arm64_digest}"
             docker manifest push mattocci/${image}:latest
+            docker buildx imagetools create \
+              --tag ghcr.io/${{ github.repository_owner }}/${image}:${LATEST_TAG} \
+              "mattocci/${image}@${amd64_digest}" \
+              "mattocci/${image}@${arm64_digest}"
+            docker buildx imagetools create \
+              --tag ghcr.io/${{ github.repository_owner }}/${image}:latest \
+              "mattocci/${image}@${amd64_digest}" \
+              "mattocci/${image}@${arm64_digest}"
           done
+
