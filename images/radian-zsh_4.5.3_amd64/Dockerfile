@@ -75,8 +75,8 @@ RUN mkdir -p "/home/rstudio/.local/share/zinit" \
     && zinit light zsh-users/zsh-completions \
     && zinit ice depth=1 \
     && zinit light jeffreytse/zsh-vi-mode \
-    && zinit ice depth=1 \
-    && zinit light sindresorhus/pure \
+    && git clone --depth=1 https://github.com/sindresorhus/pure.git \
+         /home/rstudio/.local/share/zinit/plugins/sindresorhus---pure \
     && zinit compile --all \
     && rm -rf /home/rstudio/.local/share/zinit/zinit.git/.git \
     && find /home/rstudio/.local/share/zinit/plugins -name ".git" -type d -exec rm -rf {} + 2>/dev/null || true
