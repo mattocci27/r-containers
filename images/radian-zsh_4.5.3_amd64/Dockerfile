@@ -27,7 +27,11 @@ RUN echo "TARGETPLATFORM: ${TARGETPLATFORM}"
 
 
 # Install dependencies and tools including Cargo and Rust
-RUN apt-get update && apt-get install -y \
+RUN apt-get update && apt-get install -y --no-install-recommends \
+  software-properties-common \
+  ubuntu-keyring \
+  && add-apt-repository -y universe \
+  && apt-get update && apt-get install -y \
   curl \
   git \
   wget \

@@ -82,21 +82,16 @@ ENV PATH="/home/rstudio/bin/:$PATH"
 RUN tlmgr init-usertree
 
 RUN R -e "tinytex::tlmgr_install( \
-  c('amsmath', \
-    'latex-amsmath-dev', \
-    'geometry', \
-    'hyperref', \
-    'xcolor', \
-    'booktabs', \
+  c('booktabs', \
     'caption', \
     'colortbl', \
     'multirow', \
     'makecell', \
     'threeparttable', \
     'threeparttablex', \
-    'float', \
     'koma-script', \
     'environ', \
+    'pdflscape', \
     'pgf', \
     'tcolorbox', \
     'listings', \
@@ -105,15 +100,8 @@ RUN R -e "tinytex::tlmgr_install( \
     'setspace', \
     'lineno', \
     'titlesec', \
-    'lmodern', \
-    'csquotes', \
-    'pdflscape', \
     'xr', \
-    'zref', \
-    'refcount', \
-    'fontspec', \
-    'unicode-math', \
-    'latexmk'))"
+    'csquotes'))"
 
 USER root
 

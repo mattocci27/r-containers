@@ -78,21 +78,16 @@ ENV PATH="/home/rstudio/bin/:$PATH"
 RUN tlmgr init-usertree
 
 RUN R -e "tinytex::tlmgr_install( \
-  c('amsmath', \
-    'latex-amsmath-dev', \
-    'geometry', \
-    'hyperref', \
-    'xcolor', \
-    'booktabs', \
+  c('booktabs', \
     'caption', \
     'colortbl', \
     'multirow', \
     'makecell', \
     'threeparttable', \
     'threeparttablex', \
-    'float', \
     'koma-script', \
     'environ', \
+    'pdflscape', \
     'pgf', \
     'tcolorbox', \
     'listings', \
@@ -101,15 +96,8 @@ RUN R -e "tinytex::tlmgr_install( \
     'setspace', \
     'lineno', \
     'titlesec', \
-    'lmodern', \
-    'csquotes', \
-    'pdflscape', \
     'xr', \
-    'zref', \
-    'refcount', \
-    'fontspec', \
-    'unicode-math', \
-    'latexmk'))"
+    'csquotes'))"
 
 USER root
 
@@ -221,7 +209,11 @@ RUN R -e 'extrafont::font_import(prompt = FALSE)'
 
 {% if zsh %}
 # Install dependencies and tools including Cargo and Rust
-RUN apt-get update && apt-get install -y \
+RUN apt-get update && apt-get install -y --no-install-recommends \
+  software-properties-common \
+  ubuntu-keyring \
+  && add-apt-repository -y universe \
+  && apt-get update && apt-get install -y \
   curl \
   git \
   wget \
