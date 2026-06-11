@@ -46,11 +46,12 @@ RUN apt-get update && apt-get install -y \
   && rm -rf /var/lib/apt/lists/*
 
 RUN fastfetch_arch="$(dpkg --print-architecture)" \
- && wget -q -O fastfetch.deb "https://github.com/fastfetch-cli/fastfetch/releases/latest/download/fastfetch-linux-${fastfetch_arch}.deb" \
- && apt-get update \
- && apt-get install -y --no-install-recommends ./fastfetch.deb \
- && rm fastfetch.deb \
- && rm -rf /var/lib/apt/lists/*
+  && if [ "${fastfetch_arch}" = "arm64" ]; then fastfetch_arch="aarch64"; fi \
+  && curl -L -o fastfetch.deb "https://github.com/fastfetch-cli/fastfetch/releases/latest/download/fastfetch-linux-${fastfetch_arch}.deb" \
+  && apt-get update \
+  && apt-get install -y --no-install-recommends ./fastfetch.deb \
+  && rm -f fastfetch.deb \
+  && rm -rf /var/lib/apt/lists/*
 
 # Change the default shell for rstudio to zsh
 RUN usermod -s /usr/bin/zsh rstudio
