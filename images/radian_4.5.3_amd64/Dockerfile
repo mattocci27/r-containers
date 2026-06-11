@@ -34,13 +34,10 @@ RUN apt-get update -q -y \
     libxt6 \
     python3-venv \
     python3-dev \
-    python3-pip \
-    pipx \
     cmake \
   && apt-get autoremove -y \
   && apt-get clean \
   && rm -rf /var/lib/apt/lists/*
-
 
 
 

@@ -30,7 +30,6 @@ RUN apt-get update -q -y \
 
 
 
-
 ENV CMDSTAN_VERSION=2.38.0
 ENV CMDSTANR_REF=v0.9.0
 

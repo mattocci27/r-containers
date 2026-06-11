@@ -78,80 +78,38 @@ ENV PATH="/home/rstudio/bin/:$PATH"
 RUN tlmgr init-usertree
 
 RUN R -e "tinytex::tlmgr_install( \
-  c('ae', \
-    'amsmath', \
-    'babel-english', \
-    'bigintcalc', \
-    'bitset', \
-    'bookmark', \
+  c('amsmath', \
+    'latex-amsmath-dev', \
+    'geometry', \
+    'hyperref', \
+    'xcolor', \
     'booktabs', \
     'caption', \
     'colortbl', \
-    'csquotes', \
-    'environ', \
-    'epstopdf-pkg', \
-    'etexcmds', \
-    'fancyhdr', \
-    'float', \
-    'footnotebackref', \
-    'fontspec', \
-    'unicode-math', \
-    'upquote', \
-    'microtype', \
-    'lmodern', \
-    'xurl', \
-    'fvextra', \
-    'geometry', \
-    'gettitlestring', \
-    'hycolor', \
-    'hyperref', \
-    'inconsolata', \
-    'intcalc', \
-    'koma-script', \
-    'kvdefinekeys', \
-    'kvsetkeys', \
-    'latex-amsmath-dev', \
-    'latexmk', \
-    'letltxmacro', \
-    'lineno', \
-    'listings', \
-    'ltxcmds', \
-    'ly1', \
-    'makecell', \
-    'mdframed', \
-    'mdwtools', \
-    'metafont', \
-    'mfware', \
     'multirow', \
-    'needspace', \
-    'oberdiek', \
-    'parskip', \
-    'pdfcol', \
-    'pdfcrop', \
-    'pdfescape', \
-    'pdflscape', \
-    'pgf', \
-    'refcount', \
-    'rerunfilecheck', \
-    'setspace', \
-    'sourcecodepro', \
-    'sourcesanspro', \
-    'stringenc', \
-    'tabu', \
-    'tcolorbox', \
-    'tex', \
+    'makecell', \
     'threeparttable', \
     'threeparttablex', \
-    'titling', \
+    'float', \
+    'koma-script', \
+    'environ', \
+    'pgf', \
+    'tcolorbox', \
+    'listings', \
+    'fvextra', \
+    'microtype', \
+    'setspace', \
+    'lineno', \
     'titlesec', \
-    'trimspaces', \
-    'ulem', \
-    'uniquecounter', \
-    'varwidth', \
-    'wrapfig', \
-    'xcolor', \
-    'zapfding', \
-    'zref'))"
+    'lmodern', \
+    'csquotes', \
+    'pdflscape', \
+    'xr', \
+    'zref', \
+    'refcount', \
+    'fontspec', \
+    'unicode-math', \
+    'latexmk'))"
 
 USER root
 
@@ -173,12 +131,6 @@ RUN quarto_arch="$(dpkg --print-architecture)" \
   && apt-get clean \
   && rm -rf /var/lib/apt/lists/*
 
-{% endif %}
-
-{% if updateLatex %}
-USER rstudio
-RUN tlmgr option repository "${CTAN_REPO}" && \
-    tlmgr update --self --all
 {% endif %}
 
 {% if crossrefVer %}
@@ -274,27 +226,22 @@ RUN apt-get update && apt-get install -y \
   git \
   wget \
   vim \
-  peco \
   fzf \
   zsh \
   htop \
   tree \
   ripgrep \
-  neofetch \
+  fastfetch \
   eza \
   stow \
   fd-find \
   openssh-client \
+  zoxide \
+  ncdu \
   && rm -rf /var/lib/apt/lists/*
 
 # Change the default shell for rstudio to zsh
 RUN usermod -s /usr/bin/zsh rstudio
-
-# Install Rust applications using Cargo, installed via apt
-USER rstudio
-RUN curl https://sh.rustup.rs -sSf | sh -s -- -y
-ENV PATH="/home/rstudio/.cargo/bin:${PATH}"
-RUN cargo install zoxide dutree
 
 # Change shell to Zsh for Docker RUN commands
 SHELL ["/usr/bin/zsh", "-c"]
