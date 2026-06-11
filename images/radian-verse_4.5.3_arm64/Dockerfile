@@ -100,7 +100,6 @@ RUN R -e "tinytex::tlmgr_install( \
     'setspace', \
     'lineno', \
     'titlesec', \
-    'xr', \
     'csquotes'))"
 
 USER root

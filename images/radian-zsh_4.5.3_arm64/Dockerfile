@@ -27,11 +27,7 @@ RUN echo "TARGETPLATFORM: ${TARGETPLATFORM}"
 
 
 # Install dependencies and tools including Cargo and Rust
-RUN apt-get update && apt-get install -y --no-install-recommends \
-  software-properties-common \
-  ubuntu-keyring \
-  && add-apt-repository -y universe \
-  && apt-get update && apt-get install -y \
+RUN apt-get update && apt-get install -y \
   curl \
   git \
   wget \
@@ -41,7 +37,6 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
   htop \
   tree \
   ripgrep \
-  fastfetch \
   eza \
   stow \
   fd-find \
@@ -49,6 +44,13 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
   zoxide \
   ncdu \
   && rm -rf /var/lib/apt/lists/*
+
+RUN fastfetch_arch="$(dpkg --print-architecture)" \
+ && wget -q -O fastfetch.deb "https://github.com/fastfetch-cli/fastfetch/releases/latest/download/fastfetch-linux-${fastfetch_arch}.deb" \
+ && apt-get update \
+ && apt-get install -y --no-install-recommends ./fastfetch.deb \
+ && rm fastfetch.deb \
+ && rm -rf /var/lib/apt/lists/*
 
 # Change the default shell for rstudio to zsh
 RUN usermod -s /usr/bin/zsh rstudio
