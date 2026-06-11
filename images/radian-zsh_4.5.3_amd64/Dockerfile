@@ -59,29 +59,26 @@ RUN usermod -s /usr/bin/zsh rstudio
 # Change shell to Zsh for Docker RUN commands
 SHELL ["/usr/bin/zsh", "-c"]
 
-# Install Zinit & Plugins as rstudio user for correct file ownership
-USER rstudio
+# Install Zinit
+RUN mkdir -p "/home/rstudio/.local/share/zinit" && chmod g-rwX "/home/rstudio/.local/share/zinit" && \
+    git clone --depth=1 https://github.com/zdharma-continuum/zinit "/home/rstudio/.local/share/zinit/zinit.git"
 
-RUN mkdir -p "/home/rstudio/.local/share/zinit" \
-    && chmod g-rwX "/home/rstudio/.local/share/zinit" \
-    && git clone --depth=1 https://github.com/zdharma-continuum/zinit \
-         "/home/rstudio/.local/share/zinit/zinit.git" \
-    && source /home/rstudio/.local/share/zinit/zinit.git/zinit.zsh \
-    && zinit light zdharma-continuum/zinit-annex-as-monitor \
-    && zinit light zdharma-continuum/zinit-annex-bin-gem-node \
-    && zinit light zdharma-continuum/zinit-annex-patch-dl \
-    && zinit light zsh-users/zsh-autosuggestions \
-    && zinit light zdharma-continuum/fast-syntax-highlighting \
-    && zinit light zsh-users/zsh-completions \
-    && zinit ice depth=1 \
-    && zinit light jeffreytse/zsh-vi-mode \
-    && git clone --depth=1 https://github.com/sindresorhus/pure.git \
-         /home/rstudio/.local/share/zinit/plugins/sindresorhus---pure \
-    && zinit compile --all \
-    && rm -rf /home/rstudio/.local/share/zinit/zinit.git/.git \
-    && find /home/rstudio/.local/share/zinit/plugins -name ".git" -type d -exec rm -rf {} + 2>/dev/null || true
+RUN source /home/rstudio/.local/share/zinit/zinit.git/zinit.zsh && \
+    zinit light zdharma-continuum/zinit-annex-as-monitor && \
+    zinit light zdharma-continuum/zinit-annex-bin-gem-node && \
+    zinit light zdharma-continuum/zinit-annex-patch-dl
 
-USER root
+RUN source /home/rstudio/.local/share/zinit/zinit.git/zinit.zsh && \
+    zinit light zsh-users/zsh-autosuggestions && \
+    zinit light zdharma-continuum/fast-syntax-highlighting && \
+    zinit light zsh-users/zsh-completions
+
+RUN source /home/rstudio/.local/share/zinit/zinit.git/zinit.zsh && \
+    zinit ice depth=1 && \
+    zinit light jeffreytse/zsh-vi-mode
+
+RUN git clone --depth=1 https://github.com/sindresorhus/pure.git \
+      /home/rstudio/.local/share/zinit/plugins/sindresorhus---pure
 
 
 USER rstudio
