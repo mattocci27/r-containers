@@ -22,7 +22,6 @@ RUN apt-get update -q -y \
     libfftw3-dev \
     libgdal-dev \
     libgeos-dev \
-    libgsl0-dev \
     libgl1-mesa-dev \
     libglu1-mesa-dev \
     libhdf4-alt-dev \
@@ -34,14 +33,12 @@ RUN apt-get update -q -y \
     libnetcdf-dev \
     libsqlite3-dev \
     netcdf-bin \
-    postgis \
     protobuf-compiler \
     sqlite3 \
     tk-dev \
     unixodbc-dev \
     libmagick++-dev \
     libmagickcore-6.q16-6-extra \
-    pkg-config \
     fonts-roboto \
     fonts-open-sans \
   && apt-get autoremove -y \

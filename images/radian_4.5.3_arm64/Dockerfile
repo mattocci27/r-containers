@@ -31,7 +31,6 @@ RUN apt-get update -q -y \
     libtiff5-dev \
     libjpeg-dev \
     libgit2-dev \
-    libxt6 \
     python3-venv \
     python3-dev \
     cmake \

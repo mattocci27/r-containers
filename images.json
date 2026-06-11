@@ -29,7 +29,6 @@
         "libtiff5-dev",
         "libjpeg-dev",
         "libgit2-dev",
-        "libxt6",
         "python3-venv",
         "python3-dev",
         "cmake"
@@ -58,7 +57,6 @@
         "libfftw3-dev",
         "libgdal-dev",
         "libgeos-dev",
-        "libgsl0-dev",
         "libgl1-mesa-dev",
         "libglu1-mesa-dev",
         "libhdf4-alt-dev",
@@ -70,14 +68,12 @@
         "libnetcdf-dev",
         "libsqlite3-dev",
         "netcdf-bin",
-        "postgis",
         "protobuf-compiler",
         "sqlite3",
         "tk-dev",
         "unixodbc-dev",
         "libmagick++-dev",
         "libmagickcore-6.q16-6-extra",
-        "pkg-config",
         "fonts-roboto",
         "fonts-open-sans"
       ]
