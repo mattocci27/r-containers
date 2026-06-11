@@ -241,6 +241,8 @@ RUN usermod -s /usr/bin/zsh rstudio
 SHELL ["/usr/bin/zsh", "-c"]
 
 # Install Zinit
+USER rstudio
+
 RUN mkdir -p "/home/rstudio/.local/share/zinit" && chmod g-rwX "/home/rstudio/.local/share/zinit" && \
     git clone --depth=1 https://github.com/zdharma-continuum/zinit "/home/rstudio/.local/share/zinit/zinit.git"
 
