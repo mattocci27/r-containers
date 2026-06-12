@@ -1,5 +1,5 @@
 # NOTE: THIS DOCKERFILE IS GENERATED VIA "update.py"
-ARG BASE_IMAGE=rocker/rstudio:4.6.0
+ARG BASE_IMAGE=rocker/rstudio:4.5.3
 FROM ${BASE_IMAGE}
 USER root
 
@@ -31,16 +31,12 @@ RUN apt-get update -q -y \
     libtiff5-dev \
     libjpeg-dev \
     libgit2-dev \
-    libxt6 \
     python3-venv \
     python3-dev \
-    python3-pip \
-    pipx \
     cmake \
   && apt-get autoremove -y \
   && apt-get clean \
   && rm -rf /var/lib/apt/lists/*
-
 
 
 

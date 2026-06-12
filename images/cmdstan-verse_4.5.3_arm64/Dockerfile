@@ -1,5 +1,5 @@
 # NOTE: THIS DOCKERFILE IS GENERATED VIA "update.py"
-ARG BASE_IMAGE=mattocci/radian-verse:4.6.0_arm64
+ARG BASE_IMAGE=mattocci/radian-verse:4.5.3_arm64
 FROM ${BASE_IMAGE}
 USER root
 
@@ -19,7 +19,6 @@ RUN apt-get update -q -y \
   && apt-get autoremove -y \
   && apt-get clean \
   && rm -rf /var/lib/apt/lists/*
-
 
 
 

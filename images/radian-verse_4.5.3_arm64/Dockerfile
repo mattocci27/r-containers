@@ -1,5 +1,5 @@
 # NOTE: THIS DOCKERFILE IS GENERATED VIA "update.py"
-ARG BASE_IMAGE=mattocci/radian:4.6.0_arm64
+ARG BASE_IMAGE=mattocci/radian:4.5.3_arm64
 FROM ${BASE_IMAGE}
 USER root
 
@@ -22,7 +22,6 @@ RUN apt-get update -q -y \
     libfftw3-dev \
     libgdal-dev \
     libgeos-dev \
-    libgsl0-dev \
     libgl1-mesa-dev \
     libglu1-mesa-dev \
     libhdf4-alt-dev \
@@ -33,13 +32,15 @@ RUN apt-get update -q -y \
     libprotobuf-dev \
     libnetcdf-dev \
     libsqlite3-dev \
-    libssl-dev \
     netcdf-bin \
-    postgis \
     protobuf-compiler \
     sqlite3 \
     tk-dev \
     unixodbc-dev \
+    libmagick++-dev \
+    libmagickcore-6.q16-6-extra \
+    fonts-roboto \
+    fonts-open-sans \
   && apt-get autoremove -y \
   && apt-get clean \
   && rm -rf /var/lib/apt/lists/*
@@ -78,80 +79,25 @@ ENV PATH="/home/rstudio/bin/:$PATH"
 RUN tlmgr init-usertree
 
 RUN R -e "tinytex::tlmgr_install( \
-  c('ae', \
-    'amsmath', \
-    'babel-english', \
-    'bigintcalc', \
-    'bitset', \
-    'bookmark', \
-    'booktabs', \
+  c('booktabs', \
     'caption', \
     'colortbl', \
-    'csquotes', \
-    'environ', \
-    'epstopdf-pkg', \
-    'etexcmds', \
-    'fancyhdr', \
-    'float', \
-    'footnotebackref', \
-    'fontspec', \
-    'unicode-math', \
-    'upquote', \
-    'microtype', \
-    'lmodern', \
-    'xurl', \
-    'fvextra', \
-    'geometry', \
-    'gettitlestring', \
-    'hycolor', \
-    'hyperref', \
-    'inconsolata', \
-    'intcalc', \
-    'koma-script', \
-    'kvdefinekeys', \
-    'kvsetkeys', \
-    'latex-amsmath-dev', \
-    'latexmk', \
-    'letltxmacro', \
-    'lineno', \
-    'listings', \
-    'ltxcmds', \
-    'ly1', \
-    'makecell', \
-    'mdframed', \
-    'mdwtools', \
-    'metafont', \
-    'mfware', \
     'multirow', \
-    'needspace', \
-    'oberdiek', \
-    'parskip', \
-    'pdfcol', \
-    'pdfcrop', \
-    'pdfescape', \
-    'pdflscape', \
-    'pgf', \
-    'refcount', \
-    'rerunfilecheck', \
-    'setspace', \
-    'sourcecodepro', \
-    'sourcesanspro', \
-    'stringenc', \
-    'tabu', \
-    'tcolorbox', \
-    'tex', \
+    'makecell', \
     'threeparttable', \
     'threeparttablex', \
-    'titling', \
+    'koma-script', \
+    'environ', \
+    'pdflscape', \
+    'pgf', \
+    'tcolorbox', \
+    'listings', \
+    'fvextra', \
+    'microtype', \
+    'setspace', \
+    'lineno', \
     'titlesec', \
-    'trimspaces', \
-    'ulem', \
-    'uniquecounter', \
-    'varwidth', \
-    'wrapfig', \
-    'xcolor', \
-    'zapfding', \
-    'zref'))"
+    'csquotes'))"
 
 USER root
 
@@ -171,10 +117,6 @@ RUN quarto_arch="$(dpkg --print-architecture)" \
   && apt-get clean \
   && rm -rf /var/lib/apt/lists/*
 
-
-USER rstudio
-RUN tlmgr option repository "${CTAN_REPO}" && \
-    tlmgr update --self --all
 
 
 
