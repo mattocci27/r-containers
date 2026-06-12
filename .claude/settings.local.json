@@ -1,0 +1,8 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(git merge:*)",
+      "Bash(make update_bake:*)"
+    ]
+  }
+}
